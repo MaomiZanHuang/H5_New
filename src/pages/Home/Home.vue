@@ -1,51 +1,19 @@
 <template>
   <div>
-    {{msg}}
+		<Menu />
 		<header id="header" class="mui-bar mui-bar-transparent" style="background-color: rgba(249, 48, 76, 0);">
 			<a class="mui-action-back mui-icon mui-icon-contact mui-pull-left" ></a>
 			<h1 class="mui-title">千寻赞皇</h1>
 		</header>
 
-		
-
 		<div class="mui-content">
 			<!--轮播图-->
 			<div id="slider" class="mui-slider">
 				<div class="mui-slider-group mui-slider-loop">
-					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-					<div class="mui-slider-item mui-slider-item-duplicate">
-						<a href="#" index="-1">
-							<img id="slider_img" src="/assets/logo.png">
-						</a>
-					</div>
 					<!-- 第一张 -->
-					<div class="mui-slider-item">
-						<a href="#" index="0">
-							<img src="/assets/logo.png">
-						</a>
-					</div>
-					<!-- 第二张 -->
-					<div class="mui-slider-item">
-						<a href="#" index="1">
-							<img src="/assets/logo.png">
-						</a>
-					</div>
-					<!-- 第三张 -->
-					<div class="mui-slider-item">
-						<a href="#" index="2">
-							<img src="/assets/logo.png">
-						</a>
-					</div>
-					<!-- 第四张 -->
-					<div class="mui-slider-item">
-						<a href="#" index="3">
-							<img src="/assets/logo.png">
-						</a>
-					</div>
-					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-					<div class="mui-slider-item mui-slider-item-duplicate">
-						<a href="#" index="-1">
-							<img src="/assets/logo.png">
+					<div class="mui-slider-item" v-for="(banner,idx) in banners">
+						<a href="#" :index="idx">
+							<img :src="banner">
 						</a>
 					</div>
 				</div>
@@ -58,42 +26,117 @@
 			</div>
 			<!--轮播图-->
 
-			<!--顶部图形导航-->
-			<div class="mui-slider-item" style="margin-top: 8px;">
-				<ul class="mui-table-view mui-grid-view" id="topupimg1">
-					<!--<a href=""><img width="100%" src="https://m.360buyimg.com/mobilecms/s828x252_jfs/t22201/103/103385437/151483/5892927d/5afc00deNb5b0558f.jpg!q70.jpg.dpg"></a>-->
-				</ul>
-			</div>
-			<!--顶部图形导航结束-->
-			<div style="background:#ffffff; margin-top: 8px;"><img class="mui-media-object" src="/assets/logo.png" style=" margin-left:4%;"></div>
-			<!--活动导航-->
-			<div id="qianggou" style="margin-top: 0px;">
-				<ul class="mui-table-view mui-grid-view" id="activity1">
-					<div style="position: absolute; left:50% ; background:#EEEEEE; top:0%;  height:100%;  width:1px; "></div>
-					<div style="position: absolute; ; background:#EEEEEE; top:50%;  height:1%;  width:100%; "></div>
-					
-				</ul>
-			</div>
-			<!--活动导航-->
+			<!--公告区域-->
+			<div class="news">
+				<span class="newsfrom">
+					<i class="iconfont icon-xiaoxi2"></i> 公告
+				</span>
+				<marquee class="newslist" direction="up" scrollamount="1">
+					<ul style="margin-top: -1px;">
+						<li>
+								<a href="/M/Notice/9944">卡商网官方：新增3个顶级域名注意...</a>
+							</li><li>
+								<a href="/M/Notice/7396">卡商网供货商规则变更</a>
+							</li><li>
+								<a href="/M/Notice/14644">卡商网免手续费加款</a>
+							</li><li>
+								<a href="/M/Notice/14548">卡商网提现变更通知201-2-1</a>
+							</li><li>
+								<a href="/M/Notice/14527">通知：老用户绑定QQ和微信登录示...</a>
+							</li></ul>
+				</marquee>
+      	<a href="/M/QueryNotice" class="morenews">&nbsp;更多</a>
+    </div>
 
-			<!--猜你喜欢-->
-			<span class="like">
-                <span class="mui-icon iconfont  icon-hengxiandianzuo"></span>
-			<span class="mui-icon iconfont  icon-cainixihuan"></span>
-			<span class="mui-tab-label">日销量最佳</span>
-			<span class="mui-icon iconfont  icon-hengxiandianyou"></span>
-			</span>
-			<!--猜你喜欢-->
-
-			<!--商品列表-->
-			<div id="goodsListShow1" class="mui-table-view mui-grid-view own-gray-color" style="margin-top: 0.3rem;"></div>
-			<!--商品列表-->
+			<!--公告区域-->
 			
-			<!--底部结束图片-->
-			<div style="text-align:center">
-				<img src="/assets/logo.png" />
+
+			<!--常见业务分类(仅显示7个)，多于7个隐藏起来-->
+			<div id="qianggou" style="margin-top: 0px;">
+				<ul class="mui-table-view mui-grid-view">
+					<li v-for="cata in catas" class="mui-table-view-cell mui-col-xs-3 mui-col-sm-3 iconlist clip"
+						@click="jmpToCatas">
+						<img :src="cata.logo" style="width: 40px;height:45px">
+						<div>{{cata.name}}</div>
+					</li>
+				</ul>
 			</div>
-			<!--底部结束图片-->
+			<!--广告活动-->
+			<div class="adv">
+				<img :src="adv.pic" :title="adv.alt"/>
+			</div>
+			<!--广告区域-->
+			
+			<!--日销量最佳-->
+			<div class="block">
+				<div class="header">
+					<span class="mui-icon iconfont icon-msnui-bar-chart"></span>
+					<span class="mui-tab-label">日销量最佳</span>
+				</div>
+				<div class="content goodlist">
+					<li v-for="item in top5Goods">
+						<div class="list-item">
+							<div class="p">
+								<a href="//detail.m.tmall.com/item.htm?id=534982361804&amp;abtest=11&amp;rn=2002506802a1e4a929a330dc601ec760&amp;sid=defacd7edd7e387330180d6ca9c39ea9" title="">
+									<img class="p-pic" :src="item.pic" style="visibility: visible;">
+									<span class="flag c-icon-pt"></span>
+								</a>
+							</div>
+							<div class="d">
+								<a href="//detail.m.tmall.com/item.htm?id=534982361804&amp;abtest=11&amp;rn=2002506802a1e4a929a330dc601ec760&amp;sid=defacd7edd7e387330180d6ca9c39ea9" title="">
+									<h3 class="d-title">{{item.title}}</h3>
+								</a>
+								<p>{{item.desc}}</p>
+								<p class="d-price">
+									<em class="h">
+										<span class="price-icon">¥</span>
+										<span class="font-num">{{item.price}}</span>
+									</em>
+								</p>
+								<div class="d-main">
+									<p class="d-num"><span class="font-num">{{item.sale_amount}}</span>购买</p>
+								</div>
+							</div>
+						</div>
+						<div class="icons-group"></div>
+					</li>
+				</div>
+			</div>
+
+			<!--魅力榜-->
+			<div class="block">
+				<div class="header">
+					<span class="mui-icon iconfont icon-aixin"></span>
+					<span class="mui-tab-label">魅力榜</span>
+				</div>
+				<div class="content mui-row charm-ranklist">
+					<div v-for="(user,idx) in top3CharmUsers" class="mui-card mui-col-xs-4">
+						<div class="mui-card-header">第{{idx+1}}名</div>
+						<div class="mui-card-content">
+							<img :src="'http://q1.qlogo.cn/g?b=qq&nk='+user.qq+'&s=100&t=1449411350'">
+							<p>{{user.nickname}}</p>
+							<br/>
+							<p>魅力值 <i class="iconfont icon-aixin" style="color:red">98</i></p>
+						</div>
+						<div class="mui-card-footer">
+						今日刷赞{{user.zan_amt}}次;
+						<br/>
+						今日刷粉{{user.fan_amt}}次;
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--积分榜-->
+			<div class="block">
+				<div class="header">
+					<span class="mui-icon iconfont icon-meili"></span>
+					<span class="mui-tab-label">积分榜</span>
+				</div>
+				<div class="content">
+
+				</div>
+			</div>
 
 		
 		
@@ -102,16 +145,174 @@
 </template>
 
 <script>
+import pic from '@/assets/logo.png';
+import Menu from '@/pages/Index';
+
 export default {
   name: 'hello',
+	components: {
+		Menu
+	},
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+			banners: [
+				'https://cdn.520cy.cn/Uploads/image/2018-06-13/18589257baeaac9958d6be7fd5ad0919afa9fa.jpg',
+				'https://cdn.520cy.cn/Uploads/image/2018-06-13/18589257baeaac9958d6be7fd5ad0a19afa9fa.jpg',
+				'https://cdn.520cy.cn/Uploads/image/2018-06-13/1766b850ace8ee884ff8.png'
+			],
+			catas: [
+				{ name: '免费业务', logo: 'http://img5.imgtn.bdimg.com/it/u=171739527,3841594568&fm=200&gp=0.jpg' },
+				{ name: '刷赞', logo: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1228238028,1047793957&fm=27&gp=0.jpg' },
+				{ name: 'QQ业务', logo: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2322919269,2472384179&fm=27&gp=0.jpg' },
+				{ name: '短视频', logo: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1958064775,2572669376&fm=27&gp=0.jpg' },
+				{ name: '影视会员', logo: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=349613919,565425255&fm=27&gp=0.jpg' },
+				{ name: '刷粉', logo: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530778059166&di=f1f3c08b172bf879be93c269c0bc7658&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0104e9571c743432f875a399db949b.jpg%401280w_1l_2o_100sh.png' },
+				{ name: '游戏代刷', logo: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3768522051,1032657102&fm=27&gp=0.jpg' },
+				{ name: '杂七杂八', logo: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3648330687,678565372&fm=27&gp=0.jpg' }
+			],
+			// 中间独立打广告
+			adv: {
+				href: '#', // #表示不跳转
+				pic: 'https://cdn.520cy.cn/Uploads/image/2018-06-13/18589257baeaac9958d6be7fd5ad0919afa9fa.jpg',
+				alt: '千寻软件市场'
+			},
+			// 展示当天销量前5的商品
+			top5Goods: [
+				{ title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
+				{ title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
+				{ title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009}
+			],
+			// 展示当天刷赞+刷粉最高的前3个用户
+			top3CharmUsers: [
+				{ nickname: 'Telanx', qq: '1241818518', zan_amt: '12,00000', fan_amt: '3000' },
+				{ nickname: '猫咪Ceko', qq: '851656783', zan_amt: '12,00000', fan_amt: '3000' },
+				{ nickname: '未知网友', qq: '851656785', zan_amt: '12,00000', fan_amt: '3000' },
+			]
     }
-  }
+  },
+	methods: {
+		jmpToCatas() {
+			this.$router.push('/catas');
+		}
+	}
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+.adv {
+	padding: 10px 0;
+}
+.adv img{
+	width: 100%;
+	height: 100px;
+}
+
+.news {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 95%;
+    height: 1.8rem;
+    border-radius: 0.625rem;
+    margin: 1rem auto;
+		padding: 0 0.6rem;
+    background: #fff;
+    overflow: hidden;
+}
+.newsfrom {
+	width: 80px;
+	color: #f00;
+	font-size: 1.5rem;
+}
+.newsdes {
+    font-size: 0.328125rem;
+    padding: 0 0.1875rem;
+    color: #f47979;
+}
+
+.newslist {
+    flex-grow: 1;
+    overflow: hidden;
+    font-size: 0.28125rem;
+    align-self: flex-start;
+    height: 20px;
+}
+
+.newslist ul li {
+    height: 20px;
+    line-height: 20px;
+		list-style: none;
+}
+
+.newslist ul li a {
+    color: #656565;
+}
+
+.morenews {
+		width: 50px;
+    color: #040404;
+    padding: 0 0.1875rem;
+    border-left: 1px solid #040404;
+}
+
+.block .header {
+	padding: 5px;
+}
+.block .content {
+	width: 100%;
+	background: #fff;
+	min-height: 20px;
+}
+
+.goodlist>li {
+	min-height: 60px;
+	padding: 12px 6px;
+	border-bottom: 1px solid #dbdbdb;
+	position: relative;
+	list-style: none;
+}
+.goodlist>li .list-item {
+	display: -webkit-box;
+}
+.goodlist>li .p {
+	  display: inline-block;
+    text-align: center;
+    overflow: hidden;
+		width: 75px;
+    height: 75px;
+    margin-right: 10px;
+    margin-left: 8px;
+}
+.goodlist>li .d {
+	margin: 4px 15px 6px 0;
+	-webkit-box-flex: 1;
+}
+.goodlist .d .d-title {
+	  line-height: 22px;
+    margin-bottom: 3px;
+    position: relative;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+    color: #ea5959;
+		font-size: 1.5rem;
+}
+.mui-card {
+	margin: 0;
+	padding: 5px;
+}
+.mui-card-content {
+	padding: 5px;
+	text-align: center;
+}
+
+.charm-ranklist img {
+	border-radius: 70px;
+}
+.mui-card-footer {
+	font-size: 0.8rem;
+}
 </style>

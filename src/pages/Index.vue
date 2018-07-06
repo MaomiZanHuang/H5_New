@@ -7,11 +7,11 @@
       <span class="mui-tab-label">首页</span>
     </router-link>
     <router-link to="Suggest" class="mui-tab-item">
-      <span class="mui-icon mui-icon-email"></span>
-      <span class="mui-tab-label">推荐</span>
+      <span class="mui-icon iconfont icon-msnui-bar-chart"></span>
+      <span class="mui-tab-label">排行</span>
     </router-link>
-    <router-link to="" class="mui-tab-item">
-      <span class="mui-icon mui-icon-gear"></span>
+    <router-link to="/order" class="mui-tab-item">
+      <span class="mui-icon iconfont icon-order"></span>
       <span class="mui-tab-label">订单</span>
     </router-link>
     <router-link to="/user" class="mui-tab-item">
@@ -23,5 +23,4 @@
 </div>
 </template>
 <style>
-@import url('http://at.alicdn.com/t/font_671264_s8ia32h16ji6n7b9.css');
 </style>

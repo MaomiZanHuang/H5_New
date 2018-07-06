@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <Index />
-    <router-view>
-    </router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -18,4 +16,5 @@ export default {
 </script>
 
 <style>
+@import url('//at.alicdn.com/t/font_733952_enqh34b665b.css');
 </style>
