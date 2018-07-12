@@ -91,7 +91,7 @@
  }
  </script>
 
-<style>
+<style scoped>
 .userinfo {
   display: flex;
   justify-content: space-around;
@@ -107,7 +107,7 @@
     align-items: center;
 }
 
-.title {
+.userinfo .title {
   font-size: 0.359375rem;
   color: #ffffff;
   padding-top: 1.53125rem;

@@ -4,7 +4,11 @@
 <div class="goods">
   <div class="menu-wrapper">
     <ul style="transition-property: transform; transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); transition-duration: 300ms; transform: translate(0px, 0px) translateZ(0px);">
-      <li v-for="cata in catas" class="menu-item" :class="cata.id === currentCataId && 'current'" style="pointer-events: auto;">
+      <li v-for="(cata, idx) in catas"
+          class="menu-item"
+          :class="cata.id === currentCataId && 'current'"
+          style="pointer-events: auto;"
+          @click="changeCata(cata.id, idx)">
         <span class="text border-1px">
           <span class="icon special"></span>{{cata.name}}
         </span>
@@ -13,10 +17,10 @@
   </div>
   <div class="foods-wrapper">
     <ul style="transition-property: transform; transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
-      <li v-for="cata in catas" class="food-list" style="pointer-events: auto;">
-        <h1 class="title">{{cata.name}}</h1>
+      <li v-for="cata in catas" class="good-list" style="pointer-events: auto;">
+        <h1 class="title" ref="titleEl">{{cata.name}}</h1>
         <ul>
-          <li v-for="good in cata.children"class="food-item border-1px">
+          <li ref="goodEl" v-for="good in cata.children"class="food-item border-1px">
             <div class="icon">
               <img width="57" height="57" :src="good.logo">
             </div>
@@ -81,7 +85,7 @@ export default {
           ]  
         },
 				{
-          name: '短视频', logo: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1958064775,2572669376&fm=27&gp=0.jpg',
+          id: 3, name: '短视频', logo: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1958064775,2572669376&fm=27&gp=0.jpg',
           children: [
             { name: '抖音粉丝', logo: '' },
             { name: '快手粉丝', logo: ''  },
@@ -90,26 +94,26 @@ export default {
           ]
         },
 				{
-          name: '影视会员', logo: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=349613919,565425255&fm=27&gp=0.jpg',
+          id: 4, name: '影视会员', logo: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=349613919,565425255&fm=27&gp=0.jpg',
           children: [
             { name: '爱奇艺会员', logo: '' },
             { name: '优酷会员', logo: '' }
           ]
         },
-				{ name: '刷粉', logo: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530778059166&di=f1f3c08b172bf879be93c269c0bc7658&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0104e9571c743432f875a399db949b.jpg%401280w_1l_2o_100sh.png',
+				{ id: 5, name: '刷粉', logo: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530778059166&di=f1f3c08b172bf879be93c269c0bc7658&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0104e9571c743432f875a399db949b.jpg%401280w_1l_2o_100sh.png',
           children: [
             { name: '微博粉丝2000+', logo: '' },
             { name: '快手粉丝优质粉1w+', logo: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f61227dc8.jpg' }
           ]
         },
-				{ name: '游戏代刷', logo: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3768522051,1032657102&fm=27&gp=0.jpg',
+				{ id: 6, name: '游戏代刷', logo: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3768522051,1032657102&fm=27&gp=0.jpg',
           children: [
             { name: '欢乐豆代刷', logo: '' },
             { name: 'CF穿越火线AK-47黄金180天', logo: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3530439229,174755752&fm=179&w=121&h=140&img.JPEG' },
             { name: '逆战5000NZ点10元限量', logo: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2641395577,3238754095&fm=58&bpow=600&bpoh=600'}
           ]
         },
-				{ name: '杂七杂八', logo: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3648330687,678565372&fm=27&gp=0.jpg',
+				{ id: 7, name: '杂七杂八', logo: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3648330687,678565372&fm=27&gp=0.jpg',
           children: [
             { name: '腾讯大王卡', logo: '' },
             { name: '滴滴打人', logo: '' }
@@ -118,7 +122,14 @@ export default {
 			],
     };
   },
+  methods: {
+    changeCata(id, idx) {
+      this.currentCataId = id;
+      // 还是要根据移动位置来定位啊，不能直接就这样定位
+    }
+  },
   mounted() {
+    window.vue3 = this;
     console.log('进入Catas');
   }
 }
