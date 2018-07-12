@@ -124,7 +124,12 @@ export default {
   },
   methods: {
     changeCata(id, idx) {
+      const TH = this.$refs.titleEl[0].offsetHeight;
+      const GH = this.$refs.goodEl[0].offsetHeight;
       this.currentCataId = id;
+
+      let scrollHeight = idx * Th + this.catas.reduce((prev, next) => prev.children.length * GH, 0);
+      
       // 还是要根据移动位置来定位啊，不能直接就这样定位
     }
   },
