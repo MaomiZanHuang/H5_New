@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from '@/pages/Home';
 import User from '@/pages/User';
 import Order from '@/pages/Order';
+import Suggest from '@/pages/Suggest';
 // 路由文件
 
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/order',
       name: 'order',
       component: Order.Order
+    },
+    {
+      path: '/suggest',
+      name: 'suggest',
+      component: Suggest.Index
     },
     {
       path: '/user',

@@ -1,29 +1,21 @@
 <template>
   <div>
 		<Menu />
-		<header id="header" class="mui-bar mui-bar-transparent" style="background-color: rgba(249, 48, 76, 0);">
+		<header id="header" class="mui-bar mui-bar-transparent" :style="{'background-color': 'rgba(249, 48, 76, '+alpha+')'}">
 			<a class="mui-action-back mui-icon mui-icon-contact mui-pull-left" ></a>
 			<h1 class="mui-title">千寻赞皇</h1>
 		</header>
 
 		<div class="mui-content">
 			<!--轮播图-->
-			<div id="slider" class="mui-slider">
-				<div class="mui-slider-group mui-slider-loop">
-					<!-- 第一张 -->
-					<div class="mui-slider-item" v-for="(banner,idx) in banners">
-						<a href="#" :index="idx">
-							<img :src="banner">
-						</a>
-					</div>
-				</div>
-				<div class="mui-slider-indicator">
-					<div class="mui-indicator mui-active"></div>
-					<div class="mui-indicator"></div>
-					<div class="mui-indicator"></div>
-					<div class="mui-indicator"></div>
-				</div>
-			</div>
+			<swiper :options="swiperOption">
+        <swiper-slide  v-for="(banner,idx) in banners" :key="banner">
+					<a href="#" :index="idx">
+						<img :src="banner" style="width: 100%">
+					</a>
+				</swiper-slide>
+        <div class="swiper-pagination" slot="pagination"></div>
+      </swiper>
 			<!--轮播图-->
 
 			<!--公告区域-->
@@ -45,7 +37,7 @@
 								<a href="/M/Notice/14527">通知：老用户绑定QQ和微信登录示...</a>
 							</li></ul>
 				</marquee>
-      	<a href="/M/QueryNotice" class="morenews">&nbsp;更多</a>
+      	<a href="/M/QueryNotice" class="morenews">更多</a>
     </div>
 
 			<!--公告区域-->
@@ -55,7 +47,7 @@
 			<div id="qianggou" style="margin-top: 0px;">
 				<ul class="mui-table-view mui-grid-view">
 					<li v-for="cata in catas" class="mui-table-view-cell mui-col-xs-3 mui-col-sm-3 iconlist clip"
-						@click="jmpToCatas">
+						@click="jmpToCatas" style="font-size:0.21875rem;">
 						<img :src="cata.logo" style="width: 40px;height:45px">
 						<div>{{cata.name}}</div>
 					</li>
@@ -145,16 +137,33 @@
 </template>
 
 <script>
+import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import pic from '@/assets/logo.png';
 import Menu from '@/pages/Index';
 
 export default {
   name: 'hello',
 	components: {
-		Menu
+		Menu,
+		swiper,
+		swiperSlide
 	},
   data () {
     return {
+			alpha: 0,
+			swiperOption: {
+				slidesPerView: 1,
+				spaceBetween: 0,
+				loop: true,
+				pagination: {
+					el: '.swiper-pagination',
+					clickable: true
+				},
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev'
+				}
+			},
 			banners: [
 				'https://cdn.520cy.cn/Uploads/image/2018-06-13/18589257baeaac9958d6be7fd5ad0919afa9fa.jpg',
 				'https://cdn.520cy.cn/Uploads/image/2018-06-13/18589257baeaac9958d6be7fd5ad0a19afa9fa.jpg',
@@ -190,6 +199,13 @@ export default {
 			]
     }
   },
+	mounted() {
+		const MAX_SCROLL_HEIGHT = 44;
+		document.addEventListener("scroll", () => {
+		let th = document.body.scrollTop / 5;
+			this.alpha = th / MAX_SCROLL_HEIGHT;
+		});
+	},
 	methods: {
 		jmpToCatas() {
 			this.$router.push('/catas');
@@ -200,6 +216,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+@import url('swiper/dist/css/swiper.min.css');
 .adv {
 	padding: 10px 0;
 }
@@ -213,17 +230,18 @@ export default {
     justify-content: flex-start;
     align-items: center;
     width: 95%;
-    height: 1.8rem;
+		width: 9.5625rem;
+    height: 0.625rem;
     border-radius: 0.625rem;
-    margin: 1rem auto;
-		padding: 0 0.6rem;
+		margin: 0.15625rem auto;
+		padding: 0px 0.1875rem;
     background: #fff;
     overflow: hidden;
 }
 .newsfrom {
 	width: 80px;
 	color: #f00;
-	font-size: 1.5rem;
+	font-size: 0.328125rem;
 }
 .newsdes {
     font-size: 0.328125rem;
@@ -250,12 +268,15 @@ export default {
 }
 
 .morenews {
-		width: 50px;
-    color: #040404;
-    padding: 0 0.1875rem;
-    border-left: 1px solid #040404;
+	font-size: 0.28125rem;
+	color: #040404;
+	padding: 0 0.1875rem;
+	border-left: 1px solid #040404;
 }
 
+.block {
+	font-size: 0.28rem;
+}
 .block .header {
 	padding: 5px;
 }
@@ -298,7 +319,7 @@ export default {
     -webkit-box-orient: vertical;
     word-break: break-all;
     color: #ea5959;
-		font-size: 1.5rem;
+		font-size: 0.382rem;
 }
 .mui-card {
 	margin: 0;
@@ -310,9 +331,11 @@ export default {
 }
 
 .charm-ranklist img {
-	border-radius: 70px;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 1rem;
 }
 .mui-card-footer {
-	font-size: 0.8rem;
+	font-size: 0.21875rem;
 }
 </style>

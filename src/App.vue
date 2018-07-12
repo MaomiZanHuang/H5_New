@@ -5,12 +5,25 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
 import Index from './pages/Index';
 
+const INDEX_PATHS = ['/', '/suggest', '/order', '/user'];
 export default {
   name: 'App',
   components: {
     Index
+  },
+  methods: {
+    ...mapActions(['setCurrentMenu'])
+  },
+  watch: {
+    ['$route'](to, from) {
+      var path = to.path;
+      if (INDEX_PATHS.indexOf(path) + 1) {
+        this.setCurrentMenu(path);
+      }
+    }
   }
 }
 </script>

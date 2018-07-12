@@ -41,7 +41,7 @@ export default {
 .frame-container .header {
   height: 50px;
   background: #abc;
-  font-size: 1.5rem;
+  font-size: 0.38rem;
   color: #fff;
   padding: 0 10px;
   box-shadow: 0 0 1px #000;
