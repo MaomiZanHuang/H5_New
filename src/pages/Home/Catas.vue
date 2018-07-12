@@ -16,10 +16,9 @@
     </ul>
   </div>
   <div class="foods-wrapper" ref="wrapper">
-    <ul style="transition: all .5s ease"
-      :style="{transform: 'translateY('+scrollY+'px)'}">
+    <ul style="transition: all .5s ease">
       <li v-for="cata in catas" class="good-list" style="pointer-events: auto;">
-        <h1 class="title" ref="titleEl">{{cata.name}}</h1>
+        <h1 class="title" :class="'cata-'+ cata.id" ref="titleEl">{{cata.name}}</h1>
         <ul>
           <li ref="goodEl" v-for="good in cata.children"class="food-item border-1px">
             <div class="icon">
@@ -58,6 +57,8 @@
 </template>
 <script>
 import Frame from '@/components/Frame';
+import _ from 'lodash';
+
 export default {
   components: {
     Frame
@@ -131,22 +132,37 @@ export default {
   },
   methods: {
     changeCata(id, idx) {
-      this.$refs.wrapper.scrollTop = 0;
       const TH = this.$refs.titleEl[0].offsetHeight + 18;
       const GH = this.$refs.goodEl[0].offsetHeight + 18;
-      this.currentCataId = id;
-
-      
+      this.currentCataId = id;      
       let scrollHeight = idx * TH + this.catas.slice(0, idx).map(item => (item.children || []).length).reduce((prev, next) => (prev + next * GH), 0);
 
-      this.scrollY = -(scrollHeight - 26 + 18);
-      console.log(idx, '理应上传', scrollHeight);
-      // 还是要根据移动位置来定位啊，不能直接就这样定位
+      this.$scroll(scrollHeight, 'scrollTop', 'foods-wrapper', 8);
     }
   },
   mounted() {
-    window.vue3 = this;
-    console.log('进入Catas');
+    const TH = this.$refs.titleEl[0].offsetHeight + 18;
+    const GH = this.$refs.goodEl[0].offsetHeight + 18;
+    // 每个分类所占的高度
+    const HLs = this.catas.map(item => {
+      return {
+        id: item.id,
+        height: (item.children || []).length * GH + TH
+      }
+    });
+    
+    // 计算出最小满足高度的索引
+    this.$refs.wrapper.addEventListener('scroll', _.debounce(() => {
+      // 计算滚动条滚动到哪个位置了
+      let scrollHeight =  this.$refs.wrapper.scrollTop;
+      let scrollCata = HLs.reduce((prev, next) => {
+        return prev.height - 10 < scrollHeight
+          ? { height: next.height + prev.height, id: next.id }
+          : prev;
+      }, { height: 0, id: 0 });
+
+      this.currentCataId = scrollCata.id; 
+    }, 100));
   }
 }
 </script>
