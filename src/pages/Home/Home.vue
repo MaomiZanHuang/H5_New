@@ -202,7 +202,7 @@ export default {
 	mounted() {
 		const MAX_SCROLL_HEIGHT = 44;
 		document.addEventListener("scroll", () => {
-		let th = document.body.scrollTop / 5;
+		let th = (document.body.scrollTop || window.scrollY) / 5;
 			this.alpha = th / MAX_SCROLL_HEIGHT;
 		});
 	},
