@@ -152,7 +152,7 @@ export default {
     });
     
     // 计算出最小满足高度的索引
-    this.$refs.wrapper.addEventListener('scroll', _.debounce(() => {
+    this.$refs.wrapper.addEventListener('scroll', () => {
       // 计算滚动条滚动到哪个位置了
       let scrollHeight =  this.$refs.wrapper.scrollTop;
       let scrollCata = HLs.reduce((prev, next) => {
@@ -160,9 +160,8 @@ export default {
           ? { height: next.height + prev.height, id: next.id }
           : prev;
       }, { height: 0, id: 0 });
-
       this.currentCataId = scrollCata.id; 
-    }, 100));
+    });
   }
 }
 </script>
