@@ -5,7 +5,7 @@ import router from './routes';
 import Spin from '@/components/spin';
 import Tip from '@/components/Tip';
 
-import '@/assets/mui/mui.css';
+import '@/assets/css/mui/mui.css';
 import '@/assets/css/common.css';
 import '@/assets/css/reset.css';
 
