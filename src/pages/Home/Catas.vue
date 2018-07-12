@@ -3,7 +3,7 @@
 <Frame>
 <div class="goods">
   <div class="menu-wrapper">
-    <ul style="transition-property: transform; transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); transition-duration: 300ms; transform: translate(0px, 0px) translateZ(0px);">
+    <ul style="transition-property: transform; transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); transition-duration: 300ms;">
       <li v-for="(cata, idx) in catas"
           class="menu-item"
           :class="cata.id === currentCataId && 'current'"
@@ -15,8 +15,9 @@
       </li>
     </ul>
   </div>
-  <div class="foods-wrapper">
-    <ul style="transition-property: transform; transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+  <div class="foods-wrapper" ref="wrapper">
+    <ul style="transition: all .5s ease"
+      :style="{transform: 'translateY('+scrollY+'px)'}">
       <li v-for="cata in catas" class="good-list" style="pointer-events: auto;">
         <h1 class="title" ref="titleEl">{{cata.name}}</h1>
         <ul>
@@ -64,6 +65,7 @@ export default {
   data() {
     return {
       currentCataId: 0,
+      scrollY: 0,
       catas: [
 				{
           id: 0, name: '免费业务', logo: 'http://img5.imgtn.bdimg.com/it/u=171739527,3841594568&fm=200&gp=0.jpg',
@@ -73,7 +75,12 @@ export default {
             { name: '空间人气', logo: '' }
           ]
         },
-				{ id: 1, name: '刷赞', logo: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1228238028,1047793957&fm=27&gp=0.jpg' },
+				{ id: 1, name: '刷赞', logo: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1228238028,1047793957&fm=27&gp=0.jpg',
+          children: [
+            { name: '低价赞' },
+            { name: '招牌赞'}
+          ]
+        },
 				{
           id: 2, name: 'QQ业务', logo: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2322919269,2472384179&fm=27&gp=0.jpg',
           children: [
@@ -124,12 +131,16 @@ export default {
   },
   methods: {
     changeCata(id, idx) {
-      const TH = this.$refs.titleEl[0].offsetHeight;
-      const GH = this.$refs.goodEl[0].offsetHeight;
+      this.$refs.wrapper.scrollTop = 0;
+      const TH = this.$refs.titleEl[0].offsetHeight + 18;
+      const GH = this.$refs.goodEl[0].offsetHeight + 18;
       this.currentCataId = id;
 
-      let scrollHeight = idx * Th + this.catas.reduce((prev, next) => prev.children.length * GH, 0);
       
+      let scrollHeight = idx * TH + this.catas.slice(0, idx).map(item => (item.children || []).length).reduce((prev, next) => (prev + next * GH), 0);
+
+      this.scrollY = -(scrollHeight - 26 + 18);
+      console.log(idx, '理应上传', scrollHeight);
       // 还是要根据移动位置来定位啊，不能直接就这样定位
     }
   },
