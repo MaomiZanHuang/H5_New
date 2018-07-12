@@ -20,7 +20,8 @@
       <li v-for="cata in catas" class="good-list" style="pointer-events: auto;">
         <h1 class="title" :class="'cata-'+ cata.id" ref="titleEl">{{cata.name}}</h1>
         <ul>
-          <li ref="goodEl" v-for="good in cata.children"class="food-item border-1px">
+          <li ref="goodEl" v-for="good in cata.children"class="food-item border-1px"
+            @click="buyGoods(good.id)">
             <div class="icon">
               <img width="57" height="57" :src="good.logo">
             </div>
@@ -71,25 +72,25 @@ export default {
 				{
           id: 0, name: '免费业务', logo: 'http://img5.imgtn.bdimg.com/it/u=171739527,3841594568&fm=200&gp=0.jpg',
           children: [
-            { name: '招牌名片赞[低价]', logo: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg' },
-            { name: '招牌名片赞[稳定]', logo: '' },
-            { name: '空间人气', logo: '' }
+            { id: '01', name: '招牌名片赞[低价]', logo: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg' },
+            { id: '02', name: '招牌名片赞[稳定]', logo: '' },
+            { id: '03', name: '空间人气', logo: '' }
           ]
         },
 				{ id: 1, name: '刷赞', logo: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1228238028,1047793957&fm=27&gp=0.jpg',
           children: [
-            { name: '低价赞' },
-            { name: '招牌赞'}
+            { id: 11, name: '低价赞' },
+            { id: 12, name: '招牌赞'}
           ]
         },
 				{
           id: 2, name: 'QQ业务', logo: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2322919269,2472384179&fm=27&gp=0.jpg',
           children: [
-            { name: '永久QQ钻 ［稳定］', logo: '' },
-            { name: '永久QQ钻 ［无保］', logo: '' },
-            { name: 'Q币充值', logo: '' },
-            { name: 'QQ靓号', logo: '' },
-            { name: '等级代挂［皇冠梦］', logo: '' }
+            { id: 21, name: '永久QQ钻 ［稳定］', logo: '' },
+            { id: 22, name: '永久QQ钻 ［无保］', logo: '' },
+            { id: 23, name: 'Q币充值', logo: '' },
+            { id: 24, name: 'QQ靓号', logo: '' },
+            { id: 25, name: '等级代挂［皇冠梦］', logo: '' }
           ]  
         },
 				{
@@ -138,6 +139,9 @@ export default {
       let scrollHeight = idx * TH + this.catas.slice(0, idx).map(item => (item.children || []).length).reduce((prev, next) => (prev + next * GH), 0);
 
       this.$scroll(scrollHeight, 'scrollTop', 'foods-wrapper', 8);
+    },
+    buyGoods(id) {
+      this.$router.push('/goods/' + id);
     }
   },
   mounted() {

@@ -17,6 +17,16 @@ export default new Router({
       component: Home.Index
     },
     {
+      path: '/goods/:id',
+      name: 'goods-detail',
+      component: Home.Goods
+    },
+    {
+      path: '/preorder',
+      name: 'preorder',
+      component: Home.Preorder
+    },
+    {
       path: '/catas',
       name: 'catas',
       component: Home.Catas

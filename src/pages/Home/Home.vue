@@ -21,7 +21,7 @@
 			<!--公告区域-->
 			<div class="news">
 				<span class="newsfrom">
-					<i class="iconfont icon-xiaoxi2"></i> 公告
+					<i class="iconfont icon-xiaoxi2" style="font-size: 0.325rem"></i> 公告
 				</span>
 				<marquee class="newslist" direction="up" scrollamount="1">
 					<ul style="margin-top: -1px;">
@@ -66,16 +66,16 @@
 					<span class="mui-tab-label">日销量最佳</span>
 				</div>
 				<div class="content goodlist">
-					<li v-for="item in top5Goods">
+					<li v-for="item in top5Goods" @click="buyGoods(item.id)">
 						<div class="list-item">
 							<div class="p">
-								<a href="//detail.m.tmall.com/item.htm?id=534982361804&amp;abtest=11&amp;rn=2002506802a1e4a929a330dc601ec760&amp;sid=defacd7edd7e387330180d6ca9c39ea9" title="">
+								<a href="#" title="">
 									<img class="p-pic" :src="item.pic" style="visibility: visible;">
 									<span class="flag c-icon-pt"></span>
 								</a>
 							</div>
 							<div class="d">
-								<a href="//detail.m.tmall.com/item.htm?id=534982361804&amp;abtest=11&amp;rn=2002506802a1e4a929a330dc601ec760&amp;sid=defacd7edd7e387330180d6ca9c39ea9" title="">
+								<a href="#" title="">
 									<h3 class="d-title">{{item.title}}</h3>
 								</a>
 								<p>{{item.desc}}</p>
@@ -187,9 +187,9 @@ export default {
 			},
 			// 展示当天销量前5的商品
 			top5Goods: [
-				{ title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
-				{ title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
-				{ title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009}
+				{ id: 0, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
+				{ id: 1, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
+				{ id: 2, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009}
 			],
 			// 展示当天刷赞+刷粉最高的前3个用户
 			top3CharmUsers: [
@@ -209,6 +209,9 @@ export default {
 	methods: {
 		jmpToCatas() {
 			this.$router.push('/catas');
+		},
+		buyGoods(id) {
+			this.$router.push('/goods/' + id);
 		}
 	}
 }
@@ -239,7 +242,7 @@ export default {
     overflow: hidden;
 }
 .newsfrom {
-	width: 80px;
+	width: 60px;
 	color: #f00;
 	font-size: 0.328125rem;
 }
@@ -270,7 +273,8 @@ export default {
 .morenews {
 	font-size: 0.28125rem;
 	color: #040404;
-	padding: 0 0.1875rem;
+	padding: 0 0 0 0.1875rem;
+	width: 40px;
 	border-left: 1px solid #040404;
 }
 
