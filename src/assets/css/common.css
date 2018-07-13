@@ -1,0 +1,13 @@
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+
+.fleft {
+  float: left;
+}
+.fright {
+  float: right;
+}
