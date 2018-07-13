@@ -1,3 +1,3 @@
  <template>
- <span>用户</span>
+ <span>这是猫咪的第一个Vue版本</span>
  </template>

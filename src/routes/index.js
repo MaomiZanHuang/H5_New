@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/pages/Home';
+import Suggest from '@/pages/Suggest';
 import User from '@/pages/User';
 // 路由文件
 
@@ -13,6 +14,11 @@ export default new Router({
       path: '',
       name: 'home',
       component: Home.Index
+    },
+    {
+      path: '/suggest',
+      name: 'suggest',
+      component: Suggest.Index
     },
     {
       path: '/user',
