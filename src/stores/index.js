@@ -5,19 +5,25 @@ Vue.use(Vuex);
 
 const state = {
   // 当前选中的路由
-  currentMenu: '/'
+  currentMenu: '/',
+  transitionName: ''
 };
 export default new Vuex.Store({
   state,
   mutations: {
     setCurrentMenu(state, path) {
-      console.log('更改高了', path);
       state.currentMenu = path;
+    },
+    setTransitionName(state, name) {
+      state.transitionName = name;
     }
   },
   actions: {
     setCurrentMenu({commit}, path) {
       commit('setCurrentMenu', path);
+    },
+    setTransitionName({commit}, name) {
+      commit('setTransitionName', name);
     }
   }
 });

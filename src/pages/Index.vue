@@ -6,9 +6,9 @@
       <span class="mui-icon mui-icon-home"></span>
       <span class="mui-tab-label">首页</span>
     </router-link>
-    <router-link to="/suggest" class="mui-tab-item" :class="currentMenu === '/suggest' && 'mui-active'">
+    <router-link to="/square" class="mui-tab-item" :class="currentMenu === '/square' && 'mui-active'">
       <span class="mui-icon iconfont icon-msnui-bar-chart"></span>
-      <span class="mui-tab-label">排行</span>
+      <span class="mui-tab-label">广场</span>
     </router-link>
     <router-link to="/order" class="mui-tab-item" :class="currentMenu === '/order' && 'mui-active'">
       <span class="mui-icon iconfont icon-order"></span>

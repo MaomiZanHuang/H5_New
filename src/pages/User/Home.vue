@@ -60,7 +60,7 @@
             <span class="navlistname">反馈建议</span>
           </section>
           <a href="" class="navlistlink">
-            <span class="mui-icon mui-icon-arrowright"></span>
+            <span class="mui-icon mui-icon-arrowup"></span>
           </a>
         </li>
 
@@ -71,7 +71,7 @@
             <span class="navlistname">关于</span>
           </section>
           <a href="" class="navlistlink">
-            v1.0.0<span class="mui-icon mui-icon-arrowright"></span>
+            v1.0.0<span class="mui-icon mui-icon-arrowup"></span>
           </a>
         </li>
       </ul>

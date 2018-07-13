@@ -64,6 +64,7 @@
 				<div class="header">
 					<span class="mui-icon iconfont icon-msnui-bar-chart"></span>
 					<span class="mui-tab-label">日销量最佳</span>
+					<router-link to="/hotgoods" class="fright">更多>></router-link>
 				</div>
 				<div class="content goodlist">
 					<li v-for="item in top5Goods" @click="buyGoods(item.id)">
@@ -95,30 +96,6 @@
 				</div>
 			</div>
 
-			<!--魅力榜-->
-			<div class="block">
-				<div class="header">
-					<span class="mui-icon iconfont icon-aixin"></span>
-					<span class="mui-tab-label">魅力榜</span>
-				</div>
-				<div class="content mui-row charm-ranklist">
-					<div v-for="(user,idx) in top3CharmUsers" class="mui-card mui-col-xs-4">
-						<div class="mui-card-header">第{{idx+1}}名</div>
-						<div class="mui-card-content">
-							<img :src="'http://q1.qlogo.cn/g?b=qq&nk='+user.qq+'&s=100&t=1449411350'">
-							<p>{{user.nickname}}</p>
-							<br/>
-							<p>魅力值 <i class="iconfont icon-aixin" style="color:red">98</i></p>
-						</div>
-						<div class="mui-card-footer">
-						今日刷赞{{user.zan_amt}}次;
-						<br/>
-						今日刷粉{{user.fan_amt}}次;
-						</div>
-					</div>
-				</div>
-			</div>
-
 			<!--积分榜-->
 			<div class="block">
 				<div class="header">
@@ -130,8 +107,6 @@
 				</div>
 			</div>
 
-		
-		
 		</div>
   </div>
 </template>
@@ -189,13 +164,9 @@ export default {
 			top5Goods: [
 				{ id: 0, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
 				{ id: 1, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
+				{ id: 2, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
+				{ id: 2, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
 				{ id: 2, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009}
-			],
-			// 展示当天刷赞+刷粉最高的前3个用户
-			top3CharmUsers: [
-				{ nickname: 'Telanx', qq: '1241818518', zan_amt: '12,00000', fan_amt: '3000' },
-				{ nickname: '猫咪Ceko', qq: '851656783', zan_amt: '12,00000', fan_amt: '3000' },
-				{ nickname: '未知网友', qq: '851656785', zan_amt: '12,00000', fan_amt: '3000' },
 			]
     }
   },

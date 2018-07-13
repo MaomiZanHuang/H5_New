@@ -3,7 +3,8 @@
 如果未登录，我的订单显示空
 -->
 <template>
-<Frame title="订单管理">
+<div>
+  <Menu />
   <div class="tabs-header">
     <div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 			<a class="mui-control-item" :class="currentTab === 'query_order' && 'mui-active'" @click="changeToTab('query_order')">
@@ -120,13 +121,13 @@
       </div>
     </div>
   </div>
-</Frame>
+</div>
 </template>
 <script>
-import Frame from '@/components/Frame.vue';
+import Menu from '@/pages/Index.vue';
 export default {
   components: {
-    Frame
+    Menu
   },
   data() {
     return {

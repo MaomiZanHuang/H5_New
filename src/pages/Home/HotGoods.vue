@@ -1,6 +1,5 @@
 <template>
-<div>
-  <Menu />
+<Frame title="销量排行">
   <!--日销量最佳-->
   <div class="block">
     <div class="tabs-header">
@@ -46,14 +45,14 @@
       </li>
     </div>
   </div>
-</div>
+</Frame>
 </template>
 <script>
-import Menu from '@/pages/Index.vue';
+import Frame from '@/components/Frame.vue';
 
 export default {
   components: {
-    Menu
+    Frame
   },
   data() {
     return {
