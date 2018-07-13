@@ -14,7 +14,7 @@
       <span class="mui-icon iconfont icon-order"></span>
       <span class="mui-tab-label">订单</span>
     </router-link>
-    <router-link to="/user" class="mui-tab-item" :class="currentMenu === '/user' && 'mui-active'">
+    <router-link to="/user/index" class="mui-tab-item" :class="currentMenu === '/user' && 'mui-active'">
       <span class="mui-icon mui-icon-person"></span>
       <span class="mui-tab-label">我的</span>
     </router-link>
