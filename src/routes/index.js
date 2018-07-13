@@ -1,10 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+
+
 import Home from '@/pages/Home';
 import Suggest from '@/pages/Suggest';
 import User from '@/pages/User';
 import Order from '@/pages/Order';
 import Square from '@/pages/Square';
+import BlankView from '@/pages/Blank';
 // 路由文件
 
 
@@ -62,8 +65,8 @@ export default new Router({
     {
       path: '/user',
       name: 'user',
-      component: User.Index,
       meta: {depth:0},
+      component: BlankView,
       children: [
         {
           name: 'index',
@@ -72,6 +75,30 @@ export default new Router({
           meta: {
             depth: 0,
             keepAlive: true
+          }
+        },
+        {
+          name: 'userinfo',
+          path: '/user/userinfo',
+          component: User.UserInfo,
+          meta: {
+            depth: 1
+          }
+        },
+        {
+          name: 'security',
+          path: '/user/security',
+          component: User.Security,
+          meta: {
+            depth: 1
+          }
+        },
+        {
+          name: 'activity',
+          path: '/user/activity',
+          component: User.Activity,
+          meta: {
+            depth: 1
           }
         },
         {

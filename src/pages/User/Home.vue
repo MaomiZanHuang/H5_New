@@ -30,18 +30,18 @@
             
             <span class="navlistname">个人资料</span>
           </section>
-          <a href="" class="navlistlink">
+          <router-link to="/user/userinfo" href="" class="navlistlink">
             <span class="mui-icon mui-icon-arrowright"></span>
-          </a>
+          </router-link>
         </li>
         <li>
           <section>
             
-            <span class="navlistname">支付密码</span>
+            <span class="navlistname">账户安全</span>
           </section>
-          <a href="/M/QueryOrder" class="navlistlink">
+          <router-link to="/user/security" class="navlistlink">
             <span class="mui-icon mui-icon-arrowright"></span>
-          </a>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -51,16 +51,16 @@
           <section>
             <span class="navlistname">推广赚分</span>
           </section>
-          <a href="" class="navlistlink">
+          <router-link to="/user/activity" class="navlistlink">
             <span class="mui-icon mui-icon-arrowright"></span>
-          </a>
+          </router-link>
         </li>
         <li>
           <section>
             <span class="navlistname">反馈建议</span>
           </section>
-          <a href="" class="navlistlink">
-            <span class="mui-icon mui-icon-arrowup"></span>
+          <a href="#" class="navlistlink" @click="showFeedbackDialog">
+            <span class="mui-icon mui-icon-compose"></span>
           </a>
         </li>
 
@@ -70,13 +70,28 @@
             
             <span class="navlistname">关于</span>
           </section>
-          <a href="" class="navlistlink">
-            v1.0.0<span class="mui-icon mui-icon-arrowup"></span>
-          </a>
+          <router-link to="/user/about" class="navlistlink">
+            v1.0.0<span class="mui-icon mui-icon-arrowright"></span>
+          </router-link>
         </li>
       </ul>
     </div>
 
+    <!--提交反馈建议的输入框-->
+    <div v-if="feedbackDialogShow" class="mui-popup-backdrop mui-active" style="display: block;"></div>
+    <div v-if="feedbackDialogShow" class="mui-popup mui-popup-in" style="display: block;">
+      <div class="mui-popup-inner">
+        <div class="mui-popup-title">反馈建议</div>
+        <div class="mui-popup-text"></div>
+        <div class="mui-popup-input">
+          <textarea id="textarea" rows="5" placeholder="请输入您遇到的问题或意见建议(30字以内)"></textarea>
+        </div>
+        <div class="mui-popup-buttons">
+          <span class="mui-popup-button" @click="addFeeback">确定</span>
+          <span class="mui-popup-button" @click="cancelFeedback">取消</span>
+        </div>
+      </div>
+    </div>
 
   </div>
  </template>
@@ -87,6 +102,26 @@
  export default {
    components: {
      Menu
+   },
+   data() {
+     return {
+       feedbackDialogShow: false,
+       feedbackContent: ''
+     };
+   },
+   methods: {
+     showFeedbackDialog() {
+       this.feedbackDialogShow = true;
+     },
+     addFeeback() {
+       this.feedbackDialogShow = false;
+       this.$tip.show('您的反馈已提交！');
+       this.feedbackDialogShow = '';
+     },
+     cancelFeedback() {
+       this.feedbackDialogShow = false;
+       this.feedbackDialogShow = '';
+     }
    }
  }
  </script>
