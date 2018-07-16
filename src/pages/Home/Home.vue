@@ -48,16 +48,47 @@
 				<ul class="mui-table-view mui-grid-view">
 					<li v-for="cata in catas" class="mui-table-view-cell mui-col-xs-3 mui-col-sm-3 iconlist clip"
 						@click="jmpToCatas" style="font-size:0.21875rem;">
-						<img :src="cata.logo" style="width: 40px;height:45px">
-						<div>{{cata.name}}</div>
+						<img :src="cata.logo" style="width: 40px;height:40px">
+						<div style="margin-top: 10px;">{{cata.name}}</div>
 					</li>
 				</ul>
 			</div>
 			<!--广告活动-->
 			<div class="adv">
-				<img :src="adv.pic" :title="adv.alt"/>
+				<img src="https://cdn.520cy.cn/images/appbazaar.png" >
+				<!-- <img :src="adv.pic" :title="adv.alt"/> -->
 			</div>
 			<!--广告区域-->
+
+			<!--活动导航-->
+			<div id="qianggou" style="margin-top: 0px;">
+				<ul class="mui-table-view mui-grid-view" id="activity">
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<div class="mui-media-body" style="position: absolute; background:#FFFFFF; top:25%; color:#000000;  height:35%; margin-top:0%; width:115px; font-family:'黑体'; font-size: 16px;">活动活动</div>\
+						<div class="mui-media-body1" style="position: absolute; background:#FFFFFF; top:65%; color:#AAAAAA;  height:35%; margin-top:0%; width:115px; font-family:'微软雅黑'; font-size: 10px;">活动</div>
+						<img class="mui-media-object" src="https://cdn.520cy.cn/Uploads/image/2018-06-13/4229a650ae.png" style="width: 40px; margin-left: 100px;">
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<div class="mui-media-body" style="position: absolute; background:#FFFFFF; top:25%; color:#000000;  height:35%; margin-top:0%; width:115px; font-family:'黑体'; font-size: 16px;">活动活动</div>\
+						<div class="mui-media-body1" style="position: absolute; background:#FFFFFF; top:65%; color:#AAAAAA;  height:35%; margin-top:0%; width:115px; font-family:'微软雅黑'; font-size: 10px;">活动</div>
+						<img class="mui-media-object" src="https://cdn.520cy.cn/Uploads/image/2018-06-13/4229a650ae.png" style="width: 40px; margin-left: 100px;">
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<div class="mui-media-body" style="position: absolute; background:#FFFFFF; top:25%; color:#000000;  height:35%; margin-top:0%; width:115px; font-family:'黑体'; font-size: 16px;">活动活动</div>\
+						<div class="mui-media-body1" style="position: absolute; background:#FFFFFF; top:65%; color:#AAAAAA;  height:35%; margin-top:0%; width:115px; font-family:'微软雅黑'; font-size: 10px;">活动</div>
+						<img class="mui-media-object" src="https://cdn.520cy.cn/Uploads/image/2018-06-13/4229a650ae.png" style="width: 40px; margin-left: 100px;">
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<div class="mui-media-body" style="position: absolute; background:#FFFFFF; top:25%; color:#000000;  height:35%; margin-top:0%; width:115px; font-family:'黑体'; font-size: 16px;">活动活动</div>\
+						<div class="mui-media-body1" style="position: absolute; background:#FFFFFF; top:65%; color:#AAAAAA;  height:35%; margin-top:0%; width:115px; font-family:'微软雅黑'; font-size: 10px;">活动</div>
+						<img class="mui-media-object" src="https://cdn.520cy.cn/Uploads/image/2018-06-13/4229a650ae.png" style="width: 40px; margin-left: 100px;">
+					</li>
+					<div style="position: absolute; left:50% ; background:#EEEEEE; top:0%;  height:100%;  width:1px; "></div>
+					<div style="position: absolute; ; background:#EEEEEE; top:50%;  height:1%;  width:100%; "></div>
+					
+				</ul>
+			</div>
+			<!--活动导航-->
 			
 			<!--日销量最佳-->
 			<div class="block">
@@ -66,7 +97,7 @@
 					<span class="mui-tab-label">日销量最佳</span>
 					<router-link to="/hotgoods" class="fright">更多>></router-link>
 				</div>
-				<div class="content goodlist">
+				<!-- <div class="content goodlist">
 					<li v-for="item in top5Goods" @click="buyGoods(item.id)">
 						<div class="list-item">
 							<div class="p">
@@ -93,11 +124,26 @@
 						</div>
 						<div class="icons-group"></div>
 					</li>
-				</div>
+				</div> -->
 			</div>
 
+			<!--商品列表-->
+			<div id="goodsList" class="mui-table-view mui-grid-view own-gray-color" style="margin-top: 0.3rem;">
+				<li v-for="item in top5Goods" @click="buyGoods(item.id)" class="mui-table-view-cell mui-media mui-col-xs-6">
+					<div class= "bgDiv">
+						<img class="mui-media-object" src="https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg" onerror="this.src='../images/pic-null.png';this.onerror=null"/>
+						<div class="mui-media-body">
+							<p class="mui-ellipsis-2">{{item.title}}</p>
+							<p class="price-one">¥ {{item.price}}</p>
+							<p class="price-two">{{item.sale_amount}}购买</p>
+						</div>
+					</div>
+				</li>
+			</div>
+			<!--商品列表-->
+
 			<!--积分榜-->
-			<div class="block">
+			<!-- <div class="block">
 				<div class="header">
 					<span class="mui-icon iconfont icon-meili"></span>
 					<span class="mui-tab-label">积分榜</span>
@@ -105,7 +151,13 @@
 				<div class="content">
 
 				</div>
+			</div> -->
+
+			<!--底部结束图片-->
+			<div style="text-align:center;height:120px">
+				<img src="@/assets/base_img.png" />
 			</div>
+			<!--底部结束图片-->
 
 		</div>
   </div>
@@ -145,14 +197,14 @@ export default {
 				'https://cdn.520cy.cn/Uploads/image/2018-06-13/1766b850ace8ee884ff8.png'
 			],
 			catas: [
-				{ name: '免费业务', logo: 'http://img5.imgtn.bdimg.com/it/u=171739527,3841594568&fm=200&gp=0.jpg' },
-				{ name: '刷赞', logo: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1228238028,1047793957&fm=27&gp=0.jpg' },
-				{ name: 'QQ业务', logo: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2322919269,2472384179&fm=27&gp=0.jpg' },
-				{ name: '短视频', logo: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1958064775,2572669376&fm=27&gp=0.jpg' },
-				{ name: '影视会员', logo: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=349613919,565425255&fm=27&gp=0.jpg' },
-				{ name: '刷粉', logo: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530778059166&di=f1f3c08b172bf879be93c269c0bc7658&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0104e9571c743432f875a399db949b.jpg%401280w_1l_2o_100sh.png' },
-				{ name: '游戏代刷', logo: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3768522051,1032657102&fm=27&gp=0.jpg' },
-				{ name: '杂七杂八', logo: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3648330687,678565372&fm=27&gp=0.jpg' }
+				{ name: '免费业务', logo: 'https://cdn.520cy.cn/images/免费.png' },
+				{ name: '刷赞', logo: 'https://cdn.520cy.cn/images/点赞.png' },
+				{ name: 'QQ业务', logo: 'https://cdn.520cy.cn/images/QQ会员.png' },
+				{ name: '短视频', logo: 'https://cdn.520cy.cn/images/抖音短视频.png' },
+				{ name: '影视会员', logo: 'https://cdn.520cy.cn/images/影视.png' },
+				{ name: '刷粉', logo: 'https://cdn.520cy.cn/images/粉丝.png' },
+				{ name: '游戏代刷', logo: 'https://cdn.520cy.cn/images/游戏.png' },
+				{ name: '杂七杂八', logo: 'https://cdn.520cy.cn/images/杂七杂八.png' }
 			],
 			// 中间独立打广告
 			adv: {
@@ -191,6 +243,82 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 @import url('swiper/dist/css/swiper.min.css');
+
+
+/*列表样式*/
+.mui-table-view:after {
+		height: 0px;
+	}
+	/*图片显示的时候设置为自动 因为 从服务器来的图片大小相同*/
+	
+	.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-object {
+		line-height: auto;
+		max-width: auto;
+		height: auto;
+		border-top-right-radius: 4px;
+		border-top-left-radius: 4px;
+	}
+	
+	.mui-table-view-cell {
+		margin-bottom: 10px;
+	}
+	
+	.bgDiv {
+		border: 1px solid rgba(204, 204, 204, 0.7);
+		border-radius: 5px;
+		background-color: white;
+		width: 100%;
+	}
+	
+	.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body {
+		margin-top: 2px;
+		margin-bottom: 5px;
+		height: auto;
+	}
+	
+	.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body p {
+		white-space: pre;
+		color: black;
+	}
+	
+	.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body p.mui-ellipsis-2 {
+		height: 30px;
+	}
+	
+	.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body .price-one {
+		margin-top: 12px;
+		float: left;
+		font-size: 1.1em;
+		margin-left: 7%;
+		color: red;
+		margin-bottom: 10px;
+	}
+	
+	.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body .price-two {
+		margin-top: 12px;
+		float: right;
+		font-size: 1.1em;
+		margin-right: 7%;
+	}
+
+
+/*去mui掉顶边和底部边框*/
+.mui-table-view:after {
+	height: 0px;
+}
+.mui-table-view:before {
+	height: 0px;
+} 
+
+.mui-bar-tab .mui-tab-item.mui-active {
+	color: #f9304c;
+}
+
+body {
+	background-color: #EFEFF4;
+}
+
+
 .adv {
 	padding: 10px 0;
 }
