@@ -7,6 +7,7 @@
           <span class="title">余 额</span>
           <span class="money">0.000</span>
           <a href="/M/Recharge" class="btn">充 值</a>
+          <router-link to="/user/login" class="btn">登 录</router-link>
         </section>
         <section class="user-info">
           <img src="http://q1.qlogo.cn/g?b=qq&nk=851656783&s=100&t=1449411350" class="headicon">
@@ -16,6 +17,7 @@
           <span class="title">积 分</span>
           <span class="money">0.000</span>
           <a class="btn">赚积分</a>
+          <router-link to="/user/reg" class="btn">注册</router-link>
         </section>
       </div>
       <div class="bottomimgbox"></div>

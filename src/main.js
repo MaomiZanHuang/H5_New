@@ -5,14 +5,8 @@ import router from './routes';
 import vueScroll from './vue-scroll-animate.js'
 import FastClick from 'fastclick';
 
-
-
 import Spin from '@/components/spin';
 import Tip from '@/components/Tip';
-
-import '@/assets/css/mui/mui.css';
-import '@/assets/css/common.css';
-import '@/assets/css/reset.css';
 
 import store from './stores';
 

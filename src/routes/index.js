@@ -18,7 +18,10 @@ export default new Router({
       path: '',
       name: 'home',
       component: Home.Index,
-      meta: { depth: 0 }
+      meta: {
+        depth: 0,
+        keepAlive: true
+      }
     },
     {
       path: '/hotgoods',
@@ -39,7 +42,7 @@ export default new Router({
       meta: { depth: 3 }
     },
     {
-      path: '/catas',
+      path: '/cata/:id',
       name: 'catas',
       component: Home.Catas,
       meta: { depth: 1 }
@@ -54,7 +57,10 @@ export default new Router({
       path: '/square',
       name: 'square',
       component: Square.Index,
-      meta: { depth: 0 }
+      meta: {
+        depth: 0,
+        keepAlive: true
+      }
     },
     {
       path: '/user',
@@ -102,6 +108,30 @@ export default new Router({
           meta: {
             depth: 1,
             keepAlive: true
+          }
+        },
+        {
+          name: 'login',
+          path: '/user/login',
+          component: User.Login,
+          meta: {
+            depth: 1
+          }
+        },
+        {
+          name: 'reg',
+          path: '/user/reg',
+          component: User.Reg,
+          meta: {
+            depth: 1
+          }
+        },
+        {
+          name: 'findpwd',
+          path: '/user/findpwd',
+          component: User.FindPwd,
+          meta: {
+            depth: 2
           }
         }
       ]

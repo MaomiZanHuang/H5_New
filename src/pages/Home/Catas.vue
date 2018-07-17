@@ -6,7 +6,7 @@
     <ul style="transition-property: transform; transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); transition-duration: 300ms;">
       <li v-for="(cata, idx) in catas"
           class="menu-item"
-          :class="cata.id === currentCataId && 'current'"
+          :class="cata.id == currentCataId && 'current'"
           style="pointer-events: auto;"
           @click="changeCata(cata.id, idx)">
         <span class="text border-1px">
@@ -66,6 +66,7 @@ export default {
   },
   data() {
     return {
+      isHandScroll: false,
       currentCataId: 0,
       scrollY: 0,
       catas: [
@@ -138,7 +139,11 @@ export default {
       this.currentCataId = id;      
       let scrollHeight = idx * TH + this.catas.slice(0, idx).map(item => (item.children || []).length).reduce((prev, next) => (prev + next * GH), 0);
 
+      this.isHandScroll = true;
       this.$scroll(scrollHeight, 'scrollTop', 'foods-wrapper', 8);
+      setTimeout(() => {
+        this.isHandScroll = false;
+      }, 1500);
     },
     buyGoods(id) {
       this.$router.push('/goods/' + id);
@@ -157,6 +162,7 @@ export default {
     
     // 计算出最小满足高度的索引
     this.$refs.wrapper.addEventListener('scroll', () => {
+      if(this.isHandScroll) return false;
       // 计算滚动条滚动到哪个位置了
       let scrollHeight =  this.$refs.wrapper.scrollTop;
       let scrollCata = HLs.reduce((prev, next) => {
@@ -166,6 +172,10 @@ export default {
       }, { height: 0, id: 0 });
       this.currentCataId = scrollCata.id; 
     });
+    
+    let selectedCataId = this.$route.params.id || catas[0].id;
+    let idx = this.catas.map(cata => '' + cata.id).indexOf(selectedCataId);
+    this.changeCata(selectedCataId, idx);
   }
 }
 </script>

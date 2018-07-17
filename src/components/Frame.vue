@@ -15,7 +15,9 @@ export default {
   props: {
     title: {
       default: '选择商品'
-    }
+    },
+    // 点击返回之后
+    forceBackTo: String
   },
   data() {
     return {
@@ -24,7 +26,13 @@ export default {
   },
   methods: {
     goback() {
-      history.back();
+      var forceBackTo = this.forceBackTo;
+      if (forceBackTo) {
+        this.$router.push(forceBackTo);
+      }
+      else {
+        history.back();
+      }
     }
   },
   mounted() {

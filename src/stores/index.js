@@ -6,7 +6,9 @@ Vue.use(Vuex);
 const state = {
   // 当前选中的路由
   currentMenu: '/',
-  transitionName: ''
+  transitionName: '',
+  // 用户是否登录
+  isLogin: false
 };
 export default new Vuex.Store({
   state,

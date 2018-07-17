@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <transition :name="transitionName">
-      <router-view class="child-view"></router-view>
+      <keep-alive v-if="$route.meta.keepAlive">
+        <router-view class="child-view"></router-view>
+      </keep-alive>
+      <router-view v-else class="child-view"></router-view>
     </transition>
   </div>
 </template>
@@ -10,7 +13,7 @@
 import { mapActions, mapState } from 'vuex';
 import Index from './pages/Index';
 
-const INDEX_PATHS = ['/', '/square', '/order', '/user'];
+const INDEX_PATHS = ['/', '/square', '/order', '/user/index'];
 export default {
   name: 'App',
   components: {
@@ -34,19 +37,23 @@ export default {
 </script>
 
 <style>
-@import url('//at.alicdn.com/t/font_733952_enqh34b665b.css');
+@import url('//at.alicdn.com/t/font_733952_rj50bgf9ezo.css');
+@import url('//cdn.bootcss.com/mui/3.7.1/css/mui.min.css');
+@import url('./assets/css/common.css');
+@import url('./assets/css/reset.css');
+
 .child-view {
   width: 100%;
-  transition: all .3s;
+  transition: all .3s ease;
 }
 
 .fade-enter-active{
-  transition: all .5s;
+  transition: all .5s ease;
 }
 
 //显示时间持续1.5s
 .fade-leave-active{
-  transition: all 1s;        
+  transition: all 1s ease;        
 }
 
 .fade-enter, .fade-leave-active{
