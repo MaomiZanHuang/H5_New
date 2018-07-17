@@ -51,9 +51,13 @@
       <div id="details" style="margin-top: 8px; background-color: #FFFFFF;">
       {{data.goodsDesc.introduction}}
       <ul>
-					<li v-for="img in data.goodsDesc.itemImages">
-						<span>{{img.url}}</span>
-					</li>
+        <swiper :options="swiperOption">
+        <swiper-slide v-for="img in data.goodsDesc.itemImages" :key="img.url">
+						<img :src="img.url"/>
+				</swiper-slide>
+        <div class="swiper-pagination" slot="pagination"></div>
+      </swiper>
+					
 				</ul>
       </div>
 
@@ -106,19 +110,48 @@
 <script>
 /** 注意分不同商品指定不同的策略 */
 import Frame from '@/components/Frame';
+import { swiper, swiperSlide } from 'vue-awesome-swiper';
 
 const MAX_NUM = 10;
 const MIN_NUM = 1;
 export default {
   components: {
-    Frame
+    Frame,
+    swiper,
+    swiperSlide
   },
   data() {
     return {
+      swiperOption: {
+				slidesPerView: 1,
+				spaceBetween: 0,
+				loop: true,
+				pagination: {
+					el: '.swiper-pagination',
+					clickable: true
+				},
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev'
+				}
+			},
       isShowUnitDialog: false,
       units: ['数量800个', '数量1000个', '数量2000个', '数量5000个'],
       num: 1,
-      data: {"itemList":[{"barcode":"","category":"招牌名片赞","categoryid":11,"communityAccountId":"","communityGoodsId":"","createTime":"2018-06-15 18:03:36","goodsId":10000068,"id":11000212,"image":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3242139572,2186831585&fm=27&gp=0.jpg","integral":1,"isDefault":"1","isEnableSelfMotion":"","num":0,"price":0.10,"quantity":"500","sellPoint":"","seller":"","sellerId":"","spec":"","status":"1","stockCount":0,"title":"数量800个","updateTime":"2018-06-15 18:03:36"},{"barcode":"","category":"招牌名片赞","categoryid":11,"communityAccountId":"","communityGoodsId":"","createTime":"2018-06-15 18:03:37","goodsId":10000068,"id":11000213,"image":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3242139572,2186831585&fm=27&gp=0.jpg","integral":2,"isDefault":"","isEnableSelfMotion":"","num":0,"price":0.20,"quantity":"500","sellPoint":"","seller":"","sellerId":"","spec":"","status":"1","stockCount":0,"title":"数量500个","updateTime":"2018-06-15 18:03:37"},{"barcode":"","category":"招牌名片赞","categoryid":11,"communityAccountId":"","communityGoodsId":"","createTime":"2018-06-15 18:03:37","goodsId":10000068,"id":11000214,"image":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3242139572,2186831585&fm=27&gp=0.jpg","integral":3,"isDefault":"","isEnableSelfMotion":"","num":0,"price":0.30,"quantity":"600","sellPoint":"","seller":"","sellerId":"","spec":"","status":"1","stockCount":0,"title":"数量600个","updateTime":"2018-06-15 18:03:37"},{"barcode":"","category":"招牌名片赞","categoryid":11,"communityAccountId":"","communityGoodsId":"","createTime":"2018-06-15 18:03:37","goodsId":10000068,"id":11000215,"image":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3242139572,2186831585&fm=27&gp=0.jpg","integral":4,"isDefault":"","isEnableSelfMotion":"","num":0,"price":0.40,"quantity":"700","sellPoint":"","seller":"","sellerId":"","spec":"","status":"1","stockCount":0,"title":"数量700个","updateTime":"2018-06-15 18:03:37"},{"barcode":"","category":"招牌名片赞","categoryid":11,"communityAccountId":"","communityGoodsId":"","createTime":"2018-06-15 18:03:37","goodsId":10000068,"id":11000216,"image":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3242139572,2186831585&fm=27&gp=0.jpg","integral":4,"isDefault":"","isEnableSelfMotion":"","num":0,"price":0.40,"quantity":"700","sellPoint":"","seller":"","sellerId":"","spec":"","status":"1","stockCount":0,"title":"数量700个","updateTime":"2018-06-15 18:03:37"}],"goods":{"auditStatus":"2","caption":"招牌名片赞 速度快 价格低","category1Id":2,"category2Id":11,"category3Id":0,"communityAccount":3,"communityGoodsId":1,"defaultItemId":0,"goodsName":"招牌名片赞","id":10000068,"integral":1,"isDelete":"","isEnableSelfMotion":"1","isEnableSpec":"1","isMarketable":"1","price":0.10,"sellerId":"猫小咪","smallPic":"https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg","tab":"日刷10万 请不要重复下单","typeTemplateId":0,"volume":0,"volumeDay":0,"volumeMonth":0},"goodsDesc":{"customAttributeItems":"","goodsId":10000068,"introduction":"\n\t运营社区：千寻赞皇官方\n\n\n\t充值产品：QQ名片赞\n\n\n\t充值方式：秒充值（20秒开始）\n\n\n\t充值速度：日刷6-8万\n","itemImages":"[{\"url\":\"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3242139572,2186831585&fm=27&gp=0.jpg\"},{\"url\":\"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=760079672,1174618124&fm=27&gp=0.jpg\"},{\"url\":\"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529065621645&di=e9f771f3ed04624dc6f15d3fab8f66ba&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fac345982b2b7d0a202dc6d61cdef76094b369a30.jpg\"}]","packageList":"","saleService":"无","specificationItems":"[]"}},
+      data: {
+        "itemList":[
+          {"barcode":"","category":"招牌名片赞","categoryid":11,"communityAccountId":"","communityGoodsId":"","createTime":"2018-06-15 18:03:36","goodsId":10000068,"id":11000212,"image":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3242139572,2186831585&fm=27&gp=0.jpg","integral":1,"isDefault":"1","isEnableSelfMotion":"","num":0,"price":0.10,"quantity":"500","sellPoint":"","seller":"","sellerId":"","spec":"","status":"1","stockCount":0,"title":"数量800个","updateTime":"2018-06-15 18:03:36"},
+          {"barcode":"","category":"招牌名片赞","categoryid":11,"communityAccountId":"","communityGoodsId":"","createTime":"2018-06-15 18:03:37","goodsId":10000068,"id":11000213,"image":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3242139572,2186831585&fm=27&gp=0.jpg","integral":2,"isDefault":"","isEnableSelfMotion":"","num":0,"price":0.20,"quantity":"500","sellPoint":"","seller":"","sellerId":"","spec":"","status":"1","stockCount":0,"title":"数量500个","updateTime":"2018-06-15 18:03:37"},{"barcode":"","category":"招牌名片赞","categoryid":11,"communityAccountId":"","communityGoodsId":"","createTime":"2018-06-15 18:03:37","goodsId":10000068,"id":11000214,"image":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3242139572,2186831585&fm=27&gp=0.jpg","integral":3,"isDefault":"","isEnableSelfMotion":"","num":0,"price":0.30,"quantity":"600","sellPoint":"","seller":"","sellerId":"","spec":"","status":"1","stockCount":0,"title":"数量600个","updateTime":"2018-06-15 18:03:37"},{"barcode":"","category":"招牌名片赞","categoryid":11,"communityAccountId":"","communityGoodsId":"","createTime":"2018-06-15 18:03:37","goodsId":10000068,"id":11000215,"image":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3242139572,2186831585&fm=27&gp=0.jpg","integral":4,"isDefault":"","isEnableSelfMotion":"","num":0,"price":0.40,"quantity":"700","sellPoint":"","seller":"","sellerId":"","spec":"","status":"1","stockCount":0,"title":"数量700个","updateTime":"2018-06-15 18:03:37"},{"barcode":"","category":"招牌名片赞","categoryid":11,"communityAccountId":"","communityGoodsId":"","createTime":"2018-06-15 18:03:37","goodsId":10000068,"id":11000216,"image":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3242139572,2186831585&fm=27&gp=0.jpg","integral":4,"isDefault":"","isEnableSelfMotion":"","num":0,"price":0.40,"quantity":"700","sellPoint":"","seller":"","sellerId":"","spec":"","status":"1","stockCount":0,"title":"数量700个","updateTime":"2018-06-15 18:03:37"}],"goods":{"auditStatus":"2","caption":"招牌名片赞 速度快 价格低","category1Id":2,"category2Id":11,"category3Id":0,"communityAccount":3,"communityGoodsId":1,"defaultItemId":0,"goodsName":"招牌名片赞","id":10000068,"integral":1,"isDelete":"","isEnableSelfMotion":"1","isEnableSpec":"1","isMarketable":"1","price":0.10,"sellerId":"猫小咪","smallPic":"https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg","tab":"日刷10万 请不要重复下单","typeTemplateId":0,"volume":0,"volumeDay":0,"volumeMonth":0},
+          "goodsDesc":{
+            "customAttributeItems":"",
+            "goodsId":10000068,
+            "introduction":"\n\t运营社区：千寻赞皇官方\n\n\n\t充值产品：QQ名片赞\n\n\n\t充值方式：秒充值（20秒开始）\n\n\n\t充值速度：日刷6-8万\n",
+            "itemImages":JSON.parse("[{\"url\":\"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3242139572,2186831585&fm=27&gp=0.jpg\"},{\"url\":\"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=760079672,1174618124&fm=27&gp=0.jpg\"},{\"url\":\"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529065621645&di=e9f771f3ed04624dc6f15d3fab8f66ba&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fac345982b2b7d0a202dc6d61cdef76094b369a30.jpg\"}]"),
+            "packageList":"",
+            "saleService":"无",
+            "specificationItems":"[]"
+            }
+          }
     };
   },
   methods: {
