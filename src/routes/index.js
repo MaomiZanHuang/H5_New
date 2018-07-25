@@ -3,6 +3,7 @@ import Router from 'vue-router';
 
 
 import Home from '@/pages/Home';
+import Suggest from '@/pages/Suggest';
 import User from '@/pages/User';
 import Order from '@/pages/Order';
 import Square from '@/pages/Square';
@@ -61,6 +62,11 @@ export default new Router({
         depth: 0,
         keepAlive: true
       }
+    },
+    {
+      path: '/suggest',
+      name: 'suggest',
+      component: Suggest.Index
     },
     {
       path: '/user',

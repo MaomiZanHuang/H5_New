@@ -6,11 +6,11 @@
     <ul style="transition-property: transform; transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); transition-duration: 300ms;">
       <li v-for="(cata, idx) in catas"
           class="menu-item"
-          :class="cata.id == currentCataId && 'current'"
+          :class="cata.cata_id == currentCataId && 'current'"
           style="pointer-events: auto;"
-          @click="changeCata(cata.id, idx)">
+          @click="changeCata(cata.cata_id, idx)">
         <span class="text border-1px">
-          <span class="icon special"></span>{{cata.name}}
+          <span class="icon special"></span>{{cata.title}}
         </span>
       </li>
     </ul>
@@ -18,25 +18,32 @@
   <div class="foods-wrapper" ref="wrapper">
     <ul style="transition: all .5s ease">
       <li v-for="cata in catas" class="good-list" style="pointer-events: auto;">
-        <h1 class="title" :class="'cata-'+ cata.id" ref="titleEl">{{cata.name}}</h1>
+        <h1 class="title" :class="'cata-'+ cata.id" ref="titleEl">{{cata.title}}</h1>
         <ul>
           <li ref="goodEl" v-for="good in cata.children"class="food-item border-1px"
-            @click="buyGoods(good.id)">
+            @click="buyGoods(good.goods_id)">
             <div class="icon">
               <img width="57" height="57" :src="good.logo">
             </div>
             <div class="content">
-              <h2 class="name">{{good.name}}</h2>
-              <p class="desc">{{good.desc}}</p>
-              <div class="extra"><span class="count">月售229份</span><span>好评率100%</span></div>
-              <div class="price"><span class="now">￥10</span><span class="old" style="display: none;">￥</span></div>
-              <div class="cartcontrol-wrapper">
-                <div class="cartcontrol">
-                  <div class="cart-decrease" style="display: none;"><span class="inner icon-remove_circle_outline"></span></div> 
-                  <div class="cart-count" style="display: none;"></div>
-                  <div class="cart-add icon-add_circle"></div>
+              <div class="mui-row">
+                <div class="mui-col-xs-8">
+                  <h2 class="name">{{good.title}}</h2>
+                  <p class="desc">{{good.specs}}</p>
+                  <div class="extra"><span class="count">月售229份</span></div>
+                </div>
+                <div class="mui-col-xs-4">
+                  <div class="price">
+                    <div class="rmb">
+                      <i class="mui-icon iconfont icon-msg6"></i>  {{good.min_price}}
+                    </div>
+                    <div class="points">
+                      <i class="mui-icon iconfont icon-ji"></i>  {{good.min_points}}
+                    </div>
+                  </div>
                 </div>
               </div>
+              
             </div>
           </li>
         </ul>
@@ -57,8 +64,9 @@
     </Frame>
 </template>
 <script>
-import Frame from '@/components/Frame';
 import _ from 'lodash';
+import {mapState} from 'vuex';
+import Frame from '@/components/Frame';
 
 export default {
   components: {
@@ -68,69 +76,13 @@ export default {
     return {
       isHandScroll: false,
       currentCataId: 0,
-      scrollY: 0,
-      catas: [
-				{
-          id: 0, name: '免费业务', logo: 'http://img5.imgtn.bdimg.com/it/u=171739527,3841594568&fm=200&gp=0.jpg',
-          children: [
-            { id: '01', name: '招牌名片赞[低价]', logo: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg' },
-            { id: '02', name: '招牌名片赞[稳定]', logo: '' },
-            { id: '03', name: '空间人气', logo: '' }
-          ]
-        },
-				{ id: 1, name: '刷赞', logo: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1228238028,1047793957&fm=27&gp=0.jpg',
-          children: [
-            { id: 11, name: '低价赞' },
-            { id: 12, name: '招牌赞'}
-          ]
-        },
-				{
-          id: 2, name: 'QQ业务', logo: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2322919269,2472384179&fm=27&gp=0.jpg',
-          children: [
-            { id: 21, name: '永久QQ钻 ［稳定］', logo: '' },
-            { id: 22, name: '永久QQ钻 ［无保］', logo: '' },
-            { id: 23, name: 'Q币充值', logo: '' },
-            { id: 24, name: 'QQ靓号', logo: '' },
-            { id: 25, name: '等级代挂［皇冠梦］', logo: '' }
-          ]  
-        },
-				{
-          id: 3, name: '短视频', logo: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1958064775,2572669376&fm=27&gp=0.jpg',
-          children: [
-            { name: '抖音粉丝', logo: '' },
-            { name: '快手粉丝', logo: ''  },
-            { name: '美拍粉丝', logo: '' },
-            { name: '抖音评论', logo: '' }
-          ]
-        },
-				{
-          id: 4, name: '影视会员', logo: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=349613919,565425255&fm=27&gp=0.jpg',
-          children: [
-            { name: '爱奇艺会员', logo: '' },
-            { name: '优酷会员', logo: '' }
-          ]
-        },
-				{ id: 5, name: '刷粉', logo: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530778059166&di=f1f3c08b172bf879be93c269c0bc7658&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0104e9571c743432f875a399db949b.jpg%401280w_1l_2o_100sh.png',
-          children: [
-            { name: '微博粉丝2000+', logo: '' },
-            { name: '快手粉丝优质粉1w+', logo: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f61227dc8.jpg' }
-          ]
-        },
-				{ id: 6, name: '游戏代刷', logo: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3768522051,1032657102&fm=27&gp=0.jpg',
-          children: [
-            { name: '欢乐豆代刷', logo: '' },
-            { name: 'CF穿越火线AK-47黄金180天', logo: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3530439229,174755752&fm=179&w=121&h=140&img.JPEG' },
-            { name: '逆战5000NZ点10元限量', logo: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2641395577,3238754095&fm=58&bpow=600&bpoh=600'}
-          ]
-        },
-				{ id: 7, name: '杂七杂八', logo: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3648330687,678565372&fm=27&gp=0.jpg',
-          children: [
-            { name: '腾讯大王卡', logo: '' },
-            { name: '滴滴打人', logo: '' }
-          ]
-        }
-			],
+      scrollY: 0
     };
+  },
+  computed: {
+    ...mapState({
+      catas: state => state.goods_cata
+    })
   },
   methods: {
     changeCata(id, idx) {
@@ -155,7 +107,7 @@ export default {
     // 每个分类所占的高度
     const HLs = this.catas.map(item => {
       return {
-        id: item.id,
+        cata_id: item.cata_id,
         height: (item.children || []).length * GH + TH
       }
     });
@@ -167,13 +119,14 @@ export default {
       let scrollHeight =  this.$refs.wrapper.scrollTop;
       let scrollCata = HLs.reduce((prev, next) => {
         return prev.height - 10 < scrollHeight
-          ? { height: next.height + prev.height, id: next.id }
+          ? { height: next.height + prev.height, cata_id: next.cata_id }
           : prev;
-      }, { height: 0, id: 0 });
-      this.currentCataId = scrollCata.id; 
+      }, { height: 0, cata_id: 0 });
+      console.log(scrollCata);
+      this.currentCataId = scrollCata.cata_id; 
     });
     
-    let selectedCataId = this.$route.params.id || catas[0].id;
+    let selectedCataId = this.$route.params.id || catas[0].cata_id;
     let idx = this.catas.map(cata => '' + cata.id).indexOf(selectedCataId);
     this.changeCata(selectedCataId, idx);
   }
@@ -274,9 +227,21 @@ li {
     font-size: 10px;
     color: rgb(147, 153, 159);
 }
-.goods .foods-wrapper .food-item .content .price {
-    font-weight: 700;
-    line-height: 24px;
+.goods .price i {
+    font-weight: 300;
+    line-height: 0.7rem;
+    font-size: 0.4rem;
+}
+.price {
+  font-weight: 300;
+  line-height: 0.7rem;
+  font-size: 0.4rem;
+}
+.price .rmb {
+  color: rgb(255, 74, 66);
+}
+.price .points {
+  color: rgb(12, 125, 157);
 }
 .goods .foods-wrapper .food-item .content .cartcontrol-wrapper {
     position: absolute;

@@ -2,7 +2,7 @@
 <template>
 <div class="frame-container">
   <header class="header" ref="header">
-    <section class="back" @click="goback"><i class="mui-icon mui-icon-back"></i></section>
+    <section v-if="!hideBack" class="back" @click="goback"><i class="mui-icon mui-icon-back"></i></section>
     <section class="title ellipsis"><span class="title_text">{{title}}</span></section>
   </header>
   <section class="content" :style="{height: contentHeight}">
@@ -17,7 +17,10 @@ export default {
       default: '选择商品'
     },
     // 点击返回之后
-    forceBackTo: String
+    forceBackTo: String,
+    hideBack: {
+      default: false
+    }
   },
   data() {
     return {
@@ -36,11 +39,6 @@ export default {
     }
   },
   mounted() {
-    // this.$loading.show();
-    this.$tip.show('加载失败！');
-    window.vue = this;
-    console.log(window.outerHeight);
-    console.log(this.$refs.header.offsetHeight);
     this.contentHeight = (window.outerHeight - this.$refs.header.offsetHeight) + 'px';
   },
 }
@@ -53,6 +51,9 @@ export default {
   color: #fff;
   padding: 0 10px;
   box-shadow: 0 0 1px #000;
+}
+.frame-container .content {
+  overflow: auto;
 } 
 .frame-container .header .back {
   line-height: 50px;

@@ -3,7 +3,7 @@
 如果未登录，我的订单显示空
 -->
 <template>
-<div>
+<Frame :hideBack="true" title="订 单">
   <Menu />
   <div class="tabs-header">
     <div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
@@ -121,13 +121,16 @@
       </div>
     </div>
   </div>
-</div>
+</Frame>
 </template>
 <script>
 import Menu from '@/pages/Index.vue';
+import Frame from '@/components/Frame.vue';
+
 export default {
   components: {
-    Menu
+    Menu,
+    Frame
   },
   data() {
     return {
