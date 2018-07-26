@@ -37,7 +37,7 @@ export default new Router({
       meta: { depth: 2 }
     },
     {
-      path: '/preorder',
+      path: '/preorder/:id',
       name: 'preorder',
       component: Home.Preorder,
       meta: { depth: 3 }

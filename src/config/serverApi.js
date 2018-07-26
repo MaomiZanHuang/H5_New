@@ -6,6 +6,16 @@ const HOST = process.env === 'production'
   : DEV_HOST;
 
 exports.guest = {
-    // 为了减少请求，合并数据
-    getHomePageData: `${HOST}/guest/getHomePageData`
+  getGoodsCata: `${HOST}/guest/goods_cata`,
+  // 首页其它数据
+  getHomePageData: `${HOST}/guest/getHomePageData`,
+};
+
+exports.goods = {
+  getGoods: `${HOST}/goods/get/{id}`,
+}
+exports.order = {
+  createOrder: `${HOST}/order/create`,
+  getOrder: `${HOST}/order/get/{id}`,
+  cancelOrder: `${HOST}/order/cancel/{id}`
 };

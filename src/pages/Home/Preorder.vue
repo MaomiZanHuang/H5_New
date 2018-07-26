@@ -3,7 +3,7 @@
 <div class="mui-content">
 	<div class="mui-card">
 		<!--页眉，放置标题-->
-		<div class="mui-card-header"><h5>订单号: 201807201525_2018030426</h5></div>
+		<div class="mui-card-header"><h5>订单号: {{order.order_id}}</h5></div>
 		<!--内容区-->
 		<div class="mui-card-content" style="padding: 10px; font-size: 0.325rem">
 			<div class="mui-row">
@@ -11,32 +11,35 @@
 					<img src="https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-04-04/5ac4f1f9e49df.jpg" width="100%"/>
 				</div>
 				<div class="mui-col-xs-8 order-content" style="padding-left: 10px;">
-					<h3>招牌名片赞</h3>
-					<p>规格: 800赞</p>
-					<p>单价: <i class="mui-icon iconfont icon-msg6">0.02</i>/<i class="mui-icon iconfont icon-ji points">100</i></p>
-					<p>数量: 1</p>
-					<p>充值QQ: 1540811286</p>
-					<p>补充信息: 客服请快速帮忙充值，急用！！！</p>
+					<h3>{{order.goods_name}}</h3>
+					<p>规格: {{order.spec}}</p>
+					<p>单价: <i class="mui-icon iconfont icon-msg6">{{order.price.rmb}}</i>/<i class="mui-icon iconfont icon-ji points">{{order.price.points}}</i></p>
+					<p>数量: {{order.amt}}</p>
+					<p>充值QQ: {{order.concat.qq}}</p>
+					<p>补充信息: {{order.remark}}</p>
 				</div>
 			</div>
 		</div>
 		<!--页脚，放置补充信息或支持的操作-->
 		<div class="mui-card-footer">
-			<p style="width: 100%;text-align: right;">总计: <i class="mui-icon iconfont icon-msg6">0.02</i>/<i class="mui-icon iconfont icon-ji points">100</i></p>
+			<p style="width: 100%;text-align: right;">总计: 
+				<i class="mui-icon iconfont icon-msg6">{{order.total_fee.rmb}}</i>
+				|
+				<i class="mui-icon iconfont icon-ji points">{{order.total_fee.points}}</i></p>
 		</div>
 	</div>
 	<p class="text-center" style="line-height: 1.2rem">您的订单已创建，请及时支付！</p>
 	<div class="btn-group">
-		<button class="mui-btn mui-btn-block mui-btn-primary" @click="isShowPayDialog=true">积分支付(200)</button>
-		<button class="mui-btn mui-btn-block mui-btn-danger">在线支付(0.02)</button>
+		<button class="mui-btn mui-btn-block mui-btn-primary" @click="isShowPayDialog=true">积分支付({{order.total_fee.points}})</button>
+		<button class="mui-btn mui-btn-block mui-btn-danger">在线支付({{order.total_fee.rmb}})</button>
 		<br/>
 		<br/>
 		<button class="mui-btn mui-btn-block"  @click="cancelOrder">取消订单</button>
 	</div>
 	<NumberInput v-if="isShowPayDialog" @finish-input="pay" @close="closePayDialog">
 		<div slot="header">
-			订单金额: 50 <br/>
-			支付方式: <i class="mui-icon iconfont icon-msg6"></i>积分
+			订单金额: <i class="mui-icon iconfont icon-msg6"></i>{{order.total_fee.points}} <br/>
+			支付方式: <b>积分</b>
 		</div>
 	</NumberInput>
 </div>
@@ -44,6 +47,9 @@
 </template>
 <script>
 /**预下单 */
+import $ from 'axios';
+import {order as ORDER_API} from '@/config/serverApi';
+import {replaceVars} from '@/utils/index';
 import Frame from '@/components/Frame';
 import NumberInput from '@/components/NumberInput';
 
@@ -54,13 +60,53 @@ export default {
 	},
 	data() {
 		return {
-			isShowPayDialog: false
+			isShowPayDialog: false,
+			order: {
+				order_id: '',
+				goods_name: '',
+				spec: '',
+				price: {
+					rmb: '',
+					points: ''
+				},
+				total_fee: {
+					rmb: '',
+					points: ''
+				},
+				concat: {
+					qq: ''
+				},
+				remark: ''
+
+			}
 		};
 	},
 	created() {
 		// 如果未传order_id就表示非法进入，则跳转回首页
-		return false;
-		this.$router.replace('/');
+		const order_id = this.$route.params.id;
+		if (!order_id) {
+			// 非法订单号进入404页面
+			this.$router.replace('/404');
+			return false;
+		}
+		this.$loading.show('加载中...');
+		$.get(replaceVars(ORDER_API.getOrder, { id: order_id }))
+			.then(({data}) => {
+				this.$loading.hide();
+				let { amt, order_id, goods_name, spec, price, total_fee, concat, remark } = data;
+				price = JSON.parse(price);
+				total_fee = {
+					rmb: amt * price.rmb,
+					points: amt * price.points
+				};
+				concat = JSON.parse(concat);
+				Object.assign(this.order, {order_id, amt, goods_name, spec, price, total_fee, concat, remark})
+			})
+			.catch(err => {
+				console.log(err);
+				this.$loading.hide();
+				this.$tip.show('网络连接失败！');
+			});
 	},
 	methods: {
 		pay() {
@@ -75,7 +121,20 @@ export default {
 			this.isShowPayDialog = false;
 		},
 		cancelOrder() {
+			this.$loading.show('申请取消订单...');
+			$.get(replaceVars(ORDER_API.cancelOrder, {id: this.order.order_id}))
+				.then(({data}) => {
+					this.$loading.hide();
+					this.$tip.show(data.msg);
 
+					setTimeout(() => {
+						this.$router.push('/order');
+					}, 1500);
+				})
+				.catch(err => {
+					this.$loading.hide();
+					this.$tip.show('网络连接失败！');
+				});
 		}
 	}
 }

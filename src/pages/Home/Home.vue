@@ -151,27 +151,15 @@ export default {
 				'https://cdn.520cy.cn/Uploads/image/2018-06-13/18589257baeaac9958d6be7fd5ad0919afa9fa.jpg',
 				'https://cdn.520cy.cn/Uploads/image/2018-06-13/18589257baeaac9958d6be7fd5ad0a19afa9fa.jpg',
 				'https://cdn.520cy.cn/Uploads/image/2018-06-13/1766b850ace8ee884ff8.png'
-			],
-			// 中间独立打广告
-			adv: {
-				href: '#', // #表示不跳转
-				pic: 'https://cdn.520cy.cn/images/appbazaar.png',
-				alt: '千寻软件市场'
-			},
-			// 展示当天销量前5的商品
-			top5Goods: [
-				{ id: 0, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
-				{ id: 1, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
-				{ id: 2, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
-				{ id: 2, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
-				{ id: 2, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009}
-			],
-			notices: []
+			]
     }
   },
 	computed: {
 		...mapState({
-			catas: state => state.goods_cata
+			catas: state => state.goods_cata,
+			adv: state => state.adv,
+			top5Goods: state => state.home_page_goods,
+			notices: state => state.notices
 		})
 	},
 	mounted() {
@@ -183,20 +171,22 @@ export default {
 			this.alpha = th / MAX_SCROLL_HEIGHT;
 		});
 
-		$.get(GUEST_API.getHomePageData)
-			.then(({data}) => {
-				this.adv = data.adv;
-				this.top5Goods = data.top5_hot_goods;
-				this.notices = data.latest_5notices;
-
-				this.setGoodsCata(data.goods_cata);
+		// 获取分类数据和首页其它数据
+		this.getGoodsCata()
+			.then(r => {
+				console.log('获取分类成功！');
 			})
 			.catch(err => {
-				this.$tip.show('获取数据失败！');
+				this.$tip.show('获取分类数据失败！');
+			});
+
+		this.getHomePageData()
+			.catch(err => {
+				this.$tip.show('获取首页数据失败！');
 			});
 	},
 	methods: {
-		...mapActions(['setGoodsCata']),
+		...mapActions(['getGoodsCata', 'getHomePageData']),
 		jmpToCatas(id) {
 			this.$router.push('/cata/' + id);
 		},
