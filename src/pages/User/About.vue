@@ -24,8 +24,13 @@
       </li>
   </ul>
   </div>
-  <div class="footer">
-    <p class="text-center">版权所有 ©千寻赞皇 2018</p>
+  <div id="footer">
+    <!--底部结束图片-->
+    <div class="text-center">
+      <img src="@/assets/base_img.png" />
+    </div>
+    <!--底部结束图片-->
+    <!--<p class="text-center">版权所有 ©千寻赞皇 2018</p>-->
   </div>
 </Frame>
 </template>
@@ -57,7 +62,7 @@ export default {
 .about-content a {
   font-size: 0.35rem;
 }
-.footer {
+#footer {
   position: absolute;
   bottom: 15px;
   width: 100%;

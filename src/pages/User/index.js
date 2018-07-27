@@ -3,11 +3,17 @@ import About from './About';
 import UserInfo from './UserInfo';
 import Security from './Security';
 import Activity from './Activity';
+import Login from './Login';
+import Reg from './Reg';
+import FindPwd from './FindPwd';
 
 export default {
   Index,
   About,
   UserInfo,
   Security,
-  Activity
+  Activity,
+  Login,
+  Reg,
+  FindPwd
 }

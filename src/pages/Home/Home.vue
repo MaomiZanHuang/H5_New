@@ -1,12 +1,12 @@
 <template>
   <div>
 		<Menu />
-		<header id="header" class="mui-bar mui-bar-transparent" :style="{'background-color': 'rgba(249, 48, 76, '+alpha+')'}">
+		<header id="header" class="mui-bar mui-bar-transparent" :style="{'background-color': 'rgba(170, 187, 204, '+alpha+')'}">
 			<a class="mui-action-back mui-icon mui-icon-contact mui-pull-left" ></a>
 			<h1 class="mui-title">千寻赞皇</h1>
 		</header>
 
-		<div class="mui-content">
+		<div class="mui-content" style="padding-bottom: 50px;">
 			<!--轮播图-->
 			<swiper :options="swiperOption">
         <swiper-slide  v-for="(banner,idx) in banners" :key="banner">
@@ -25,19 +25,12 @@
 				</span>
 				<marquee class="newslist" direction="up" scrollamount="1">
 					<ul style="margin-top: -1px;">
-						<li>
-								<a href="/M/Notice/9944">卡商网官方：新增3个顶级域名注意...</a>
-							</li><li>
-								<a href="/M/Notice/7396">卡商网供货商规则变更</a>
-							</li><li>
-								<a href="/M/Notice/14644">卡商网免手续费加款</a>
-							</li><li>
-								<a href="/M/Notice/14548">卡商网提现变更通知201-2-1</a>
-							</li><li>
-								<a href="/M/Notice/14527">通知：老用户绑定QQ和微信登录示...</a>
-							</li></ul>
+						<li v-for="notice in notices">
+							<a href="#">{{notice.title}}</a>
+						</li>
+					</ul>
 				</marquee>
-      	<a href="/M/QueryNotice" class="morenews">更多</a>
+      	<a href="#" class="morenews">更多</a>
     </div>
 
 			<!--公告区域-->
@@ -47,20 +40,22 @@
 			<div id="qianggou" style="margin-top: 0px;">
 				<ul class="mui-table-view mui-grid-view">
 					<li v-for="cata in catas" class="mui-table-view-cell mui-col-xs-3 mui-col-sm-3 iconlist clip"
-						@click="jmpToCatas" style="font-size:0.21875rem;">
+						@click="jmpToCatas(cata.cata_id)" style="font-size:0.21875rem;">
 						<img :src="cata.logo" style="width: 40px;height:40px">
-						<div style="margin-top: 10px;">{{cata.name}}</div>
+						<div style="margin-top: 10px;">{{cata.title}}</div>
 					</li>
 				</ul>
 			</div>
 			<!--广告活动-->
 			<div class="adv">
-				<img src="https://cdn.520cy.cn/images/appbazaar.png" >
-				<!-- <img :src="adv.pic" :title="adv.alt"/> -->
+				<a :href="adv.href" :target="adv.href !== '#' && '_blank'">
+					<img :src="adv.pic" :title="adv.alt"/> 
+				</a>
 			</div>
 			<!--广告区域-->
 
 			<!--活动导航-->
+			<!--
 			<div id="qianggou" style="margin-top: 0px;">
 				<ul class="mui-table-view mui-grid-view" id="activity">
 					<li class="mui-table-view-cell mui-media mui-col-xs-6">
@@ -88,85 +83,46 @@
 					
 				</ul>
 			</div>
+			-->
 			<!--活动导航-->
 			
 			<!--日销量最佳-->
 			<div class="block">
 				<div class="header">
-					<span class="mui-icon iconfont icon-msnui-bar-chart"></span>
-					<span class="mui-tab-label">日销量最佳</span>
+					<span class="mui-icon iconfont icon-msnui-bar-chart" style="font-size:0.325rem"></span>
+					<span class="mui-tab-label">热门推荐</span>
 					<router-link to="/hotgoods" class="fright">更多>></router-link>
 				</div>
-				<!-- <div class="content goodlist">
-					<li v-for="item in top5Goods" @click="buyGoods(item.id)">
-						<div class="list-item">
-							<div class="p">
-								<a href="#" title="">
-									<img class="p-pic" :src="item.pic" style="visibility: visible;">
-									<span class="flag c-icon-pt"></span>
-								</a>
-							</div>
-							<div class="d">
-								<a href="#" title="">
-									<h3 class="d-title">{{item.title}}</h3>
-								</a>
-								<p>{{item.desc}}</p>
-								<p class="d-price">
-									<em class="h">
-										<span class="price-icon">¥</span>
-										<span class="font-num">{{item.price}}</span>
-									</em>
-								</p>
-								<div class="d-main">
-									<p class="d-num"><span class="font-num">{{item.sale_amount}}</span>购买</p>
-								</div>
-							</div>
-						</div>
-						<div class="icons-group"></div>
-					</li>
-				</div> -->
 			</div>
 
 			<!--商品列表-->
-			<div id="goodsList" class="mui-table-view mui-grid-view own-gray-color" style="margin-top: 0.3rem;">
-				<li v-for="item in top5Goods" @click="buyGoods(item.id)" class="mui-table-view-cell mui-media mui-col-xs-6">
+			<div id="goodsList" class="mui-table-view mui-grid-view own-gray-color">
+				<li v-for="item in top5Goods" @click="buyGoods(item.goods_id)" class="mui-table-view-cell mui-media mui-col-xs-6">
 					<div class= "bgDiv">
 						<img class="mui-media-object" src="https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg" onerror="this.src='../images/pic-null.png';this.onerror=null"/>
 						<div class="mui-media-body">
 							<p class="mui-ellipsis-2">{{item.title}}</p>
-							<p class="price-one">¥ {{item.price}}</p>
-							<p class="price-two">{{item.sale_amount}}购买</p>
+							<div class="price-points">
+								<i class="mui-icon iconfont icon-msg6 price"> {{item.min_rmb}}</i>
+								<i class="mui-icon iconfont icon-ji points"> {{item.min_points}}</i>
+							</div>
 						</div>
 					</div>
 				</li>
 			</div>
-			<!--商品列表-->
-
-			<!--积分榜-->
-			<!-- <div class="block">
-				<div class="header">
-					<span class="mui-icon iconfont icon-meili"></span>
-					<span class="mui-tab-label">积分榜</span>
-				</div>
-				<div class="content">
-
-				</div>
-			</div> -->
-
-			<!--底部结束图片-->
-			<div style="text-align:center;height:120px">
-				<img src="@/assets/base_img.png" />
-			</div>
-			<!--底部结束图片-->
 
 		</div>
   </div>
 </template>
 
 <script>
+import $ from 'axios';
+import {mapState, mapActions} from 'vuex';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import pic from '@/assets/logo.png';
 import Menu from '@/pages/Index';
+
+import {guest as GUEST_API} from '@/config/serverApi';
 
 export default {
   name: 'hello',
@@ -195,43 +151,44 @@ export default {
 				'https://cdn.520cy.cn/Uploads/image/2018-06-13/18589257baeaac9958d6be7fd5ad0919afa9fa.jpg',
 				'https://cdn.520cy.cn/Uploads/image/2018-06-13/18589257baeaac9958d6be7fd5ad0a19afa9fa.jpg',
 				'https://cdn.520cy.cn/Uploads/image/2018-06-13/1766b850ace8ee884ff8.png'
-			],
-			catas: [
-				{ name: '免费业务', logo: 'https://cdn.520cy.cn/images/免费.png' },
-				{ name: '刷赞', logo: 'https://cdn.520cy.cn/images/点赞.png' },
-				{ name: 'QQ业务', logo: 'https://cdn.520cy.cn/images/QQ会员.png' },
-				{ name: '短视频', logo: 'https://cdn.520cy.cn/images/抖音短视频.png' },
-				{ name: '影视会员', logo: 'https://cdn.520cy.cn/images/影视.png' },
-				{ name: '刷粉', logo: 'https://cdn.520cy.cn/images/粉丝.png' },
-				{ name: '游戏代刷', logo: 'https://cdn.520cy.cn/images/游戏.png' },
-				{ name: '杂七杂八', logo: 'https://cdn.520cy.cn/images/杂七杂八.png' }
-			],
-			// 中间独立打广告
-			adv: {
-				href: '#', // #表示不跳转
-				pic: 'https://cdn.520cy.cn/Uploads/image/2018-06-13/18589257baeaac9958d6be7fd5ad0919afa9fa.jpg',
-				alt: '千寻软件市场'
-			},
-			// 展示当天销量前5的商品
-			top5Goods: [
-				{ id: 0, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
-				{ id: 1, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
-				{ id: 2, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
-				{ id: 2, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009},
-				{ id: 2, title: '招牌名片赞', desc: '1000赞起刷，最低0.01，秒到账', price: '0.01', pic: 'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg', sale_amount: 2009}
 			]
     }
   },
+	computed: {
+		...mapState({
+			catas: state => state.goods_cata,
+			adv: state => state.adv,
+			top5Goods: state => state.home_page_goods,
+			notices: state => state.notices
+		})
+	},
 	mounted() {
+		window.vue10 = this;
+
 		const MAX_SCROLL_HEIGHT = 44;
 		document.addEventListener("scroll", () => {
 		let th = (document.body.scrollTop || window.scrollY) / 5;
 			this.alpha = th / MAX_SCROLL_HEIGHT;
 		});
+
+		// 获取分类数据和首页其它数据
+		this.getGoodsCata()
+			.then(r => {
+				console.log('获取分类成功！');
+			})
+			.catch(err => {
+				this.$tip.show('获取分类数据失败！');
+			});
+
+		this.getHomePageData()
+			.catch(err => {
+				this.$tip.show('获取首页数据失败！');
+			});
 	},
 	methods: {
-		jmpToCatas() {
-			this.$router.push('/catas');
+		...mapActions(['getGoodsCata', 'getHomePageData']),
+		jmpToCatas(id) {
+			this.$router.push('/cata/' + id);
 		},
 		buyGoods(id) {
 			this.$router.push('/goods/' + id);
@@ -283,6 +240,7 @@ export default {
 	
 	.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body p.mui-ellipsis-2 {
 		height: 30px;
+		line-height: 30px;
 	}
 	
 	.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body .price-one {
@@ -341,7 +299,7 @@ body {
     overflow: hidden;
 }
 .newsfrom {
-	width: 60px;
+	width: 1.5rem;
 	color: #f00;
 	font-size: 0.328125rem;
 }
@@ -373,7 +331,7 @@ body {
 	font-size: 0.28125rem;
 	color: #040404;
 	padding: 0 0 0 0.1875rem;
-	width: 40px;
+	width: 1rem;;
 	border-left: 1px solid #040404;
 }
 
@@ -441,4 +399,20 @@ body {
 .mui-card-footer {
 	font-size: 0.21875rem;
 }
+
+.price-points {
+	display: flex;
+	justify-content: space-around;
+}
+.price-points i {
+	font-weight: 300;
+  line-height: 0.7rem;
+  font-size: 0.4rem;
+}
+.price-points .price {
+  color: rgb(255, 74, 66);
+}
+ .price-points .points {
+  color: rgb(12, 125, 157);
+ }
 </style>

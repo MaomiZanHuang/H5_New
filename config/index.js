@@ -33,7 +33,14 @@ module.exports = {
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
 
-    cssSourceMap: true
+    cssSourceMap: true,
+    proxyTable: {
+      '*': {  //axios请求路径
+        changeOrigin: true,
+        target: 'http://127.0.0.1:7001',
+        pathRewrite: {}
+      }
+    }
   },
 
   build: {

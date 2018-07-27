@@ -3,19 +3,26 @@
     <Menu />
     <div class="head">
       <div class="userinfo">
-        <section class="balance">
-          <span class="title">余 额</span>
-          <span class="money">0.000</span>
-          <a href="/M/Recharge" class="btn">充 值</a>
-        </section>
         <section class="user-info">
           <img src="http://q1.qlogo.cn/g?b=qq&nk=851656783&s=100&t=1449411350" class="headicon">
-          <p class="username">猫咪、Ceko</p>
+          <div v-if="user.user"">
+            <p class="username">猫咪、Ceko</p>
+            <a href="#" class="btn">签到</a>
+          </div>
+          <p class="username" v-else>未登录</p>
         </section>
-        <section class="points">
+        
+        
+        <section class="points" v-if="user.user">
           <span class="title">积 分</span>
           <span class="money">0.000</span>
-          <a class="btn">赚积分</a>
+          <a class="btn">充值</a><a class="btn">赚积分</a>
+          
+        </section>
+        <section class="unlogin" v-else>
+          <router-link to="/user/login" class="btn">登  录</router-link>
+          <br/>
+          <router-link to="/user/reg" class="btn">注  册</router-link>
         </section>
       </div>
       <div class="bottomimgbox"></div>
@@ -96,12 +103,19 @@
   </div>
  </template>
  <script>
+ import {mapState} from 'vuex';
  import '@/assets/js/flexible.js';
  import Menu from '@/pages/Index';
+
 
  export default {
    components: {
      Menu
+   },
+   computed: {
+     ...mapState({
+       user: state => state.user
+     })
    },
    data() {
      return {
@@ -133,6 +147,11 @@
   align-items: flex-start;
   height: 3.7rem;
   background: #4e937a;
+}
+
+.userinfo .unlogin {
+  height: 100%;
+  justify-content: center;
 }
 
 .userinfo section {
