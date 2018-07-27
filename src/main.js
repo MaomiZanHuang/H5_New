@@ -19,8 +19,10 @@ Vue.use(Spin);
 Vue.use(Tip);
 
 router.beforeEach((to, from, next) => {
+  if (to.meta.auth && !store.state.user.user) {
+    return next('/user/login');
+  }
   let transitionName = 'fade';
-  console.log('深度',to.meta.depth, from.meta.depth);
   if (to.meta.depth > from.meta.depth) {
     transitionName = 'slide-left';
   } else if (to.meta.depth < from.meta.depth){

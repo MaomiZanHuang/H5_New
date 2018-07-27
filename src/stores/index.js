@@ -10,8 +10,8 @@ const state = {
   // 当前选中的路由
   currentMenu: '/',
   transitionName: '',
-  // 用户是否登录
-  isLogin: false,
+  // 用户登录信息
+  user: {},
 
   /** 首页缓存的数据，还可能在其它地方用到 */
   // 分类

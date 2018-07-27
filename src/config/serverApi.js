@@ -17,5 +17,8 @@ exports.goods = {
 exports.order = {
   createOrder: `${HOST}/order/create`,
   getOrder: `${HOST}/order/get/{id}`,
-  cancelOrder: `${HOST}/order/cancel/{id}`
+  cancelOrder: `${HOST}/order/cancel/{id}`,
+  // 积分支付订单
+  payOrderByPoints: `${HOST}/order/payByPoints/{id}`,
+  payOrderOnline: `${HOST}/order/payOnline/{id}`
 };

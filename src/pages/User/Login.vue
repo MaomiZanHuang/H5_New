@@ -7,24 +7,10 @@
   <p class="name text-center">千寻赞皇</p>
 </div>
 <form class="mui-input-group login-reg-form">
-  <div class="mui-input-row mui-row">
-    <label>账 号</label>
-    <input id=‘VerificationCode‘ type="text" class="mui-input" placeholder="请输入账号">
+  <div class="plr-15">
+    <input class="mui-input" placeholder="请输入账号">
+    <input class="mui-input" placeholder="请输入密码">
   </div>
-  <div class="mui-input-row mui-row">
-    <label>密 码</label>
-    <input id=‘VerificationCode‘ type="text" class="mui-input" placeholder="请输入密码">
-  </div>
-  <div class="mui-input-row mui-row">
-    <div class="mui-col-xs-8">
-      <label>验证码</label>
-      <input id=‘VerificationCode‘ type="text" class="mui-input" placeholder="请输入验证码">
-    </div>
-    <div class="mui-col-xs-4">
-      <img height="44px" src="http://pubg.gotoip3.com/qwt/index.php/home/user/verifycode.html/" />
-    </div>
-  </div>
-
   <div class="mui-button-row plr-15">
     <button class="mui-btn mui-btn-primary btn-block" type="button" onclick="return false;">登 录</button>
   </div>
@@ -59,6 +45,19 @@ export default {
 }
 .login-reg-form {
   padding: 15px 0;
+}
+.login-reg-form input {
+  font-size: .46rem;
+  width: 7.73333333rem;
+  height: .48rem;
+  margin: 0 0 .17333333rem .12rem;
+  outline: none;
+  border: 0;
+  color: #333;
+  position: relative;
+    width: 100%;
+    margin: 1.2rem 0 0;
+    border-bottom: 1px solid #ff5000;
 }
 .plr-15 {
   padding: 0 15px;

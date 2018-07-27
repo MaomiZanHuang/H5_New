@@ -18,35 +18,42 @@ export default new Router({
     {
       path: '',
       name: 'home',
-      component: Home.Index,
-      meta: {
-        depth: 0,
-        keepAlive: true
-      }
-    },
-    {
-      path: '/hotgoods',
-      name: 'hotgoods',
-      component: Home.HotGoods,
-      meta: { depth: 1 }
-    },
-    {
-      path: '/goods/:id',
-      name: 'goods-detail',
-      component: Home.Goods,
-      meta: { depth: 2 }
-    },
-    {
-      path: '/preorder/:id',
-      name: 'preorder',
-      component: Home.Preorder,
-      meta: { depth: 3 }
-    },
-    {
-      path: '/cata/:id',
-      name: 'catas',
-      component: Home.Catas,
-      meta: { depth: 1 }
+      component: BlankView,
+      children: [
+        {
+          name: 'home',
+          path: '/',
+          component: Home.Index,
+          meta: {
+            depth: 0,
+            keepAlive: true
+          }
+        },
+        {
+          path: '/hotgoods',
+          name: 'hotgoods',
+          component: Home.HotGoods,
+          meta: { depth: 1 }
+        },
+        {
+          path: '/goods/:id',
+          name: 'goods-detail',
+          component: Home.Goods,
+          meta: { depth: 2 }
+        },
+        {
+          path: '/cata/:id',
+          name: 'catas',
+          component: Home.Catas,
+          meta: { depth: 1 }
+        },
+        {
+          path: '/preorder/:id',
+          name: 'preorder',
+          component: Home.Preorder,
+          meta: { depth: 3 }
+        },
+      ]
     },
     {
       path: '/order',
@@ -88,7 +95,8 @@ export default new Router({
           path: '/user/userinfo',
           component: User.UserInfo,
           meta: {
-            depth: 1
+            depth: 1,
+            auth: true
           }
         },
         {
@@ -96,7 +104,8 @@ export default new Router({
           path: '/user/security',
           component: User.Security,
           meta: {
-            depth: 1
+            depth: 1,
+            auth: true
           }
         },
         {
@@ -137,7 +146,8 @@ export default new Router({
           path: '/user/findpwd',
           component: User.FindPwd,
           meta: {
-            depth: 2
+            depth: 2,
+            auth: true
           }
         }
       ]

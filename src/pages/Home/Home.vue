@@ -103,7 +103,7 @@
 						<div class="mui-media-body">
 							<p class="mui-ellipsis-2">{{item.title}}</p>
 							<div class="price-points">
-								<i class="mui-icon iconfont icon-msg6 price"> {{item.min_price}}</i>
+								<i class="mui-icon iconfont icon-msg6 price"> {{item.min_rmb}}</i>
 								<i class="mui-icon iconfont icon-ji points"> {{item.min_points}}</i>
 							</div>
 						</div>

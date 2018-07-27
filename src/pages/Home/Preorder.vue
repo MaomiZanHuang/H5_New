@@ -82,6 +82,7 @@ export default {
 		};
 	},
 	created() {
+		window.vue = this;
 		// 如果未传order_id就表示非法进入，则跳转回首页
 		const order_id = this.$route.params.id;
 		if (!order_id) {
@@ -109,13 +110,26 @@ export default {
 			});
 	},
 	methods: {
-		pay() {
+		pay(input) {
 			this.isShowPayDialog = false;
 			this.$loading.show('支付处理中...');
-			setTimeout(() => {
-				this.$loading.hide();
-				this.$tip.show('账户积分不足！账单支付失败！');
-			}, 2000)
+			$.post(replaceVars(ORDER_API.payOrderByPoints, {id: this.order.order_id}), {
+				order_id: this.order.order_id,
+				pay_pwd: input
+			})
+				.then(({data}) => {
+					this.$loading.hide();
+					this.$tip.show(data.msg);
+					if (data.status) {
+						setTimeout(() => {
+							this.$router.push('/order');
+						}, 1500);
+					}
+				})
+				.catch(err => {
+					this.$loading.hide();
+					this.$tip.show('网络连接失败！');
+				});
 		},
 		closePayDialog() {
 			this.isShowPayDialog = false;
