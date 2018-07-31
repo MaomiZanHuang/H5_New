@@ -34,12 +34,8 @@
                 </div>
                 <div class="mui-col-xs-4">
                   <div class="price">
-                    <div class="rmb">
-                      <i class="mui-icon iconfont icon-msg6"></i>  {{good.min_price}}
-                    </div>
-                    <div class="points">
-                      <i class="mui-icon iconfont icon-ji"></i>  {{good.min_points}}
-                    </div>
+                      <i class="mui-icon iconfont icon-msg6 rmb">{{good.min_price}}</i>  
+                      <i class="mui-icon iconfont icon-ji points">{{good.min_points}}</i>  
                   </div>
                 </div>
               </div>
@@ -235,7 +231,6 @@ li {
 .price {
   font-weight: 300;
   line-height: 0.7rem;
-  font-size: 0.4rem;
 }
 .price .rmb {
   color: rgb(255, 74, 66);

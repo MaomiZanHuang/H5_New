@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import $ from 'axios';
+
 import App from './App';
 import router from './routes';
 
@@ -9,6 +11,14 @@ import Spin from '@/components/spin';
 import Tip from '@/components/Tip';
 
 import store from './stores';
+
+$.interceptors.request.use(
+  config => {
+    config.headers['jwt'] = localStorage['jwt'] || 'telanx';
+    return config;
+  },
+  err => Promise.reject(error)
+);
 
 FastClick.attach(document.body);
 

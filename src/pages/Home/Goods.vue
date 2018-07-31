@@ -85,21 +85,38 @@
 <div v-show="isShowUnitDialog" class="mui-backdrop mui-backdrop-actio mui-active fade"></div>
 <div v-show="isShowUnitDialog" ref="unitDialog" class="mui-popover mui-popover-action mui-popover-bottom mui-active"  style="display: block;">
     <ul class="mui-table-view">
-      <li class="mui-table-view-cell">
-        <img id="purchase_img" src="https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg" width="20%" style="float: left;">
-        <span id="xiaojie" class="xiaojie" style="width:60%">招牌名片赞 数量800个</span>
-        <p><font color="red" id="purchase_price">¥ 0.1元 或 1积分</font> </p>
-
+      <li class="mui-table-view-cell order-content mui-row">
+        <div class="mui-col-xs-3"><img src="https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg"></div>
+        <div class="mui-col-xs-1"></div>
+        <div class="mui-col-xs-8" style="text-align: left">
+          <p class="title">{{goods.title}}({{form.selectSpec.title}})</p>
+          <p class="price">
+            单价:
+            <i class="mui-icon iconfont icon-msg6 rmb">{{form.selectSpec.rmb}}</i>
+            &nbsp;&nbsp;
+            <i class="mui-icon iconfont icon-ji points">{{form.selectSpec.points}}</i></p>
+          <p class="amt">数量: {{form.amt}}</p>
+          <p class="price">
+            总计:
+            <i class="mui-icon iconfont icon-msg6 rmb">{{(form.amt * form.selectSpec.rmb).toFixed(2)}}</i>
+            &nbsp;&nbsp;
+            <i class="mui-icon iconfont icon-ji points">{{(form.amt * form.selectSpec.points).toFixed(2)}}</i>
+          </p>
+        </div>
       </li>
-      <li class="mui-table-view-cell" style="padding: 2px auto;">
-        <div class="mui-input-row">
-          <label>下单QQ</label>
-          <input type="text" class="mui-input-clear" v-model="form.qq" placeholder="请输入QQ号" />
+      <li class="mui-table-view-cell mui-row">
+        <div class="mui-col-xs-4">
+          <img style="float: left" :src="'http://q1.qlogo.cn/g?b=qq&nk='+form.qq+'&s=100'" onerror="this.src='http://q1.qlogo.cn/g?b=qq&nk=1000&s=100'" />
         </div>
-        <div class="mui-input-row">
-          <label>其它说明</label>
-          <textarea v-model="form.remark" rows="2" placeholder="特别要求请留言(选填)"></textarea>
+        <div class="mui-col-xs-8">
+            <input type="text" class="mui-input-clear" v-model="form.qq" placeholder="请输入QQ号" />
+            <!--
+            <input type="text" class="mui-input-clear" v-model="form.ksid" placeholder="请输入快手Id" />
+            <input type="text" class="mui-input-clear" v-model="form.dyid" placeholder="请输入抖音Id" />
+            -->
+            <textarea v-model="form.remark" rows="2" placeholder="特别要求请留言(选填)"></textarea>
         </div>
+        
 
       </li>
       
@@ -261,11 +278,29 @@ export default {
   line-height: 0.7rem;
   font-size: 0.4rem;
 }
-.price-points .price {
+
+.price .rmb {
   color: rgb(255, 74, 66);
 }
- .price-points .points {
+.price .points {
   color: rgb(12, 125, 157);
- }
+}
+
+
+ .iconfont {
+	line-height: 0.7rem;
+	font-size: 0.4rem;
+}
+.order-content p {
+	line-height: 0.6rem;
+}
+.order-content .title {
+  font-size: 0.4rem;
+  color: #f00;
+}
+.order-content img {
+  width: 100%;
+  background-size: cover;
+}
 
 </style>

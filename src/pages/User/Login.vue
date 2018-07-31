@@ -25,26 +25,26 @@
 <div class="container-bg">
   <div class="container container-form">
     <div class="login__logo"></div>
-      <div class="login__check">
-        <span style="margin-left:1.5rem;color: #FDFCFD; font-family: '微软雅黑'; font-size: 31px; ">千寻赞皇</span>
-      </div>
       <div class="login__form">
         <div class="login__row">
           <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
           </svg>
-          <input type="text" placeholder="Username"/>
+          <input type="text" v-model="user" placeholder="账号(QQ/邮箱/手机号)"/>
         </div>
         <div class="login__row">
           <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
           </svg>
-          <input type="password" placeholder="Password"/>
+          <input type="password" v-model="pwd" placeholder="密码(4~10位数字+字母)"/>
         </div>
-        <button type="button" class="login__submit">登 录</button>
+        <button type="button" class="login__submit" @click="login">登 录</button>
         <br><br>
-        <span style="margin-left:0rem;color: #FDFCFD; font-family: '微软雅黑'; font-size: 9px; ">注册账号</span>
-        <span style="margin-left:4.5rem;color: #FDFCFD; font-family: '微软雅黑'; font-size: 9px; ">忘记密码</span>
+        <div class="form-bottom">
+          <router-link to="/user/reg" class="fleft">注册账号</router-link>
+          <router-link to="/user/forget-pwd" class="fright">忘记密码</router-link>
+        </div>
+        </div>
       </div>
   </div>
 </div>
@@ -55,11 +55,46 @@
 </Frame>
 </template>
 <script>
-
+import $ from 'axios';
 import Frame from '@/components/Frame.vue';
+import {user as USER_API} from '@/config/serverApi';
 export default {
   components: {
     Frame
+  },
+  data() {
+    return {
+      user: '',
+      pwd: ''
+    }
+  },
+  methods: {
+    login() {
+      const {user, pwd} = this;
+      if (user.trim() === '' || pwd.trim() === '') {
+        this.$tip.show('账号密码不能为空！');
+        return false;
+      }
+      this.$loading.show('登陆中,请稍后...');
+      $.post(USER_API.login, {
+        user,
+        pwd
+      })
+      .then(({data}) => {
+        this.$loading.hide();
+        this.$tip.show(data.msg);
+        if (data.status) {
+          localStorage['jwt'] = data.token;
+          this.$store.commit('setUser', data.user);
+          // 更新store中的user字段
+          this.$router.push('/user/index');
+        }
+      })
+      .catch(err => {
+        this.$loading.hide();
+        this.$tip.show('网络连接失败！');
+      });
+    }
   }
 }
 </script>
@@ -101,27 +136,14 @@ export default {
   justify-content: center;
   height: 100%;
   align-items: center;
-  /* background: url(http://cdn.520cy.cn/images/cy.png) no-repeat; */
-background: url(http://b359.photo.store.qq.com/psb?/V10rULDz1P9nMA/dH*1LrMCOgMjOvU46RHKMO.Rt0.DhqvK3B4ZEimwROg!/b/dGcBAAAAAAAA&bo=AAWqBgAFqgYRMAc!&rf=viewer_311) no-repeat;
+  background: url(https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3129041440,2884231604&fm=27&gp=0.jpg) no-repeat;
   background-size: cover;
 }
 .container-form {
   background:rgba(30, 30, 30, 0.6);
-  /* padding: 75% 45%; */
-  border-radius: 1rem;
-
-  /* background: linear-gradient(to bottom, rgba(146, 135, 187, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
-  transition: opacity 0.1s, transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25), -webkit-transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25); */
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -4.3rem;
-    margin-top: -7.0rem;
-    width: 8.6rem;
-    height: 15rem;
-    
-
+  width: 100%;
+  height: 100%;
+  padding: 35px;
 }
 
 .login__row {
@@ -164,7 +186,7 @@ svg {
   margin: 1.5rem 0 0rem;
   color: rgba(255, 255, 255, 0.8);
   background: #FF3366;
-  font-size: 0.3rem;
+  font-size: 0.425rem;
   border-radius: 3rem;
 }
 
@@ -173,91 +195,20 @@ input, button {
   border: none;
 }
 
-.login__check {
-  position: absolute;
-  top: 5.5rem;
-  left: 0.8rem;
-  width: 6rem;
-  height: 1rem;
-  background: url(http://cdn.520cy.cn/images/点赞-1.png) no-repeat;
-  background-size:40px 40px;
-
-}
 
 
-.login__form {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    padding: 0.5rem 0.7rem;
-    /* text-align: center; */
-}
 
 .login__logo {
-  position: absolute;
-  top: 15%;
-  left: 40%;
-  width: 50%;
-  height: 50%;
-  margin: 0 auto;
   background: url(https://tc.sinaimg.cn/maxwidth.800/tc.service.weibo.com/t1_qpic_cn/eb8e3c7e6a7ca50d538fe1bd44fc76b7.jpg) no-repeat;
   background-size:80px 80px;
-
-  
+  height: 100px;
+  width: 100px;
+  margin: 10px auto;
 }
 
-@-webkit-keyframes animRipple {
-  to {
-    -webkit-transform: scale(3.5);
-            transform: scale(3.5);
-    opacity: 0;
-  }
+.form-bottom a {
+  font-size: 0.35rem;
+  color: #FFF;
 }
-
-@keyframes animRipple {
-  to {
-    -webkit-transform: scale(3.5);
-            transform: scale(3.5);
-    opacity: 0;
-  }
-}
-@-webkit-keyframes rotate {
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-@keyframes rotate {
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-@-webkit-keyframes animatePath {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-@keyframes animatePath {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.login__icon.name path {
-  stroke-dasharray: 73.50196075439453;
-  stroke-dashoffset: 73.50196075439453;
-  -webkit-animation: animatePath 2s 0.5s forwards;
-          animation: animatePath 2s 0.5s forwards;
-}
-.login__icon.pass path {
-  stroke-dasharray: 92.10662841796875;
-  stroke-dashoffset: 92.10662841796875;
-  -webkit-animation: animatePath 2s 0.5s forwards;
-          animation: animatePath 2s 0.5s forwards;
-}
-
 
 </style>

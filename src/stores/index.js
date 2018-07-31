@@ -11,7 +11,7 @@ const state = {
   currentMenu: '/',
   transitionName: '',
   // 用户登录信息
-  user: {},
+  user: JSON.parse(localStorage['user'] || '{}'),
 
   /** 首页缓存的数据，还可能在其它地方用到 */
   // 分类
@@ -30,6 +30,10 @@ const state = {
 export default new Vuex.Store({
   state,
   mutations: {
+    setUser(state, user) {
+      state.user = user;
+      localStorage['user'] = JSON.stringify(user);
+    },
     setCurrentMenu(state, path) {
       state.currentMenu = path;
     },

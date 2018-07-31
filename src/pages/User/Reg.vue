@@ -1,56 +1,94 @@
 <template>
-<Frame title="用户注册" forceBackTo="/user/index">
-<div class="brand">
-  <div class="logo">
-    <img src="http://pic.downcc.com/upload/2016-8/2016851622186787.jpg" />
+<Frame title="用户注册" forceBackTo='/user/index'>
+<div class="container-bg">
+  <div class="container container-form">
+    <div class="login__logo"></div>
+      <div class="login__form">
+        <div class="login__row">
+          <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+          </svg>
+          <input type="text" v-model="user" placeholder="账号(4-12位数字或字母)"/>
+        </div>
+        <div class="login__row">
+          <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+          </svg>
+          <input type="text" v-model="qq" placeholder="QQ(选填，找回密码需要)"/>
+        </div>
+        <div class="login__row">
+          <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
+          </svg>
+          <input type="password" v-model="pwd" placeholder="密码(4~12位数字或字母)"/>
+        </div>
+        <button type="button" class="login__submit" @click="reg">注 册</button>
+        <br><br>
+        <div class="form-bottom">
+          <router-link to="/user/login" class="fright">已有账号，直接登录</router-link>
+        </div>
+        </div>
+      </div>
   </div>
-  <p class="name text-center">千寻赞皇</p>
 </div>
-<form class="mui-input-group login-reg-form">
-  <div class="mui-input-row mui-row">
-    <label>账 号</label>
-    <input id=‘VerificationCode‘ type="text" class="mui-input" placeholder="QQ/邮箱/手机号">
-  </div>
-  <div class="mui-input-row mui-row">
-    <label>邮 箱</label>
-    <input type="text" class="mui-input" placeholder="找回密码邮箱">
-  </div>
-  <div class="mui-input-row mui-row">
-    <label>密 码</label>
-    <input type="text" class="mui-input" placeholder="4~12位字母或数字">
-  </div>
-  <div class="mui-input-row mui-row">
-    <div class="mui-col-xs-8">
-      <label>验证码</label>
-      <input type="text" class="mui-input" placeholder="请输入验证码">
-    </div>
-    <div class="mui-col-xs-4">
-      <img height="44px" src="http://pubg.gotoip3.com/qwt/index.php/home/user/verifycode.html/" />
-    </div>
-  </div>
-  <div class="mui-button-row plr-15">
-    <button class="mui-btn mui-btn-primary btn-block" type="button" onclick="return false;">注 册</button>
-  </div>
-  <div class="mui-button-row plr-15">
-    <button class="mui-btn btn-block" type="button">已有账号?直接登录
-    </button>
-  </div>
 
-  
-</form>
+
+
+
 </Frame>
 </template>
 <script>
-
+import $ from 'axios';
 import Frame from '@/components/Frame.vue';
+import {user as USER_API} from '@/config/serverApi';
 export default {
   components: {
     Frame
+  },
+  data() {
+    return {
+      user: '',
+      pwd: '',
+      qq: ''
+    }
+  },
+  methods: {
+    reg() {
+      const {user, pwd, qq} = this;
+      if (user.trim() === '' || pwd.trim() === '') {
+        this.$tip.show('账号密码不能为空！');
+        return false;
+      }
+      if (user.trim().length < 4 || user.trim().length > 12) {
+        this.$tip.show('账号长度4~12位！');
+        return false;
+      }
+      this.$loading.show('注册中,请稍后...');
+      $.post(USER_API.reg, {
+        user,
+        pwd,
+        qq
+      })
+      .then(({data}) => {
+        this.$loading.hide();
+        this.$tip.show(data.msg);
+        if (data.status) {
+          localStorage['jwt'] = data.token;
+          this.$store.commit('setUser', data.user);
+          // 更新store中的user字段
+          this.$router.push('/user/index');
+        }
+      })
+      .catch(err => {
+        this.$loading.hide();
+        this.$tip.show('网络连接失败！');
+      });
+    }
   }
 }
 </script>
 <style>
-.brand {
+ .brand {
   padding: 15px;
 }
 .brand .logo{
@@ -62,11 +100,104 @@ export default {
   width: 2rem;
   height: 2rem;
 }
-
+.login-reg-form {
+  padding: 15px 0;
+}
+.login-reg-form input {
+  font-size: .46rem;
+  width: 7.73333333rem;
+  height: .48rem;
+  margin: 0 0 .17333333rem .12rem;
+  outline: none;
+  border: 0;
+  color: #333;
+  position: relative;
+    width: 100%;
+    margin: 1.2rem 0 0;
+    border-bottom: 1px solid #ff5000;
+}
 .plr-15 {
   padding: 0 15px;
+} 
+
+.container-bg {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  background: url(https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3129041440,2884231604&fm=27&gp=0.jpg) no-repeat;
+  background-size: cover;
 }
-.login-reg-form {
-  padding: 0.8rem 0;
+.container-form {
+  background:rgba(30, 30, 30, 0.6);
+  width: 100%;
+  height: 100%;
+  padding: 35px;
 }
+
+.login__row {
+  /* height: 5rem;
+  padding-top: 1rem; */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+ input[type=password], input[type=text] {
+    margin-bottom: 0px; 
+    background:transparent; 
+    border:none;
+    color: #FDFCFD;
+    padding-left: 1.2rem;
+}
+
+svg {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  overflow: visible;
+}
+
+.svg-icon {
+  cursor: pointer;
+}
+.svg-icon path {
+  stroke: rgba(255, 255, 255, 0.9);
+  fill: none;
+  stroke-width: 1;
+}
+
+.login__icon {
+  margin-bottom: -0.7rem;
+}
+
+.login__submit {
+  width: 100%;
+  height: 1.1rem;
+  margin: 1.5rem 0 0rem;
+  color: rgba(255, 255, 255, 0.8);
+  background: #FF3366;
+  font-size: 0.425rem;
+  border-radius: 3rem;
+}
+
+input, button {
+  outline: none;
+  border: none;
+}
+
+
+
+
+.login__logo {
+  background: url(https://tc.sinaimg.cn/maxwidth.800/tc.service.weibo.com/t1_qpic_cn/eb8e3c7e6a7ca50d538fe1bd44fc76b7.jpg) no-repeat;
+  background-size:80px 80px;
+  height: 100px;
+  width: 100px;
+  margin: 10px auto;
+}
+
+.form-bottom a {
+  font-size: 0.35rem;
+  color: #FFF;
+}
+
 </style>

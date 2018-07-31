@@ -9,6 +9,17 @@ exports.guest = {
   getGoodsCata: `${HOST}/guest/goods_cata`,
   // 首页其它数据
   getHomePageData: `${HOST}/guest/getHomePageData`,
+  getOrderByVisitor: `${HOST}/guest/getOrder`
+};
+
+exports.user = {
+  login: `${HOST}/user/login`,
+  reg: `${HOST}/user/reg`,
+  feedback: `${HOST}/user/feedback`,
+  getUserInfo: `${HOST}/user/info`,
+  updateUserInfo: `${HOST}/user/update_info`,
+  updateLoginPwd: `${HOST}/user/update_loginpwd`,
+  updatePayPwd: `${HOST}/user/update_paypwd`
 };
 
 exports.goods = {

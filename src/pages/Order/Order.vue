@@ -10,7 +10,7 @@
 			<a class="mui-control-item" :class="currentTab === 'query_order' && 'mui-active'" @click="changeToTab('query_order')">
 				查询订单
 			</a>
-			<a class="mui-control-item" :class="currentTab === 'my_order' && 'mui-active'" @click="changeToTab('my_order')">
+			<a v-if="user.user" class="mui-control-item" :class="currentTab === 'my_order' && 'mui-active'" @click="changeToTab('my_order')">
 				我的订单
 			</a>
 				</div>
@@ -21,52 +21,39 @@
       <form class="mui-input-group">
         <div class="mui-input-row mui-row">
           <div class="mui-col-xs-8">
-            <label>验证码</label>
-            <input id=‘VerificationCode‘ type="text" class="mui-input" placeholder="请输入验证码">
+            <input type="text" class="mui-input" placeholder="请输入验证码">
           </div>
           <div class="mui-col-xs-4">
-            <img height="44px" src="http://pubg.gotoip3.com/qwt/index.php/home/user/verifycode.html/" />
+            <img height="100%" src="http://pubg.gotoip3.com/qwt/index.php/home/user/verifycode.html" />
           </div>
         </div>
 
         <div class="mui-input-row mui-row">
           <div class="mui-col-xs-8">
-            <label>订单号</label>
-            <input type="text" class="mui-input-clear" placeholder="QQ/邮箱/订单号查询">
+            
+            <input type="text" v-model="keywords" class="mui-input-clear" placeholder="QQ/邮箱/订单号查询">
           </div>
           
           <div class="mui-col-xs-4">
-            <button class="mui-btn mui-btn-primary" style="width: 100%">查 询</button>
+            <button class="mui-btn mui-btn-primary" style="width: 100%" @click="queryOrder">查 询</button>
           </div>
         </div>
         
       </form>
-      <p class="text-center" style="line-height: 20px">注:未登录只能查询最近三条订单信息，登录后可以查看更多~</p>
+      <p class="text-center" style="line-height: 40px">注:未登录只能查询最近三条订单信息，登录后可以查看更多~</p>
       
       <div class="query-order-results">
         <ul class="mui-table-view"> 
-            <li class="mui-table-view-cell mui-collapse mui-active">
-                <a class="mui-navigate-right" href="#">招牌赞[低价]   2018/07/06 12:00:32  已完成</a>
-                <div class="mui-collapse-content">
-                    <p>订单号 201801892893223</p>
-                    <p>商品类型: 刷赞</p>
-                    <p>商品名称: 招牌赞[低价]1000+</p>
-                    <p>价格: 0.01</p>
-                    <p>QQ: 1540811286</p>
-                    <p>订单时间: 2018/07/06 12:00:32</p>
-                    <p>状态: 未支付</p>
-                </div>
-            </li>
-            <li class="mui-table-view-cell mui-collapse mui-active">
-                <a class="mui-navigate-right" href="#">招牌赞[低价]   2018/07/06 12:00:32  已完成</a>
-                <div class="mui-collapse-content">
-                    <p>面板1子内容</p>
-                </div>
-            </li>
-            <li class="mui-table-view-cell mui-collapse mui-active">
-                <a class="mui-navigate-right" href="#">招牌赞[低价]   2018/07/06 12:00:32  已完成</a>
-                <div class="mui-collapse-content">
-                    <p>面板1子内容</p>
+            <li v-for="order in orders" class="mui-table-view-cell mui-collapse mui-active">
+                <a class="mui-navigate-right" href="#">【{{order.status}}】订单号{{order.order_id}}     {{order.create_time}}</a>
+                <div class="mui-collapse-content order-detail">
+                    <p>商品名称: {{order.goods_name}}</p>
+                    <p>规格: {{order.spec}}}</p>
+                    <p>单价: {{order.price.rmb}} {{order.price.points}}</p>
+                    <p>下单数量: {{order.amt}}</p>
+                    <p>下单QQ: {{order.concat.qq}}</p>
+                    <p>订单完成时间: {{order.create_time}}</p>
+                    <p>状态: {{order.status}}</p>
                 </div>
             </li>
         </ul>
@@ -79,28 +66,16 @@
       注:仅显示已完成订单，未支付成功的订单不予显示。
       <div class="query-order-results">
         <ul class="mui-table-view"> 
-            <li class="mui-table-view-cell mui-collapse">
-                <a class="mui-navigate-right" href="#">招牌赞[低价]   2018/07/06 12:00:32  已完成</a>
+            <li v-for="order in orders" class="mui-table-view-cell mui-collapse">
+                <a class="mui-navigate-right" href="#">【{{order.status}}】订单号{{order.order_id}}     {{order.create_time}}</a>
                 <div class="mui-collapse-content">
-                    <p>订单号 201801892893223</p>
-                    <p>商品类型: 刷赞</p>
-                    <p>商品名称: 招牌赞[低价]1000+</p>
-                    <p>价格: 0.01</p>
-                    <p>QQ: 1540811286</p>
-                    <p>订单时间: 2018/07/06 12:00:32</p>
-                    <p>状态: 未支付</p>
-                </div>
-            </li>
-            <li class="mui-table-view-cell mui-collapse">
-                <a class="mui-navigate-right" href="#">招牌赞[低价]   2018/07/06 12:00:32  已完成</a>
-                <div class="mui-collapse-content">
-                    <p>面板1子内容</p>
-                </div>
-            </li>
-            <li class="mui-table-view-cell mui-collapse">
-                <a class="mui-navigate-right" href="#">招牌赞[低价]   2018/07/06 12:00:32  已完成</a>
-                <div class="mui-collapse-content">
-                    <p>面板1子内容</p>
+                    <p>商品名称: {{order.goods_name}}</p>
+                    <p>规格: {{order.spec}}}</p>
+                    <p>单价: {{order.price.rmb}} {{order.price.points}}</p>
+                    <p>下单数量: {{order.amt}}</p>
+                    <p>下单QQ: {{order.concat.qq}}</p>
+                    <p>订单完成时间: {{order.create_time}}</p>
+                    <p>状态: {{order.status}}</p>
                 </div>
             </li>
         </ul>
@@ -124,6 +99,10 @@
 </Frame>
 </template>
 <script>
+import {mapState} from 'vuex';
+import $ from 'axios';
+import {guest as GUEST_API} from '@/config/serverApi';
+
 import Menu from '@/pages/Index.vue';
 import Frame from '@/components/Frame.vue';
 
@@ -132,21 +111,52 @@ export default {
     Menu,
     Frame
   },
+  computed: {
+     ...mapState({
+       user: state => state.user
+     })
+   },
   data() {
     return {
-      currentTab: 'query_order'
+      currentTab: 'query_order',
+      keywords: '',
+      orders: [
+      ]
     };
   },
   methods: {
     changeToTab(tab) {
       if (tab === this.currentTab) return false;
       this.currentTab = tab;
+    },
+    queryOrder() {
+      this.$loading.show('正在查询中...');
+      $.post(GUEST_API.getOrderByVisitor, {keywords: this.keywords})
+        .then(res => {
+          this.$loading.hide();
+          if (res.data.status === 0) {
+            this.$tip.show(res.data.msg);
+          }
+          const {concat, price} = res.data;
+          
+          this.orders = res.data;
+        })
+        .catch(err => {
+          this.$loading.hide();
+          this.$tip.show('网络连接失败！');
+          console.log(err);
+        });
     }
+  },
+  mounted() {
   }
 };
 </script>
 <style>
 .mui-input-group {
   line-height: 40px;
+}
+.order-detail p {
+  line-height: 0.5rem;
 }
 </style>

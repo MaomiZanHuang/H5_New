@@ -5,19 +5,20 @@
       <div class="userinfo">
         <section class="user-info">
           <img src="http://q1.qlogo.cn/g?b=qq&nk=851656783&s=100&t=1449411350" class="headicon">
-          <div v-if="user.user"">
-            <p class="username">猫咪、Ceko</p>
-            <a href="#" class="btn">签到</a>
+          <div v-if="user.user"" style="text-align: center">
+            <p class="username">{{user.user}}</p>
           </div>
           <p class="username" v-else>未登录</p>
         </section>
         
-        
         <section class="points" v-if="user.user">
           <span class="title">积 分</span>
-          <span class="money">0.000</span>
-          <a class="btn">充值</a><a class="btn">赚积分</a>
-          
+          <span class="money">{{user.points}}</span>
+        </section>
+        <section class="points" v-if="user.user" style="padding-top: 1.25rem;">
+          <a class="btn">签 到</a>
+          <br/>
+          <a class="btn">充 值</a>
         </section>
         <section class="unlogin" v-else>
           <router-link to="/user/login" class="btn">登  录</router-link>
@@ -91,7 +92,7 @@
         <div class="mui-popup-title">反馈建议</div>
         <div class="mui-popup-text"></div>
         <div class="mui-popup-input">
-          <textarea id="textarea" rows="5" placeholder="请输入您遇到的问题或意见建议(30字以内)"></textarea>
+          <textarea id="textarea" v-model="feedbackContent" rows="5" placeholder="请输入您遇到的问题或意见建议(50字以内)"></textarea>
         </div>
         <div class="mui-popup-buttons">
           <span class="mui-popup-button" @click="addFeeback">确定</span>
@@ -103,6 +104,8 @@
   </div>
  </template>
  <script>
+ import $ from 'axios';
+ import {user as USER_API} from '@/config/serverApi';
  import {mapState} from 'vuex';
  import '@/assets/js/flexible.js';
  import Menu from '@/pages/Index';
@@ -128,13 +131,26 @@
        this.feedbackDialogShow = true;
      },
      addFeeback() {
+       if (this.feedbackContent.trim().length < 5) {
+         this.$tip.show('请不要输入无效的信息！');
+         return false;
+       }
        this.feedbackDialogShow = false;
-       this.$tip.show('您的反馈已提交！');
-       this.feedbackDialogShow = '';
+       $.post(USER_API.feedback, {content: this.feedbackContent})
+        .then(({data}) => {
+          this.$tip.show(data.msg);
+          if (data.status) {
+            this.feedbackContent = '';  
+          }
+        })
+        .catch(err => {
+          this.$tip.show('网络连接失败！');
+        });
+       
      },
      cancelFeedback() {
        this.feedbackDialogShow = false;
-       this.feedbackDialogShow = '';
+       this.feedbackContent = '';
      }
    }
  }
@@ -167,7 +183,7 @@
   padding-top: 1.53125rem;
 }
 .money {
-  font-size: 0.359375rem;
+  font-size: 0.59rem;
   color: #fffc68;
   padding-top: 0.15625rem;
   padding-bottom: 0.1875rem;

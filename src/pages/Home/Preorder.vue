@@ -11,20 +11,20 @@
 					<img src="https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-04-04/5ac4f1f9e49df.jpg" width="100%"/>
 				</div>
 				<div class="mui-col-xs-8 order-content" style="padding-left: 10px;">
-					<h3>{{order.goods_name}}</h3>
-					<p>规格: {{order.spec}}</p>
-					<p>单价: <i class="mui-icon iconfont icon-msg6">{{order.price.rmb}}</i>/<i class="mui-icon iconfont icon-ji points">{{order.price.points}}</i></p>
-					<p>数量: {{order.amt}}</p>
-					<p>充值QQ: {{order.concat.qq}}</p>
-					<p>补充信息: {{order.remark}}</p>
+					<p class="title">{{order.goods_name}}</p>
+					<p class="spec">规格: {{order.spec}}</p>
+					<p class="price">单价: <i class="mui-icon iconfont icon-msg6 rmb">{{order.price.rmb}}</i>&nbsp;&nbsp;<i class="mui-icon iconfont icon-ji points">{{order.price.points}}</i></p>
+					<p class="amt">数量: {{order.amt}}</p>
+					<p class="account">充值QQ: {{order.concat.qq}}</p>
+					<p class="remark">补充信息: {{order.remark}}</p>
 				</div>
 			</div>
 		</div>
 		<!--页脚，放置补充信息或支持的操作-->
 		<div class="mui-card-footer">
-			<p style="width: 100%;text-align: right;">总计: 
-				<i class="mui-icon iconfont icon-msg6">{{order.total_fee.rmb}}</i>
-				|
+			<p class="price" style="width: 100%;text-align: right;">总计: 
+				<i class="mui-icon iconfont icon-msg6 rmb">{{order.total_fee.rmb}}</i>
+				&nbsp;&nbsp;
 				<i class="mui-icon iconfont icon-ji points">{{order.total_fee.points}}</i></p>
 		</div>
 	</div>
@@ -160,5 +160,20 @@ export default {
 }
 .order-content p {
 	line-height: 0.6rem;
+}
+.order-content .title {
+  font-size: 0.4rem;
+  color: #f00;
+}
+.order-content img {
+  width: 100%;
+  background-size: cover;
+}
+
+.price .rmb {
+  color: rgb(255, 74, 66);
+}
+.price .points {
+  color: rgb(12, 125, 157);
 }
 </style>
