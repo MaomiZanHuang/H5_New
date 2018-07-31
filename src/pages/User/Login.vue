@@ -110,8 +110,8 @@ background: url(http://b359.photo.store.qq.com/psb?/V10rULDz1P9nMA/dH*1LrMCOgMjO
   /* padding: 75% 45%; */
   border-radius: 1rem;
 
-  background: linear-gradient(to bottom, rgba(146, 135, 187, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
-  transition: opacity 0.1s, transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25), -webkit-transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25);
+  /* background: linear-gradient(to bottom, rgba(146, 135, 187, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+  transition: opacity 0.1s, transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25), -webkit-transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25); */
 
     position: absolute;
     top: 50%;
@@ -207,5 +207,57 @@ input, button {
 
   
 }
+
+@-webkit-keyframes animRipple {
+  to {
+    -webkit-transform: scale(3.5);
+            transform: scale(3.5);
+    opacity: 0;
+  }
+}
+
+@keyframes animRipple {
+  to {
+    -webkit-transform: scale(3.5);
+            transform: scale(3.5);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes animatePath {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes animatePath {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.login__icon.name path {
+  stroke-dasharray: 73.50196075439453;
+  stroke-dashoffset: 73.50196075439453;
+  -webkit-animation: animatePath 2s 0.5s forwards;
+          animation: animatePath 2s 0.5s forwards;
+}
+.login__icon.pass path {
+  stroke-dasharray: 92.10662841796875;
+  stroke-dashoffset: 92.10662841796875;
+  -webkit-animation: animatePath 2s 0.5s forwards;
+          animation: animatePath 2s 0.5s forwards;
+}
+
 
 </style>
