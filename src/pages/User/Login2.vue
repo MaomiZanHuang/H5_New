@@ -24,12 +24,21 @@
 
 <div class="container-bg">
   <div class="container container-form">
-    <div class="login__logo"></div>
-      <div class="login__check">
-        <span style="margin-left:1.5rem;color: #FDFCFD; font-family: '微软雅黑'; font-size: 31px; ">千寻赞皇</span>
+    <!-- <form class="mui-input-group">
+      <div class="mui-input-row" >
+        <label><span class="mui-icon iconfont icon-zhanghao"></span></label>
+        <input type="text" class="mui-input-clear" value="13881111755" placeholder="请输入手机号或邮箱" />
       </div>
-      <div class="login__form">
-        <div class="login__row">
+      <div class="mui-input-row">
+        <label><span class="mui-icon iconfont icon-mimaxiugai"></span></label>
+        <input type="password" class="mui-input-clear" value="123456" placeholder="请输入密码" />
+      </div>
+    </form> -->
+      <div class="login__check">
+        <div style="margin-left: 25%;margin-top:5%"><span style="color: #FDFCFD; font-family: '微软雅黑'; font-size: 31px; ">千寻赞皇</span></div>
+      </div>
+<div class="login__form">
+<div class="login__row">
           <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
           </svg>
@@ -42,10 +51,10 @@
           <input type="password" placeholder="Password"/>
         </div>
         <button type="button" class="login__submit">登 录</button>
-        <br><br>
-        <span style="margin-left:0rem;color: #FDFCFD; font-family: '微软雅黑'; font-size: 9px; ">注册账号</span>
-        <span style="margin-left:4.5rem;color: #FDFCFD; font-family: '微软雅黑'; font-size: 9px; ">忘记密码</span>
-      </div>
+</div>
+
+   <!--  <button type="button" id="tijiao" class="mui-btn mui-btn-blue  mui-btn-block" style="background:#FF3366;margin: 12px auto; border:1px solid #f44d42; font-family: '微软雅黑'; font-size: 14px;">登录</button> -->
+
   </div>
 </div>
 
@@ -101,32 +110,20 @@ export default {
   justify-content: center;
   height: 100%;
   align-items: center;
-  /* background: url(http://cdn.520cy.cn/images/cy.png) no-repeat; */
-background: url(http://b359.photo.store.qq.com/psb?/V10rULDz1P9nMA/dH*1LrMCOgMjOvU46RHKMO.Rt0.DhqvK3B4ZEimwROg!/b/dGcBAAAAAAAA&bo=AAWqBgAFqgYRMAc!&rf=viewer_311) no-repeat;
+  background: url(http://cdn.520cy.cn/images/cy.png) no-repeat;
+ /*  background: url(http://b359.photo.store.qq.com/psb?/V10rULDz1P9nMA/dH*1LrMCOgMjOvU46RHKMO.Rt0.DhqvK3B4ZEimwROg!/b/dGcBAAAAAAAA&bo=AAWqBgAFqgYRMAc!&rf=viewer_311) no-repeat; */
   background-size: cover;
 }
 .container-form {
   background:rgba(30, 30, 30, 0.6);
-  /* padding: 75% 45%; */
+  padding: 60px 20px;
   border-radius: 1rem;
 
+  background: -webkit-linear-gradient(top, rgba(146, 135, 187, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
   background: linear-gradient(to bottom, rgba(146, 135, 187, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
-  transition: opacity 0.1s, transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25), -webkit-transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25);
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -4.3rem;
-    margin-top: -7.0rem;
-    width: 8.6rem;
-    height: 15rem;
-    
-
 }
 
 .login__row {
-  /* height: 5rem;
-  padding-top: 1rem; */
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -161,7 +158,7 @@ svg {
 .login__submit {
   width: 100%;
   height: 1.1rem;
-  margin: 1.5rem 0 0rem;
+  margin: 2rem 0 0rem;
   color: rgba(255, 255, 255, 0.8);
   background: #FF3366;
   font-size: 0.3rem;
@@ -175,37 +172,25 @@ input, button {
 
 .login__check {
   position: absolute;
-  top: 5.5rem;
-  left: 0.8rem;
+  top: 3rem;
   width: 6rem;
   height: 1rem;
   background: url(http://cdn.520cy.cn/images/点赞-1.png) no-repeat;
   background-size:40px 40px;
-
-}
-
-
-.login__form {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    padding: 0.5rem 0.7rem;
-    /* text-align: center; */
-}
-
-.login__logo {
-  position: absolute;
-  top: 15%;
-  left: 40%;
-  width: 50%;
-  height: 50%;
-  margin: 0 auto;
-  background: url(https://tc.sinaimg.cn/maxwidth.800/tc.service.weibo.com/t1_qpic_cn/eb8e3c7e6a7ca50d538fe1bd44fc76b7.jpg) no-repeat;
-  background-size:80px 80px;
-
   
+}
+/* .login__check:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  width: 1rem;
+  height: 5.2rem;
+  background: #fff;
+  box-shadow: inset -0.2rem -2rem 2rem rgba(0, 0, 0, 0.2);
+} */
+.login__form {
+    margin-top: 85%;
 }
 
 </style>
