@@ -16,9 +16,9 @@
           <span class="money">{{user.points}}</span>
         </section>
         <section class="points" v-if="user.user" style="padding-top: 1.25rem;">
-          <a class="btn">签 到</a>
+          <a class="btn" @click="checkin">签 到</a>
           <br/>
-          <a class="btn">充 值</a>
+          <router-link to="/user/charge" class="btn">充 值</router-link>
         </section>
         <section class="unlogin" v-else>
           <router-link to="/user/login" class="btn">登  录</router-link>
@@ -100,7 +100,6 @@
         </div>
       </div>
     </div>
-
   </div>
  </template>
  <script>
@@ -151,6 +150,16 @@
      cancelFeedback() {
        this.feedbackDialogShow = false;
        this.feedbackContent = '';
+     },
+     checkin() {
+       $.get(USER_API.checkin)
+        .then(({data}) => {
+          this.$tip.show(data.msg);
+          this.$store.commit('setUserPoints', data.points);
+        })
+        .catch(err => {
+          this.$tip.show('网络连接失败！');
+        })
      }
    }
  }

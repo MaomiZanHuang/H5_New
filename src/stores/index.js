@@ -34,6 +34,10 @@ export default new Vuex.Store({
       state.user = user;
       localStorage['user'] = JSON.stringify(user);
     },
+    setUserPoints(state, points) {
+      state.user.points = points;
+      localStorage['user'] = JSON.stringify(state.user);
+    },
     setCurrentMenu(state, path) {
       state.currentMenu = path;
     },

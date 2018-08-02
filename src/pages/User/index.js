@@ -6,6 +6,7 @@ import Activity from './Activity';
 import Login from './Login';
 import Reg from './Reg';
 import FindPwd from './FindPwd';
+import Charge from './Charge';
 
 export default {
   Index,
@@ -15,5 +16,6 @@ export default {
   Activity,
   Login,
   Reg,
-  FindPwd
+  FindPwd,
+  Charge
 }

@@ -19,7 +19,9 @@ exports.user = {
   getUserInfo: `${HOST}/user/info`,
   updateUserInfo: `${HOST}/user/update_info`,
   updateLoginPwd: `${HOST}/user/update_loginpwd`,
-  updatePayPwd: `${HOST}/user/update_paypwd`
+  updatePayPwd: `${HOST}/user/update_paypwd`,
+  checkin: `${HOST}/user/checkin`,
+  chargeByCard: `${HOST}/user/chargeByCard`
 };
 
 exports.goods = {

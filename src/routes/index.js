@@ -39,7 +39,7 @@ export default new Router({
           path: '/goods/:id',
           name: 'goods-detail',
           component: Home.Goods,
-          meta: { depth: 2 }
+          meta: { depth: 2, auth: true }
         },
         {
           path: '/cata/:id',
@@ -51,7 +51,7 @@ export default new Router({
           path: '/preorder/:id',
           name: 'preorder',
           component: Home.Preorder,
-          meta: { depth: 3 }
+          meta: { depth: 3, auth: true }
         },
       ]
     },
@@ -146,8 +146,16 @@ export default new Router({
           path: '/user/findpwd',
           component: User.FindPwd,
           meta: {
+            depth: 2
+          }
+        },
+        {
+          name: 'charge',
+          path: '/user/charge',
+          component: User.Charge,
+          meta: {
             depth: 2,
-            auth: true
+            auth: false
           }
         }
       ]

@@ -14,7 +14,7 @@ import store from './stores';
 
 $.interceptors.request.use(
   config => {
-    config.headers['jwt'] = localStorage['jwt'] || 'telanx';
+    config.headers['jwt'] = localStorage['jwt'];
     return config;
   },
   err => Promise.reject(error)
