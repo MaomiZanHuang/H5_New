@@ -1,7 +1,7 @@
 const DEV_HOST = '';
 const ENV_HOST = 'http://118.89.217.105';
 
-const HOST = process.env === 'production'
+const HOST = process.env.NODE_ENV === 'production'
   ? ENV_HOST
   : DEV_HOST;
 
