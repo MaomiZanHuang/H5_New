@@ -34,8 +34,10 @@
           <button class="mui-btn btn-block mui-btn-success mui-icon iconfont icon-weixinzhifu" @click="payByWxpay">微信支付</button>
           <br/>
           <br/>
-          <!--支付宝调用万普的-->
           <button class="mui-btn btn-block mui-btn-primary mui-icon iconfont icon-alipay" @click="payByAlipay">支付宝支付</button>
+          <br/>
+          <br/>
+          <button class="mui-btn btn-block mui-icon iconfont icon-qq" style="background:rgb(104, 190, 248);color: #fff;" @click="payByQQpay">QQ支付</button>
         </div>
         <br/>
       </div>
@@ -51,8 +53,10 @@
 </Frame>
 </template>
 <script>
+import $ from 'axios';
 import {mapState} from 'vuex';
-import {user as USER_API} from '@/config/serverApi';
+
+import {pay as PAY_API, user as USER_API} from '@/config/serverApi';
 import Frame from '@/components/Frame.vue';
 export default {
   components: {
@@ -65,21 +69,25 @@ export default {
   },
   data() {
     return {
+      pay: {
+        qr: ''
+      },
       card: '',
       types: [
-        { price: 1, points: 100, title: '100积分' },
-        { price: 2, points: 200, title: '200积分' },
-        { price: 5, points: 500, title: '500积分' },
-        { price: 10, points: 1000, title: '1000积分' },
-        { price: 20, points: 2000, title: '2000积分' },
-        { price: 50, points: 5000, title: '5000积分' },
-        { price: 100, points: 10000, title: '10000积分' },
-        { price: 200, points: 20000, title: '20000积分' }
+        { price: 0.1, points: 100, title: '100积分', card: 54436 },
+        { price: 0.2, points: 200, title: '200积分', card: 54437 },
+        { price: 5, points: 500, title: '500积分', card: 54438 },
+        { price: 10, points: 1000, title: '1000积分', card: 54439 },
+        { price: 20, points: 2000, title: '2000积分', card: 54440 },
+        { price: 50, points: 5000, title: '5000积分', card: 54441 },
+        { price: 100, points: 10000, title: '10000积分', card: 54442 },
+        { price: 200, points: 20000, title: '20000积分', card: 54443 }
       ],
       selectPrice: {
         price: 1,
         points: 100,
-        title: '100积分'
+        title: '100积分',
+        card: 54436
       }
     };
   },
@@ -103,18 +111,62 @@ export default {
           this.$tip.show('网络连接失败！');
         });
     },
+    payByWxpay(){
+      this.createOrder('wx');
+    },
     payByAlipay() {
-      var f=document.createElement("form");
-      f.action= 'http://www.cardbuy.net/Gateway/RedirectTo';
-      f.target="_blank";
-      f.method="post";//指定为post
-      f.innerHTML='<input type="hidden" name="url" id="url" value="https://mapi.alipay.com/gateway.do?_input_charset=utf-8&amp;_input_charset=utf-8&amp;body=180802617708115045&amp;exter_invoke_ip=14.127.178.87&amp;notify_url=http://www.cardbuy.net/Gateway/AliPayNotify&amp;out_trade_no=180802617708115045&amp;partner=2088621876204570&amp;payment_type=1&amp;return_url=http://www.cardbuy.net/Gateway/AliPayReturn&amp;seller_email=whahash@qq.com&amp;service=create_direct_pay_by_user&amp;show_url=http://www.cardbuy.net&amp;subject=180802617708115045&amp;total_fee=15&amp;sign=aabc0215afb96fa851e369592e3b0e90&amp;sign_type=MD5">';
-      document.body.appendChild(f);  
-      f.submit()
+      this.createOrder('zfb');
+    },
+    payByQQpay() {
+      this.createOrder('qq');
+    },
+    createOrder(type) {
+      const {price, card, points} = this.selectPrice;
+      const contact = this.user.user || 'telanx';
+      this.$loading.show('创建订单中,请稍后...');
+      $.post(PAY_API.getCardOrder, {
+        type,
+        price,
+        goodid: card,
+        contact
+      })
+      .then(({data}) => {
+        this.$loading.hide();
+        if (!data.status) {
+          this.$tip.show(data.msg);
+          return false;
+        } else {
+          this.$router.push({
+            name: 'pay',
+            params: {
+              type,
+              order_no: data.order_no,
+              price,
+              points,
+              qr: data.qr,
+              qr_img: data.qr_img
+            }
+          });
+        }
+
+        if (type === 'zfb') {
+          var f=document.createElement("form");
+          f.action = data.action;
+          f.target="_blank";
+          f.method="post";//指定为post
+          f.innerHTML = data.input;
+          // document.body.appendChild(f);  
+          f.submit();
+        }
+      })
+      .catch(err => {
+        this.$loading.hide();
+        console.log(err);
+        this.$tip.show('网络连接失败！');
+      });
     }
   }
 }
 </script>
 <style scoped>
-
 </style>

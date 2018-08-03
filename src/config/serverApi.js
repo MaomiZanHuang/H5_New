@@ -1,5 +1,5 @@
 const DEV_HOST = '';
-const ENV_HOST = 'http://110.1.1.1';
+const ENV_HOST = 'http://118.89.217.105';
 
 const HOST = process.env === 'production'
   ? ENV_HOST
@@ -35,3 +35,8 @@ exports.order = {
   payOrderByPoints: `${HOST}/order/payByPoints/{id}`,
   payOrderOnline: `${HOST}/order/payOnline/{id}`
 };
+
+exports.pay = {
+  getCardOrder: `${HOST}/pay/getCardOrder`,
+  queryCardOrder: `${HOST}/pay/{id}`
+}

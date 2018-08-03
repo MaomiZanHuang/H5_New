@@ -155,7 +155,9 @@
        $.get(USER_API.checkin)
         .then(({data}) => {
           this.$tip.show(data.msg);
-          this.$store.commit('setUserPoints', data.points);
+          if (data.status) {
+            this.$store.commit('setUserPoints', data.points);
+          }
         })
         .catch(err => {
           this.$tip.show('网络连接失败！');

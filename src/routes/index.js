@@ -157,6 +157,15 @@ export default new Router({
             depth: 2,
             auth: false
           }
+        },
+        {
+          name: 'pay',
+          path: '/user/pay',
+          component: User.Pay,
+          meta: {
+            depth: 2,
+            auth: false
+          }
         }
       ]
     }

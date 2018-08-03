@@ -129,7 +129,8 @@ export default {
       if (tab === this.currentTab) return false;
       this.currentTab = tab;
     },
-    queryOrder() {
+    queryOrder(e) {
+      e.preventDefault();
       this.$loading.show('正在查询中...');
       $.post(GUEST_API.getOrderByVisitor, {keywords: this.keywords})
         .then(res => {

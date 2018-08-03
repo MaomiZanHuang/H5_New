@@ -7,6 +7,7 @@ import Login from './Login';
 import Reg from './Reg';
 import FindPwd from './FindPwd';
 import Charge from './Charge';
+import Pay from './Pay';
 
 export default {
   Index,
@@ -17,5 +18,6 @@ export default {
   Login,
   Reg,
   FindPwd,
-  Charge
+  Charge,
+  Pay
 }
