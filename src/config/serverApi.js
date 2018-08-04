@@ -1,5 +1,5 @@
 const DEV_HOST = '';
-const ENV_HOST = 'http://116.85.57.185';
+const ENV_HOST = 'http://116.85.57.185/api';
 
 const HOST = process.env.NODE_ENV === 'production'
   ? ENV_HOST
