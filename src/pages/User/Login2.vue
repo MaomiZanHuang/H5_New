@@ -127,13 +127,6 @@ export default {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
- input[type=password], input[type=text] {
-    margin-bottom: 0px; 
-    background:transparent; 
-    border:none;
-    color: #FDFCFD;
-    padding-left: 1.2rem;
-}
 
 svg {
   display: inline-block;

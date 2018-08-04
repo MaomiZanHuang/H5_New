@@ -151,11 +151,12 @@ export default {
 
         if (type === 'zfb') {
           var f=document.createElement("form");
+          f.style="display:none";
           f.action = data.action;
           f.target="_blank";
           f.method="post";//指定为post
           f.innerHTML = data.input;
-          // document.body.appendChild(f);  
+          document.body.appendChild(f);  
           f.submit();
         }
       })

@@ -13,7 +13,7 @@
 				<div class="mui-col-xs-8 order-content" style="padding-left: 10px;">
 					<p class="title">{{order.goods_name}}</p>
 					<p class="spec">规格: {{order.spec}}</p>
-					<p class="price">单价: <i class="mui-icon iconfont icon-msg6 rmb">{{order.price.rmb}}</i>&nbsp;&nbsp;<i class="mui-icon iconfont icon-ji points">{{order.price.points}}</i></p>
+					<p class="price">单价: <!--<i class="mui-icon iconfont icon-msg6 rmb">{{order.price.rmb}}</i>&nbsp;&nbsp;--><i class="mui-icon iconfont icon-ji points">{{order.price.points}}</i></p>
 					<p class="amt">数量: {{order.amt}}</p>
 					<p class="account">充值QQ: {{order.concat.qq}}</p>
 					<p class="remark">补充信息: {{order.remark}}</p>
@@ -23,15 +23,15 @@
 		<!--页脚，放置补充信息或支持的操作-->
 		<div class="mui-card-footer">
 			<p class="price" style="width: 100%;text-align: right;">总计: 
-				<i class="mui-icon iconfont icon-msg6 rmb">{{order.total_fee.rmb}}</i>
-				&nbsp;&nbsp;
+				<!--<i class="mui-icon iconfont icon-msg6 rmb">{{order.total_fee.rmb}}</i>
+				&nbsp;&nbsp;-->
 				<i class="mui-icon iconfont icon-ji points">{{order.total_fee.points}}</i></p>
 		</div>
 	</div>
 	<p class="text-center" style="line-height: 1.2rem">您的订单已创建，请及时支付！</p>
 	<div class="btn-group">
 		<button class="mui-btn mui-btn-block mui-btn-primary" @click="isShowPayDialog=true">积分支付({{order.total_fee.points}})</button>
-		<button class="mui-btn mui-btn-block mui-btn-danger">在线支付({{order.total_fee.rmb}})</button>
+		<!--<button class="mui-btn mui-btn-block mui-btn-danger">在线支付({{order.total_fee.rmb}})</button>-->
 		<br/>
 		<br/>
 		<button class="mui-btn mui-btn-block"  @click="cancelOrder">取消订单</button>

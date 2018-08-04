@@ -5,8 +5,8 @@
 
 				<span class="mui-tab-label">应付总额:</span>
 			</a>
-			<a class="mui-tab-item price-points">
-        <p><i class="mui-icon iconfont icon-msg6 price"> {{(form.amt * form.selectSpec.rmb).toFixed(2)}}</i></p>
+			<a class="mui-tab-item price">
+        <!--<p><i class="mui-icon iconfont icon-msg6 rmb"> {{(form.amt * form.selectSpec.rmb).toFixed(2)}}</i></p>-->
 		    <p><i class="mui-icon iconfont icon-ji points"> {{(form.amt * form.selectSpec.points).toFixed(2)}}</i></p>
 			</a>
 
@@ -27,8 +27,8 @@
   </swiper>
   <div class="mui-row goods-header">
     <div class="mui-col-xs-8 goods-title">{{goods.title}}</div>
-    <div class="mui-col-xs-4 price-points">
-      <p><i class="mui-icon iconfont icon-msg6 price"> {{form.selectSpec.rmb}}</i></p>
+    <div class="mui-col-xs-4 price">
+      <!--<p><i class="mui-icon iconfont icon-msg6 rmb"> {{form.selectSpec.rmb}}</i></p>-->
 		  <p><i class="mui-icon iconfont icon-ji points"> {{form.selectSpec.points}}</i></p>
     </div>
   </div>
@@ -92,14 +92,14 @@
           <p class="title">{{goods.title}}({{form.selectSpec.title}})</p>
           <p class="price">
             单价:
-            <i class="mui-icon iconfont icon-msg6 rmb">{{form.selectSpec.rmb}}</i>
-            &nbsp;&nbsp;
+            <!--<i class="mui-icon iconfont icon-msg6 rmb">{{form.selectSpec.rmb}}</i>
+            &nbsp;&nbsp;-->
             <i class="mui-icon iconfont icon-ji points">{{form.selectSpec.points}}</i></p>
           <p class="amt">数量: {{form.amt}}</p>
           <p class="price">
             总计:
-            <i class="mui-icon iconfont icon-msg6 rmb">{{(form.amt * form.selectSpec.rmb).toFixed(2)}}</i>
-            &nbsp;&nbsp;
+            <!--<i class="mui-icon iconfont icon-msg6 rmb">{{(form.amt * form.selectSpec.rmb).toFixed(2)}}</i>
+            &nbsp;&nbsp;-->
             <i class="mui-icon iconfont icon-ji points">{{(form.amt * form.selectSpec.points).toFixed(2)}}</i>
           </p>
         </div>
@@ -110,8 +110,7 @@
         </div>
         <div class="mui-col-xs-8">
             <input type="text" class="mui-input-clear" v-model="form.qq" placeholder="请输入QQ号" />
-            <!--
-            <input type="text" class="mui-input-clear" v-model="form.ksid" placeholder="请输入快手Id" />
+            <!--<input type="text" class="mui-input-clear" v-model="form.ksid" placeholder="请输入快手Id" />
             <input type="text" class="mui-input-clear" v-model="form.dyid" placeholder="请输入抖音Id" />
             -->
             <textarea v-model="form.remark" rows="2" placeholder="特别要求请留言(选填)"></textarea>
@@ -166,7 +165,7 @@ export default {
         amt: 1,
         selectSpec: {},
         remark: '',
-        qq: ''
+        qq: '10000'
       },
       isShowUnitDialog: false,
       goods: {
@@ -249,6 +248,9 @@ export default {
 
 <style scoped>
 @import url('swiper/dist/css/swiper.min.css');
+.mui-table-view-cell {
+  margin-bottom: 10px;
+}
 .goods-header {
   padding: 10px;
 	font-weight: bold;
@@ -273,7 +275,7 @@ export default {
     color: #abc;
 }
 
-.price-points i {
+.price i {
 	font-weight: 300;
   line-height: 0.7rem;
   font-size: 0.4rem;

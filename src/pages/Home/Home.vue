@@ -1,9 +1,9 @@
 <template>
   <div>
 		<Menu />
-		<header id="header" class="mui-bar mui-bar-transparent" :style="{'background-color': 'rgba(170, 187, 204, '+alpha+')'}">
+		<header id="header" class="mui-bar mui-bar-transparent" :style="{'background-color': 'rgba(197, 82, 82, '+alpha+')'}">
 			<a class="mui-action-back mui-icon mui-icon-contact mui-pull-left" ></a>
-			<h1 class="mui-title">千寻赞皇</h1>
+			<h1 class="mui-title" style="color: #fff">千寻赞皇</h1>
 		</header>
 
 		<div class="mui-content" style="padding-bottom: 50px;">
@@ -88,7 +88,7 @@
 			
 			<!--日销量最佳-->
 			<div class="block">
-				<div class="header">
+				<div class="header" style="line-height:0.7rem">
 					<span class="mui-icon iconfont icon-msnui-bar-chart" style="font-size:0.325rem"></span>
 					<span class="mui-tab-label">热门推荐</span>
 					<router-link to="/hotgoods" class="fright">更多>></router-link>
@@ -267,10 +267,6 @@ export default {
 .mui-table-view:before {
 	height: 0px;
 } 
-
-.mui-bar-tab .mui-tab-item.mui-active {
-	color: #f9304c;
-}
 
 body {
 	background-color: #EFEFF4;

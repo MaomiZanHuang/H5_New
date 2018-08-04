@@ -167,13 +167,22 @@ p {
     clear: both;
 }
 
-
+.mui-bar-tab .mui-tab-item.mui-active {
+	color: #f9304c;
+}
+#app {
+    background-color: #EFEFF4;
+}
 @media screen and (min-width: 600px) and (max-width: 4800px) {
     body {
         display: flex;
         justify-content: center;
+        background: #fff;
     }
-    #app, #header, .mui-bar-tab {
+    #app {
+        box-shadow: 0 0 10px #aaa;
+    }
+    #app, #header, .mui-bar-tab, .mui-popover {
         width: 600px !important;
         margin: 0 auto;
     }

@@ -67,7 +67,7 @@
           <section>
             <span class="navlistname">反馈建议</span>
           </section>
-          <a href="#" class="navlistlink" @click="showFeedbackDialog">
+          <a class="navlistlink" @click="showFeedbackDialog">
             <span class="mui-icon mui-icon-compose"></span>
           </a>
         </li>
@@ -173,7 +173,7 @@
   justify-content: space-around;
   align-items: flex-start;
   height: 3.7rem;
-  background: #4e937a;
+  background: #c55252;
 }
 
 .userinfo .unlogin {

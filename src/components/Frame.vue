@@ -39,14 +39,14 @@ export default {
     }
   },
   mounted() {
-    this.contentHeight = (window.outerHeight - this.$refs.header.offsetHeight) + 'px';
+    this.contentHeight = ((document.documentElement.clientHeight || document.body.clientHeight)  - this.$refs.header.offsetHeight) + 'px';
   },
 }
 </script>
 <style>
 .frame-container .header {
   height: 50px;
-  background: #abc;
+  background: #c55252;
   font-size: 0.38rem;
   color: #fff;
   padding: 0 10px;

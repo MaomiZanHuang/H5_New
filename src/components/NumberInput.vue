@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="keyboard-box"
-        @touchstart="handleTouchStart" @touchend="handleTouchEnd">
+        @touchstart="handleTouchStart" @click="handleClick" @touchend="handleTouchEnd">
         <div class="row" v-for="row in keyboards">
           <div v-for="column in row" class="column"
           :class="{ active: activeColumn === column }">{{ column }}</div>
@@ -153,6 +153,10 @@ export default {
           this.input(inputChar);
       }
       this.t = 0;
+    },
+    handleClick(e) {
+      this.handleTouchStart(e);
+      this.handleTouchEnd(e);
     },
     input (inputChar) {
       this.inputs.push(inputChar);

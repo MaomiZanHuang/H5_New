@@ -98,7 +98,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
  .brand {
   padding: 15px;
 }
