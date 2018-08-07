@@ -84,7 +84,7 @@ export default {
         { price: 200, points: 20000, title: '20000积分', card: 54443 }
       ],
       selectPrice: {
-        price: 1,
+        price: 0.1,
         points: 100,
         title: '100积分',
         card: 54436

@@ -31,7 +31,7 @@
     </form>
     <form v-if="currentTab === 'pay_pwd'"
       class="pwd-form mui-input-group"  style="padding: 50px 10px">
-      <button class="mui-btn btn-block mui-btn-primary" style="height: 1.2rem" @click="show_pay_dialog = true">修改支付密码</button>
+      <button class="mui-btn btn-block mui-btn-primary" style="height: 1.2rem" @click="showPayDialog">修改支付密码</button>
       <br/>
       <br/>
       <p class="text-center">如有忘记密码，请联系客服帮助解决谢谢~</p>
@@ -156,6 +156,10 @@ export default {
     },
     closePayDialog () {
       this.show_pay_dialog = false;
+    },
+    showPayDialog(e) {
+      e.preventDefault();
+      this.show_pay_dialog = true
     }
   }
 }

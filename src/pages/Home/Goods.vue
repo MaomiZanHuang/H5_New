@@ -29,51 +29,46 @@
     <div class="mui-col-xs-8 goods-title">{{goods.title}}</div>
     <div class="mui-col-xs-4 price">
       <!--<p><i class="mui-icon iconfont icon-msg6 rmb"> {{form.selectSpec.rmb}}</i></p>-->
-		  <p><i class="mui-icon iconfont icon-ji points"> {{form.selectSpec.points}}</i></p>
+		  <p style="text-align: right"><i class="mui-icon iconfont icon-ji points"> {{form.selectSpec.points}}</i></p>
     </div>
   </div>
   
-    <span>
-        <ul class="mui-table-view" id="xiangqing">
-          <li class="mui-table-view-cell">
-            <a class="">
-              <h5 style="font-family: '微软雅黑'; font-size: 14px;">规格</h5>
-            </a>
-            <ul class="mui-table-view mui-grid-view" style="padding: 2px auto;">
-              <button v-for="unit in goods.specs"
-                type="button"
-                :class="unit.id == form.selectSpec.id ? 'mui-btn-danger' : 'mui-btn-grey'"
-                class="mui-btn mui-btn-outlined mui-btn-block guige-btn" style="float: left;" 
-                tag="0"
-                @click="form.selectSpec = unit"
-              >{{unit.title}}</button>
-            </ul>
-          </li>
-          <li class="mui-table-view-cell">
-            <h5 style="float: left;font-family: '微软雅黑'; font-size: 14px;">购买数量:{{form.amt}}</h5>
-
-            <div class="mui-numbox" data-numbox-step="1" data-numbox-min="1" data-numbox-max="99" style="float: right;">
+      <div class="goods-sku" style="background: #fff;padding: 10px;    margin-bottom: 10px;">
+        <div class="mui-row">
+          <div class="mui-col-xs-2">
+            <h5 style="font-family: '微软雅黑'; font-size: 14px;">规格</h5>
+          </div>
+          <div class="mui-col-xs-10">
+            <button v-for="unit in goods.specs"
+              type="button"
+              :class="unit.id == form.selectSpec.id ? 'mui-btn-danger' : 'mui-btn-grey'"
+              class="mui-btn mui-btn-outlined mui-btn-block guige-btn" style="float: left;" 
+              tag="0"
+              @click="form.selectSpec = unit"
+            >{{unit.title}}</button>
+          </div>
+        </div>
+        <div class="mui-row">
+          <div class="mui-col-xs-2">
+            <h5 style="font-family: '微软雅黑'; font-size: 14px;">购买数量</h5>
+          </div>
+          <div class="mui-col-xs-10">
+            <div class="mui-numbox" data-numbox-step="1" data-numbox-min="1" data-numbox-max="99" style="margin-left: 8.333%;">
               <button id="numSub" class="mui-btn mui-btn-numbox-minus" type="button"  @click="dec">-</button>
               <input id="num" class="mui-input-numbox" type="number" v-model="form.amt">
               <button id="numUb" class="mui-btn mui-btn-numbox-plus" type="button" @click="inc">+</button>
             </div>
-				</li>
-    </ul>
-    </span>
-
-    <div class="mui-table-view-cell" style="width: 100%; height: 40px; background-color: #FFFFFF;color: #929292;" >
-      商品详细
+          </div>
+        </div>
     </div>
-    <div class="goods-details" style="padding: 10px; background-color: #FFFFFF;">
-    {{goods.detail}}
-    <ul>
-        
-					
-				</ul>
-      </div>
 
-    <div id="details" style="margin-top: 8px; background-color: #FFFFFF;"></div>
-    
+    <div class="goods-details" style="padding: 10px;width: 100%; background-color: #FFFFFF;color: #929292;" >
+      <div class="title" style="font-size: 14px;line-height: 0.6rem;">商品详细</div>
+      <div class="content" style="border-top: solid 1px #c8c7cc;padding-top: 0.2rem;line-height: 0.4rem">
+        {{goods.detail}}
+      </div>
+    </div>
+
     <!--底部结束图片-->
     <div style="text-align:center">
       <img src="" />
@@ -104,25 +99,14 @@
           </p>
         </div>
       </li>
-      <li class="mui-table-view-cell mui-row">
-        <div class="mui-col-xs-4">
-          <img style="float: left" :src="'http://q1.qlogo.cn/g?b=qq&nk='+form.qq+'&s=100'" onerror="this.src='http://q1.qlogo.cn/g?b=qq&nk=1000&s=100'" />
-        </div>
-        <div class="mui-col-xs-8">
-            <input type="text" class="mui-input-clear" v-model="form.qq" placeholder="请输入QQ号" />
-            <!--<input type="text" class="mui-input-clear" v-model="form.ksid" placeholder="请输入快手Id" />
-            <input type="text" class="mui-input-clear" v-model="form.dyid" placeholder="请输入抖音Id" />
-            -->
-            <textarea v-model="form.remark" rows="2" placeholder="特别要求请留言(选填)"></textarea>
-        </div>
-        
-
+      <li class="mui-table-view-cell">
+        <QQ ref="FormCmp"/>
       </li>
       
     </ul>
-    <ul class="mui-table-view" style="background-color: red;color: #FFFFFF;">
-      <li class="mui-table-view-cell" @click="createOrder">
-        <a><b style="font-family: '微软雅黑'; font-size: 14px;">立即下单</b></a>
+    <ul class="mui-table-view" style="background-color: red;color: #FFFFFF;padding: 20px 15px;list-style: none;">
+      <li  @click="createOrder">
+        <b style="font-family: '微软雅黑'; font-size: 14px;">立即下单</b>
       </li>
     </ul>
   </div>
@@ -137,6 +121,7 @@ import Frame from '@/components/Frame';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import {replaceVars} from '@/utils/index';
 import {goods as GOODS_API, order as ORDER_API} from '@/config/serverApi';
+import QQ from './components/QQ';
 
 const MAX_NUM = 99;
 const MIN_NUM = 1;
@@ -144,7 +129,8 @@ export default {
   components: {
     Frame,
     swiper,
-    swiperSlide
+    swiperSlide,
+    QQ
   },
   data() {
     return {
@@ -163,19 +149,13 @@ export default {
 			},
       form: {
         amt: 1,
-        selectSpec: {},
-        remark: '',
-        qq: '10000'
+        selectSpec: {}
       },
       isShowUnitDialog: false,
       goods: {
         title: '招牌名片赞',
         logo: '',
-        pics: [
-          'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-04-04/5ac4f1f9e49df.jpg',
-          'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f65b7e59f.jpg',
-          'https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f6c02d8b0.jpg'
-        ],
+        pics: [],
         detail: '商品详细',
         specs: []  
       }
@@ -190,14 +170,14 @@ export default {
           data.pics = [data.logo];
         }
         this.goods = data;
-        
         this.$nextTick(() => {
           this.form.selectSpec = data.specs[0];
         })
       })
       .catch(err => {
+        console.log(err);
         this.$tip.show('网络连接失败！请稍后重试！');
-      })
+      });
   },
   methods: {
     buy() {
@@ -210,16 +190,26 @@ export default {
       this.form.amt > MIN_NUM && this.form.amt--;
     },
     createOrder() {
+      window.PPP = this;
+      // 组件checkData
+      if (!this.$refs.FormCmp.checkFormData()) {
+        return false;
+      }
+
+      // 将remark单独提取出来
+      const {remark} = this.$refs.FormCmp.form;
+      const concatData = Object.assign({}, this.$refs.FormCmp.form, {remark: null});
+      
       $.post(ORDER_API.createOrder, {
         goods_id: this.$route.params.id,
         // 规格
         spec_id: this.form.selectSpec.id,
         // 数量
         amt: this.form.amt,
-        // 下单数据，JSON,常用包括qq,kuaishou之类的
-        concat: JSON.stringify({ qq: this.form.qq }),
+        // 下单数据，JSON,常用包括qq,kuaishou之类的,
+        concat: JSON.stringify(concatData),
         // 留言备注
-        remark: this.form.remark
+        remark
       })
         .then(({data}) => {
           this.$tip.show(data.msg);
@@ -267,7 +257,7 @@ export default {
 }
 
 .guige-btn {
-  margin-left: 10%;
+  margin-left: 8.333%;
   width: 40%;
 }
 .guige-btn:not(.mui-btn-danger) {

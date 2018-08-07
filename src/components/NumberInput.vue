@@ -124,6 +124,7 @@ export default {
         : '';
     },
     handleTouchStart (e) {
+      e.preventDefault();
       e.stopPropagation();
       clearTimeout(this.t);
       // 针对删除按钮的清空

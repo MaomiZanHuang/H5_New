@@ -18,7 +18,7 @@
   <div class="foods-wrapper" ref="wrapper">
     <ul style="transition: all .5s ease">
       <li v-for="cata in catas" class="good-list" style="pointer-events: auto;">
-        <h1 class="title" :class="'cata-'+ cata.id" ref="titleEl">{{cata.title}}</h1>
+        <h1 ref="titleEl" class="title" :class="'cata-'+ cata.id">{{cata.title}}</h1>
         <ul>
           <li ref="goodEl" v-for="good in cata.children"class="food-item border-1px"
             @click="buyGoods(good.goods_id)">
@@ -61,7 +61,7 @@
 </template>
 <script>
 import _ from 'lodash';
-import {mapState} from 'vuex';
+import {mapState, mapActions} from 'vuex';
 import Frame from '@/components/Frame';
 
 export default {
@@ -81,9 +81,12 @@ export default {
     })
   },
   methods: {
+    ...mapActions(['getGoodsCata']),
     changeCata(id, idx) {
-      const TH = this.$refs.titleEl[0].offsetHeight + 18;
-      const GH = this.$refs.goodEl[0].offsetHeight + 18;
+      // const TH = this.$refs.titleEl.offsetHeight + 18;
+      // const GH = this.$refs.goodEl.offsetHeight + 18;
+      const TH = 26 + 18;
+      const GH = 78 + 18;
       this.currentCataId = id;      
       let scrollHeight = idx * TH + this.catas.slice(0, idx).map(item => (item.children || []).length).reduce((prev, next) => (prev + next * GH), 0);
 
@@ -97,9 +100,22 @@ export default {
       this.$router.push('/goods/' + id);
     }
   },
+  created() {
+    // 获取分类数据和首页其它数据
+		this.getGoodsCata()
+			.then(r => {
+				console.log('获取分类成功！');
+			})
+			.catch(err => {
+				this.$tip.show('获取分类数据失败！');
+			});
+  },
   mounted() {
-    const TH = this.$refs.titleEl[0].offsetHeight + 18;
-    const GH = this.$refs.goodEl[0].offsetHeight + 18;
+    const TH = 26 + 18;
+    const GH = 78 + 18;
+    
+    // const TH = this.$refs.titleEl[0].offsetHeight + 18;
+    // const GH = this.$refs.goodEl[0].offsetHeight + 18;
     // 每个分类所占的高度
     const HLs = this.catas.map(item => {
       return {
