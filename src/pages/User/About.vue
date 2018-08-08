@@ -2,9 +2,9 @@
 <Frame title="关于">
   <div class="brand">
     <div class="logo">
-      <img src="http://pic.downcc.com/upload/2016-8/2016851622186787.jpg" />
+      <img src="@/assets/logo.png" />
     </div>
-    <p class="name text-center">千寻赞皇 v1.0</p>
+    <p class="name text-center">千寻赞皇</p>
   </div>
   <div class="about-content">
     <ul class="mui-table-view"> 

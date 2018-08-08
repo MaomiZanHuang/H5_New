@@ -33,7 +33,9 @@ exports.order = {
   cancelOrder: `${HOST}/order/cancel/{id}`,
   // 积分支付订单
   payOrderByPoints: `${HOST}/order/payByPoints/{id}`,
-  payOrderOnline: `${HOST}/order/payOnline/{id}`
+  payOrderOnline: `${HOST}/order/payOnline/{id}`,
+  // 分页获取用户订单信息
+  getUserOrders: `${HOST}/order/user_order`
 };
 
 exports.pay = {

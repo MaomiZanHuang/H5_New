@@ -7,6 +7,8 @@ import router from './routes';
 import vueScroll from './vue-scroll-animate.js'
 import FastClick from 'fastclick';
 
+import VueScroller from 'vue-scroller';
+
 import Spin from '@/components/spin';
 import Tip from '@/components/Tip';
 
@@ -23,6 +25,7 @@ $.interceptors.request.use(
 FastClick.attach(document.body);
 
 Vue.use(vueScroll);
+Vue.use(VueScroller);
 
 Vue.config.productionTip = false
 Vue.use(Spin);

@@ -24,7 +24,9 @@
 
 <div class="container-bg">
   <div class="container container-form">
-    <div class="login__logo"></div>
+    <div class="login__logo">
+      <img src="@/assets/logo.png" />
+    </div>
       <div class="login__form">
         <div class="login__row">
           <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
@@ -199,8 +201,6 @@ input, button {
 
 
 .login__logo {
-  background: url(https://tc.sinaimg.cn/maxwidth.800/tc.service.weibo.com/t1_qpic_cn/eb8e3c7e6a7ca50d538fe1bd44fc76b7.jpg) no-repeat;
-  background-size:80px 80px;
   height: 100px;
   width: 100px;
   margin: 10px auto;
