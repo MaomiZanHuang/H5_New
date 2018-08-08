@@ -186,4 +186,7 @@ p {
         width: 600px !important;
         margin: 0 auto;
     }
+    .input_num-box {
+        width: 600px !important;
+    }
 }

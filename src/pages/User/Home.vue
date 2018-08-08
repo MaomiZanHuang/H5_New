@@ -33,35 +33,35 @@
 
     <div class="navlist">
       <ul>
-        <li>
+        <li @click="jumpTo('/user/userinfo')">
           <section>
             
             <span class="navlistname">个人资料</span>
           </section>
-          <router-link to="/user/userinfo" href="" class="navlistlink">
+          <a class="navlistlink">
             <span class="mui-icon mui-icon-arrowright"></span>
-          </router-link>
+          </a>
         </li>
-        <li>
+        <li @click="jumpTo('/user/security')">
           <section>
             
             <span class="navlistname">账户安全</span>
           </section>
-          <router-link to="/user/security" class="navlistlink">
+          <a class="navlistlink">
             <span class="mui-icon mui-icon-arrowright"></span>
-          </router-link>
+          </a>
         </li>
       </ul>
     </div>
     <div class="navlist">
       <ul>
-        <li>
+        <li @click="jumpTo('/user/activity')">
           <section>
             <span class="navlistname">推广赚分</span>
           </section>
-          <router-link to="/user/activity" class="navlistlink">
+          <a class="navlistlink">
             <span class="mui-icon mui-icon-arrowright"></span>
-          </router-link>
+          </a>
         </li>
         <li>
           <section>
@@ -73,14 +73,14 @@
         </li>
 
         
-        <li>
+        <li @click="jumpTo('/user/about')">
           <section>
             
             <span class="navlistname">关于</span>
           </section>
-          <router-link to="/user/about" class="navlistlink">
+          <a class="navlistlink">
             v1.0.0<span class="mui-icon mui-icon-arrowright"></span>
-          </router-link>
+          </a>
         </li>
       </ul>
     </div>
@@ -126,6 +126,9 @@
      };
    },
    methods: {
+     jumpTo(url) {
+       this.$router.push(url);
+     },
      showFeedbackDialog() {
        this.feedbackDialogShow = true;
      },

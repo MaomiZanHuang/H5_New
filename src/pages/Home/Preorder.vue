@@ -8,7 +8,7 @@
 		<div class="mui-card-content" style="padding: 10px; font-size: 0.325rem">
 			<div class="mui-row">
 				<div class="mui-col-xs-4">
-					<img src="https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-04-04/5ac4f1f9e49df.jpg" width="100%"/>
+					<img :src="order.goods_logo" onerror="" width="100%"/>
 				</div>
 				<div class="mui-col-xs-8 order-content" style="padding-left: 10px;">
 					<p class="title">{{order.goods_name}}</p>
@@ -37,9 +37,10 @@
 		<button class="mui-btn mui-btn-block"  @click="cancelOrder">取消订单</button>
 	</div>
 	<NumberInput v-if="isShowPayDialog" @finish-input="pay" @close="closePayDialog">
-		<div slot="header">
-			订单金额: <i class="mui-icon iconfont icon-msg6"></i>{{order.total_fee.points}} <br/>
-			支付方式: <b>积分</b>
+		<div slot="header" class="price" style="text-align: center">
+			<p style="text-align: left; color: #000; font-size: 0.4rem;padding: 10px; border-bottom: solid 1px #ccc">请输入支付密码</p>
+			<p class="points" style="line-height: 1.8rem"><i style="font-size: 1rem" class="mui-icon iconfont icon-ji">{{order.total_fee.points}} </i></p>
+			<p style="font-size: 0.3rem">注:初始密码123456，可以在【我的>账户安全】中修改支付密码.</p>
 		</div>
 	</NumberInput>
 </div>
@@ -64,6 +65,7 @@ export default {
 			order: {
 				order_id: '',
 				goods_name: '',
+				goods_logo: '',
 				spec: '',
 				price: {
 					rmb: '',
@@ -94,14 +96,14 @@ export default {
 		$.get(replaceVars(ORDER_API.getOrder, { id: order_id }))
 			.then(({data}) => {
 				this.$loading.hide();
-				let { amt, order_id, goods_name, spec, price, total_fee, concat, remark } = data;
+				let { amt, order_id, goods_name, goods_logo, spec, price, total_fee, concat, remark } = data;
 				price = JSON.parse(price);
 				total_fee = {
 					rmb: amt * price.rmb,
 					points: amt * price.points
 				};
 				concat = JSON.parse(concat);
-				Object.assign(this.order, {order_id, amt, goods_name, spec, price, total_fee, concat, remark})
+				Object.assign(this.order, {order_id, amt, goods_logo, goods_name, spec, price, total_fee, concat, remark})
 			})
 			.catch(err => {
 				console.log(err);
