@@ -18,7 +18,7 @@
       <input type="text" class="mui-input-clear" v-model="form.ksid" placeholder="请输入快手Id" />
       <input type="text" class="mui-input-clear" v-model="form.dyid" placeholder="请输入抖音Id" />
       -->
-      <textarea v-model="form.remark" rows="2" placeholder="特别要求请留言(选填)"></textarea>
+      <textarea class="mui-input-clear" v-model="form.remark" rows="2" placeholder="特别要求请留言(选填)"></textarea>
   </div>
 </div>
 </template>

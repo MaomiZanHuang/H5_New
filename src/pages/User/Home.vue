@@ -237,7 +237,7 @@
 
 .navlist ul li {
   display: flex;
-  height: 0.96875rem;
+  height: 1.36875rem;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #f5f5f5;

@@ -163,8 +163,6 @@ export default {
 		})
 	},
 	mounted() {
-		window.vue10 = this;
-
 		const MAX_SCROLL_HEIGHT = 44;
 		document.addEventListener("scroll", () => {
 		let th = (document.body.scrollTop || window.scrollY) / 5;

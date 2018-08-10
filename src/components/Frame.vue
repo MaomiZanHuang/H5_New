@@ -39,7 +39,9 @@ export default {
     }
   },
   mounted() {
-    this.contentHeight = ((document.documentElement.clientHeight || document.body.clientHeight)  - this.$refs.header.offsetHeight) + 'px';
+    this.$nextTick(() => {
+      this.contentHeight = ((document.documentElement.clientHeight || document.body.clientHeight)  - this.$refs.header.offsetHeight) + 'px';
+    });
   },
 }
 </script>
