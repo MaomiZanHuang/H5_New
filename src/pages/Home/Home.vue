@@ -301,8 +301,6 @@ body {
     font-size: 0.328125rem;
     padding: 0 0.1875rem;
     color: #f47979;
-		display: block;
-		float: right;
 }
 
 .newslist {
@@ -328,6 +326,8 @@ body {
 	color: #040404;
 	padding: 0 0 0 0.1875rem;
 	width: 1rem;;
+	display: block;
+	float: right;
 	border-left: 1px solid #040404;
 }
 
