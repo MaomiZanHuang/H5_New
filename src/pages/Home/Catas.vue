@@ -226,7 +226,7 @@ li {
     line-height: 14px;
     font-size: 14px;
     color: rgb(7, 17, 27);
-    margin: 2px 0px 8px;
+    margin: 2px 0px 28px;
 }
 
 .goods .foods-wrapper .food-item .content .desc {

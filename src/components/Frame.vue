@@ -36,12 +36,13 @@ export default {
       else {
         history.back();
       }
+    },
+    autosize() {
+      this.contentHeight = ((document.documentElement.clientHeight || document.body.clientHeight)  - this.$refs.header.offsetHeight) + 'px';
     }
   },
   mounted() {
-    this.$nextTick(() => {
-      this.contentHeight = ((document.documentElement.clientHeight || document.body.clientHeight)  - this.$refs.header.offsetHeight) + 'px';
-    });
+    this.autosize();
   },
 }
 </script>

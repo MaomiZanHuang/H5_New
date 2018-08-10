@@ -1,5 +1,5 @@
 <template>
-<Frame title="订单支付">
+<Frame title="订单支付" ref="frame">
 <div class="mui-content">
 	<div class="mui-card">
 		<!--页眉，放置标题-->
@@ -22,7 +22,7 @@
 		</div>
 		<!--页脚，放置补充信息或支持的操作-->
 		<div class="mui-card-footer">
-			<p class="price" style="width: 100%;text-align: right;">总计: 
+			<p class="price" style="width: 100%;font-size: 0.4rem;text-align: right;">总计: 
 				<!--<i class="mui-icon iconfont icon-msg6 rmb">{{order.total_fee.rmb}}</i>
 				&nbsp;&nbsp;-->
 				<i class="mui-icon iconfont icon-jifen points">{{order.total_fee.points}}</i></p>
@@ -84,7 +84,6 @@ export default {
 		};
 	},
 	created() {
-		window.vue = this;
 		// 如果未传order_id就表示非法进入，则跳转回首页
 		const order_id = this.$route.params.id;
 		if (!order_id) {
@@ -152,6 +151,9 @@ export default {
 					this.$tip.show('网络连接失败！');
 				});
 		}
+	},
+	mounted() {
+		this.$refs.frame.autosize();
 	}
 }
 </script>
