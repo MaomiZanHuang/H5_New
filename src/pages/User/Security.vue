@@ -34,8 +34,8 @@
       <button class="mui-btn btn-block mui-btn-primary" style="height: 1.2rem" @click="showPayDialog">修改支付密码</button>
       <br/>
       <br/>
+      <p class="text-center">初始支付密码123456</p>
       <p class="text-center">如有忘记密码，请联系客服帮助解决谢谢~</p>
-      <br/>
       <NumberInput v-if="currentTab === 'pay_pwd' && show_pay_dialog" @finish-input="finishInputPayPwd" @close="closePayDialog">
         <div slot="header" style="padding: 10px;font-size: 0.7rem;">
           {{tip}}
@@ -156,6 +156,8 @@ export default {
     },
     closePayDialog () {
       this.show_pay_dialog = false;
+      // 清空数据和其它东西
+      this.status = 0;
     },
     showPayDialog(e) {
       e.preventDefault();
@@ -164,7 +166,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .pwd-form {
   padding: 10px;
 }

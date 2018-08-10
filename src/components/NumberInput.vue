@@ -3,6 +3,7 @@
   <div class="input_num-box">
     <!-- 改造为密码框 -->
     <div class="input-box">
+      <a class="fright" @click="closeInputNumBox"><i class="mui-icon mui-icon-closeempty" style="font-size: 1rem"></i></a>
       <slot name="header">账户积分计算</slot>
       <div class="pwd-input">
         <i>{{showPoints(0)}}</i>

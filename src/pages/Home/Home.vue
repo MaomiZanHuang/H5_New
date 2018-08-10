@@ -395,17 +395,14 @@ body {
 	font-size: 0.21875rem;
 }
 
-.price {
+.goods-list .price {
 	display: flex;
 	justify-content: space-around;
 }
-.price i {
+.goods-list .price i {
 	font-weight: 300;
   line-height: 0.7rem;
   font-size: 0.4rem;
-}
-.price .rmb {
-  color: rgb(255, 74, 66);
 }
 
 </style>
