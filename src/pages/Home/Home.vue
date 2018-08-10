@@ -285,7 +285,7 @@ body {
     align-items: center;
     width: 95%;
 		width: 9.5625rem;
-    height: 0.625rem;
+    height: 0.825rem;
     border-radius: 0.625rem;
 		margin: 0.15625rem auto;
 		padding: 0px 0.1875rem;
@@ -301,6 +301,8 @@ body {
     font-size: 0.328125rem;
     padding: 0 0.1875rem;
     color: #f47979;
+		display: block;
+		float: right;
 }
 
 .newslist {
@@ -308,7 +310,7 @@ body {
     overflow: hidden;
     font-size: 0.28125rem;
     align-self: flex-start;
-    height: 20px;
+    height: 100%;
 }
 
 .newslist ul li {
