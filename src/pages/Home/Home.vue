@@ -2,8 +2,7 @@
   <div>
 		<Menu />
 		<header id="header" class="mui-bar mui-bar-transparent" :style="{'background-color': 'rgba(197, 82, 82, '+alpha+')'}">
-			<a class="mui-action-back mui-icon mui-icon-contact mui-pull-left" ></a>
-			<h1 class="mui-title" style="color: #fff">千寻赞皇</h1>
+			<h1 class="mui-title" :style="{'color': 'rgba(255, 255, 255, '+alpha+')'}">千寻赞皇</h1>
 		</header>
 
 		<div class="mui-content" style="padding-bottom: 50px;">
@@ -99,12 +98,12 @@
 			<div id="goodsList" class="mui-table-view mui-grid-view own-gray-color">
 				<li v-for="item in top5Goods" @click="buyGoods(item.goods_id)" class="mui-table-view-cell mui-media mui-col-xs-6">
 					<div class= "bgDiv">
-						<img class="mui-media-object" src="https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-03-21/5ab1f5f0c3bcb.jpg" onerror="this.src='../images/pic-null.png';this.onerror=null"/>
+						<img class="mui-media-object" :src="item.logo" onerror="https://cdn.520cy.cn/images/pic-null.png"/>
 						<div class="mui-media-body">
 							<p class="mui-ellipsis-2">{{item.title}}</p>
-							<div class="price-points">
-								<i class="mui-icon iconfont icon-msg6 price"> {{item.min_rmb}}</i>
-								<i class="mui-icon iconfont icon-ji points"> {{item.min_points}}</i>
+							<div class="price">
+								<!--<i class="mui-icon iconfont icon-msg6 rmb"> {{item.min_rmb}}</i>-->
+								<i class="mui-icon iconfont icon-jifen points"> {{item.min_points}}</i>
 							</div>
 						</div>
 					</div>
@@ -396,19 +395,17 @@ body {
 	font-size: 0.21875rem;
 }
 
-.price-points {
+.price {
 	display: flex;
 	justify-content: space-around;
 }
-.price-points i {
+.price i {
 	font-weight: 300;
   line-height: 0.7rem;
   font-size: 0.4rem;
 }
-.price-points .price {
+.price .rmb {
   color: rgb(255, 74, 66);
 }
- .price-points .points {
-  color: rgb(12, 125, 157);
- }
+
 </style>

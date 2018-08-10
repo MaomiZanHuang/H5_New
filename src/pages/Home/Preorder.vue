@@ -8,12 +8,12 @@
 		<div class="mui-card-content" style="padding: 10px; font-size: 0.325rem">
 			<div class="mui-row">
 				<div class="mui-col-xs-4">
-					<img :src="order.goods_logo" onerror="" width="100%"/>
+					<img :src="order.goods_logo" onerror="https://cdn.520cy.cn/images/pic-null.png" width="100%"/>
 				</div>
 				<div class="mui-col-xs-8 order-content" style="padding-left: 10px;">
 					<p class="title">{{order.goods_name}}</p>
 					<p class="spec">规格: {{order.spec}}</p>
-					<p class="price">单价: <!--<i class="mui-icon iconfont icon-msg6 rmb">{{order.price.rmb}}</i>&nbsp;&nbsp;--><i class="mui-icon iconfont icon-ji points">{{order.price.points}}</i></p>
+					<p class="price">单价: <!--<i class="mui-icon iconfont icon-msg6 rmb">{{order.price.rmb}}</i>&nbsp;&nbsp;--><i class="mui-icon iconfont icon-jifen points">{{order.price.points}}</i></p>
 					<p class="amt">数量: {{order.amt}}</p>
 					<p class="account">充值QQ: {{order.concat.qq}}</p>
 					<p class="remark">补充信息: {{order.remark}}</p>
@@ -25,7 +25,7 @@
 			<p class="price" style="width: 100%;text-align: right;">总计: 
 				<!--<i class="mui-icon iconfont icon-msg6 rmb">{{order.total_fee.rmb}}</i>
 				&nbsp;&nbsp;-->
-				<i class="mui-icon iconfont icon-ji points">{{order.total_fee.points}}</i></p>
+				<i class="mui-icon iconfont icon-jifen points">{{order.total_fee.points}}</i></p>
 		</div>
 	</div>
 	<p class="text-center" style="line-height: 1.2rem">您的订单已创建，请及时支付！</p>
@@ -37,9 +37,9 @@
 		<button class="mui-btn mui-btn-block"  @click="cancelOrder">取消订单</button>
 	</div>
 	<NumberInput v-if="isShowPayDialog" @finish-input="pay" @close="closePayDialog">
-		<div slot="header" class="price" style="text-align: center">
+		<div slot="header" class="price" style="text-align: center; display: block">
 			<p style="text-align: left; color: #000; font-size: 0.4rem;padding: 10px; border-bottom: solid 1px #ccc">请输入支付密码</p>
-			<p class="points" style="line-height: 1.8rem"><i style="font-size: 1rem" class="mui-icon iconfont icon-ji">{{order.total_fee.points}} </i></p>
+			<p class="points" style="line-height: 1.8rem"><i style="font-size: 1rem" class="mui-icon iconfont icon-jifen">{{order.total_fee.points}} </i></p>
 			<p style="font-size: 0.3rem">注:初始密码123456，可以在【我的>账户安全】中修改支付密码.</p>
 		</div>
 	</NumberInput>
@@ -174,8 +174,5 @@ export default {
 
 .price .rmb {
   color: rgb(255, 74, 66);
-}
-.price .points {
-  color: rgb(12, 125, 157);
 }
 </style>

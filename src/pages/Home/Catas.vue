@@ -23,7 +23,7 @@
           <li ref="goodEl" v-for="good in cata.children"class="food-item border-1px"
             @click="buyGoods(good.goods_id)">
             <div class="icon">
-              <img width="57" height="57" :src="good.logo">
+              <img width="57" height="57" :src="good.logo" onerror="https://cdn.520cy.cn/images/pic-null.png">
             </div>
             <div class="content">
               <div class="mui-row">
@@ -34,8 +34,8 @@
                 </div>
                 <div class="mui-col-xs-4">
                   <div class="price">
-                      <i class="mui-icon iconfont icon-msg6 rmb">{{good.min_price}}</i>  
-                      <i class="mui-icon iconfont icon-ji points">{{good.min_points}}</i>  
+                      <!--<i class="mui-icon iconfont icon-msg6 rmb">{{good.min_price}}</i>-->
+                      <i class="mui-icon iconfont icon-jifen points">{{good.min_points}}</i>  
                   </div>
                 </div>
               </div>
@@ -251,9 +251,7 @@ li {
 .price .rmb {
   color: rgb(255, 74, 66);
 }
-.price .points {
-  color: rgb(12, 125, 157);
-}
+
 .goods .foods-wrapper .food-item .content .cartcontrol-wrapper {
     position: absolute;
     right: 0px;

@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style>
-@import url('//at.alicdn.com/t/font_733952_cufyfyw41a5.css');
+@import url('//at.alicdn.com/t/font_733952_4jy8eqfof02.css');
 @import url('//cdn.bootcss.com/mui/3.7.1/css/mui.min.css');
 @import url('./assets/css/common.css');
 @import url('./assets/css/reset.css');

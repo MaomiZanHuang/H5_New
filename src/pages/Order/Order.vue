@@ -33,7 +33,7 @@
               <div class="mui-col-xs-8 order-content" style="padding-left: 10px;">
                 <p class="title">{{order.goods_name}}</p>
                 <p class="spec">规格: {{order.spec}}</p>
-                <p class="price">单价: <!--<i class="mui-icon iconfont icon-msg6 rmb">{{order.price.rmb}}</i>&nbsp;&nbsp;--><i class="mui-icon iconfont icon-ji points">{{order.price.points}}</i></p>
+                <p class="price">单价: <!--<i class="mui-icon iconfont icon-msg6 rmb">{{order.price.rmb}}</i>&nbsp;&nbsp;--><i class="mui-icon iconfont icon-jifen points">{{order.price.points}}</i></p>
                 <p class="amt">数量: {{order.amt}}</p>
                 <p class="account">充值QQ: {{order.concat.qq}}</p>
                 <p class="remark">补充信息: {{order.remark}}</p>
@@ -46,7 +46,7 @@
             <p class="price" style="text-align: right;">总计: 
               <!--<i class="mui-icon iconfont icon-msg6 rmb">{{order.total_fee.rmb}}</i>
               &nbsp;&nbsp;-->
-              <i class="mui-icon iconfont icon-ji points">{{order.total_fee.points}}</i></p>
+              <i class="mui-icon iconfont icon-jifen points">{{order.total_fee.points}}</i></p>
           </div>
         </div>
         <!--CARD END -->
@@ -184,7 +184,5 @@ export default {
 .price .rmb {
   color: rgb(255, 74, 66);
 }
-.price .points {
-  color: rgb(12, 125, 157);
-}
+
 </style>

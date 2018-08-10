@@ -19,8 +19,18 @@ $.interceptors.request.use(
     config.headers['jwt'] = localStorage['jwt'];
     return config;
   },
-  err => Promise.reject(error)
+  err => Promise.reject(err)
 );
+
+$.interceptors.response.use(function (res) {
+  console.log(res);
+  return res;
+  }, function (err){
+    if (err && err.response && err.response.status === 403) {
+      router.push('/user/login');
+    }
+  return Promise.reject(error);
+  });
 
 FastClick.attach(document.body);
 

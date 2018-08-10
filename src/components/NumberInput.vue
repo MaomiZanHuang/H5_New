@@ -38,6 +38,8 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+  transform: translateX(-50%);
+  left: 50%;
 }
 .input_num-box  .input-box {
   background: #fff;
