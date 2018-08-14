@@ -147,9 +147,8 @@ export default {
 				}
 			},
 			banners: [
-				'https://cdn.520cy.cn/Uploads/image/2018-06-13/18589257baeaac9958d6be7fd5ad0919afa9fa.jpg',
-				'https://cdn.520cy.cn/Uploads/image/2018-06-13/18589257baeaac9958d6be7fd5ad0a19afa9fa.jpg',
-				'https://cdn.520cy.cn/Uploads/image/2018-06-13/1766b850ace8ee884ff8.png'
+				'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtbNbyPvU0dibZMCupZT7yWF5ILxibBNTDrzWxtpI5qr3dg/',
+				'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtbNbyPvU0dibQ47hialzfrw124ZwZwzZnFZqcNCP2QhkibA/'
 			]
     }
   },

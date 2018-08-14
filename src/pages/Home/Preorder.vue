@@ -152,6 +152,9 @@ export default {
 				});
 		}
 	},
+	updated() {
+		this.$refs.frame.autosize();
+	},
 	mounted() {
 		this.$refs.frame.autosize();
 	}

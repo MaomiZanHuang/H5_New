@@ -9,7 +9,9 @@ exports.guest = {
   getGoodsCata: `${HOST}/guest/goods_cata`,
   // 首页其它数据
   getHomePageData: `${HOST}/guest/getHomePageData`,
-  getOrderByVisitor: `${HOST}/guest/getOrder`
+  getOrderByVisitor: `${HOST}/guest/getOrder`,
+  // 获取说说
+  getShuoshuo: `${HOST}/guest/getShuoshuo`
 };
 
 exports.user = {

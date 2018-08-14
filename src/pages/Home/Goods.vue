@@ -10,18 +10,18 @@
 		    <p><i class="mui-icon iconfont icon-jifen points"> {{(form.amt * form.selectSpec.points).toFixed(2)}}</i></p>
 			</a>
 
-			<a class="mui-tab-item" style="background-color: red;color: #fff;font-weight: bold;" id="tijiaodingdan">
+			<a @click="buy" ref="buyBtn" class="mui-tab-item" style="background-color: red;color: #fff;font-weight: bold;" id="tijiaodingdan">
 
-				<span id="submitOrder" class="mui-tab-label" @click="buy" ref="buyBtn">立即购买</span>
+				立即购买
 			</a>
 </nav>
 
 <div class="mui-content">
   <swiper :options="swiperOption" :style="{height:'400px'}">
     <swiper-slide  v-for="(pic,idx) in goods.pics" :key="pic">
-      <a href="#" :index="idx">
-        <img :src="pic" style="width: 100%;height: 100%">
-      </a>
+      <div :index="idx" style="text-align: center; height: 100%">
+        <img :src="pic" style="height: 100%">
+      </div>
     </swiper-slide>
     <div class="swiper-pagination" slot="pagination"></div>
   </swiper>
@@ -90,7 +90,9 @@
             <!--<i class="mui-icon iconfont icon-msg6 rmb">{{form.selectSpec.rmb}}</i>
             &nbsp;&nbsp;-->
             <i class="mui-icon iconfont icon-jifen points">{{form.selectSpec.points}}</i></p>
-          <p class="amt">数量: {{form.amt}}</p>
+          <p class="amt">
+            数量: {{form.amt}}
+          </p>
           <p class="price">
             总计:
             <!--<i class="mui-icon iconfont icon-msg6 rmb">{{(form.amt * form.selectSpec.rmb).toFixed(2)}}</i>
@@ -100,13 +102,13 @@
         </div>
       </li>
       <li class="mui-table-view-cell">
-        <QQ ref="FormCmp"/>
+        <component :is="formCmp" ref="FormCmp"/>
       </li>
       
     </ul>
-    <ul class="mui-table-view" style="background-color: red;color: #FFFFFF;padding: 20px 15px;list-style: none;">
-      <li  @click="createOrder">
-        <b style="font-family: '微软雅黑'; font-size: 14px;">立即下单</b>
+    <ul class="mui-table-view" style="background-color: red;color: #FFFFFF;list-style: none;">
+      <li  @click="createOrder" style="font-family: '微软雅黑'; font-size: 14px; height: 40px; line-height: 40px;">
+        立即下单
       </li>
     </ul>
   </div>
@@ -122,6 +124,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import {replaceVars} from '@/utils/index';
 import {goods as GOODS_API, order as ORDER_API} from '@/config/serverApi';
 import QQ from './components/QQ';
+import SHUOSHUO from './components/Shuoshuo';
 
 const MAX_NUM = 99;
 const MIN_NUM = 1;
@@ -130,7 +133,8 @@ export default {
     Frame,
     swiper,
     swiperSlide,
-    QQ
+    QQ,
+    SHUOSHUO
   },
   data() {
     return {
@@ -157,9 +161,19 @@ export default {
         logo: '',
         pics: [],
         detail: '商品详细',
-        specs: []  
+        specs: [],
+        business_cata: 'QQ'
       }
     };
+  },
+  computed: {
+    formCmp() {
+      const CMP_MAP = {
+        QQ: 'QQ',
+        QQ_SHUOSHUO: 'SHUOSHUO'
+      };
+      return CMP_MAP[this.goods.business_cata];
+    }
   },
   created() {
     window.vue = this;

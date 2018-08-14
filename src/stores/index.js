@@ -19,7 +19,7 @@ const state = {
   // 首页广告数据
   adv: {
     href: '#', // #表示不跳转
-    pic: 'https://cdn.520cy.cn/images/appbazaar.png',
+    pic: 'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtQE337kOWdsAKFuc2y57haIiborP8yNQ2ypXric7RS0rOg/0',
     alt: '千寻软件市场'
   },
   // 首页公告

@@ -30,6 +30,13 @@ export default {
       }
     }
   },
+  mounted() {
+    var path = this.$route.path;
+    console.log('-------');
+    if (INDEX_PATHS.indexOf(path) + 1) {
+      this.setCurrentMenu(path);
+    }
+  },
   computed: {
     ...mapState(['transitionName'])
   }
@@ -37,7 +44,7 @@ export default {
 </script>
 
 <style>
-@import url('//at.alicdn.com/t/font_733952_4jy8eqfof02.css');
+@import url('//at.alicdn.com/t/font_733952_or6jqxxomr8.css');
 @import url('//cdn.bootcss.com/mui/3.7.1/css/mui.min.css');
 @import url('./assets/css/common.css');
 @import url('./assets/css/reset.css');

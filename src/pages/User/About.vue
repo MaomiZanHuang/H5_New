@@ -12,8 +12,7 @@
           <a href="#">联系我们</a>
           <div class="mui-collapse-content">
               <p>客服QQ: <b>851656783</b> (猫咪、Ceko)</p>
-              <p>官方Q群1: 851656783 (人已满)</p>
-              <p>官方Q群2: 851656783 </p>
+              <p>官方Q群1: 330462050 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=9ffade689e00973283178b101906e1550460a1c4bfe0a347bf3da83336f03ee4"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="脚本编程交流群" title="脚本编程交流群"></a></p>
           </div>
       </li>
       <li class="mui-table-view-cell mui-collapse mui-active bc-white">

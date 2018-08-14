@@ -52,7 +52,7 @@
         <!--CARD END -->
         <!--EMPTY CARD -->
         <div v-if="orders.length === 0" style="padding-top: 20%">
-          <p class="text-center"><i style="font-size: 2rem;" class="iconfont icon-kong"></i></p>
+          <p class="text-center"><i style="font-size: 1.5rem;" class="iconfont icon-kong"></i></p>
         </div>
       </div>
     </scroller>
