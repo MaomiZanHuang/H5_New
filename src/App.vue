@@ -20,7 +20,7 @@ export default {
     Index
   },
   methods: {
-    ...mapActions(['setCurrentMenu'])
+    ...mapActions(['setCurrentMenu', 'getUserPoints'])
   },
   watch: {
     ['$route'](to, from) {
@@ -32,10 +32,17 @@ export default {
   },
   mounted() {
     var path = this.$route.path;
-    console.log('-------');
     if (INDEX_PATHS.indexOf(path) + 1) {
       this.setCurrentMenu(path);
     }
+
+    // 每次启动的时候刷新下用户积分
+    this.getUserPoints()
+      .then(r => {})
+      .catch(err => {
+        console.log(err);
+        this.$tip.show('网络连接失败！');
+      })
   },
   computed: {
     ...mapState(['transitionName'])

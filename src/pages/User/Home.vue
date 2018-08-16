@@ -79,7 +79,7 @@
             <span class="navlistname">关于</span>
           </section>
           <a class="navlistlink">
-            v1.0.0<span class="mui-icon mui-icon-arrowright"></span>
+            v{{APP_VERSION}}<span class="mui-icon mui-icon-arrowright"></span>
           </a>
         </li>
       </ul>

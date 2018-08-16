@@ -35,7 +35,7 @@
       </div>
     </form> -->
       <div class="login__check">
-        <div style="margin-left: 25%;margin-top:5%"><span style="color: #FDFCFD; font-family: '微软雅黑'; font-size: 31px; ">千寻赞皇</span></div>
+        <div style="margin-left: 25%;margin-top:5%"><span style="color: #FDFCFD; font-family: '微软雅黑'; font-size: 31px; ">{{APP_NAME}}</span></div>
       </div>
 <div class="login__form">
 <div class="login__row">

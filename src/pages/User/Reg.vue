@@ -18,6 +18,12 @@
           </svg>
           <input type="text" v-model="qq" placeholder="QQ(选填，找回密码需要)"/>
         </div>
+        <div class="login__row" style="display: none">
+          <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+          </svg>
+          <input type="text" v-model="inviter" placeholder="邀请人(选填)"/>
+        </div>
         <div class="login__row">
           <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
@@ -48,15 +54,17 @@ export default {
     Frame
   },
   data() {
+    const {from} = this.$route.query;
     return {
       user: '',
       pwd: '',
-      qq: ''
+      qq: '',
+      inviter: from || ''
     }
   },
   methods: {
     reg() {
-      const {user, pwd, qq} = this;
+      const {user, pwd, qq, inviter} = this;
       if (user.trim() === '' || pwd.trim() === '') {
         this.$tip.show('账号密码不能为空！');
         return false;
@@ -69,6 +77,7 @@ export default {
       $.post(USER_API.reg, {
         user,
         pwd,
+        inviter,
         qq
       })
       .then(({data}) => {

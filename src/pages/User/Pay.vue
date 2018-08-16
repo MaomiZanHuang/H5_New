@@ -21,6 +21,17 @@
           <p>剩余支付时间  <span style="color: #00f">{{leftPayTime}}</span></p>
         </div>
         <br/>
+        <div class="mui-row" v-if="IS_APP">
+          <div class="mui-col-xs-1"></div>
+          <div class="mui-col-xs-4">
+            <button class="mui-btn btn-block" @click="saveQR">保存二维码</button>
+          </div>
+          <div class="mui-col-xs-2"></div>
+          <div class="mui-col-xs-4">
+            <button class="mui-btn btn-block" @click="deleteQR">删除二维码</button>
+          </div>
+        </div>
+        <br/>
         <br/>
         <div class="mui-row">
           <button class="mui-btn btn-block mui-btn-primary" @click="finishPay">我已完成支付</button>
@@ -63,6 +74,7 @@ export default {
   },
   data() {
     return {
+      qr: +new Date,
       pay: {
         order_no: '20180620083435172',
         points: 100,
@@ -84,7 +96,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$route.params);
     this.pay = Object.assign({}, this.$route.params);
     //设置定时查询策略，每隔5s钟进行一次查询
     var t = 50, delay = 5;
@@ -108,6 +119,19 @@ export default {
     
   },
   methods: {
+    saveQR() {
+      window.zanhuang.jsAndroid(JSON.stringify({
+        type: '保存图片',
+        picName: this.qr + '.png',
+        picUrl: this.pay.qr_img
+      }));
+    },
+    deleteQR() {
+      window.zanhuang.jsAndroid(JSON.stringify({
+        type: '删除图片',
+        picName: this.qr + '.png',
+      }));
+    },
     finishPay() {
       this.queryOrder(true, 0);
     },
@@ -132,6 +156,7 @@ export default {
         .then(({data}) => {
           this.$tip.show(data.msg);
           if (data.status === 1) {
+            this.deleteQR();
             this.$store.commit('setUserPoints', data.points);
             this.$router.push('/user/index');  
           }

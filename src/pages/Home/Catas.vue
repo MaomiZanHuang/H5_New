@@ -134,7 +134,6 @@ export default {
           ? { height: next.height + prev.height, cata_id: next.cata_id }
           : prev;
       }, { height: 0, cata_id: 0 });
-      console.log(scrollCata);
       this.currentCataId = scrollCata.cata_id; 
     });
     

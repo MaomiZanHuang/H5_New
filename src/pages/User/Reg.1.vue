@@ -4,7 +4,7 @@
   <div class="logo">
     <img src="http://pic.downcc.com/upload/2016-8/2016851622186787.jpg" />
   </div>
-  <p class="name text-center">千寻赞皇</p>
+  <p class="name text-center">{{APP_NAME}}</p>
 </div>
 <form class="mui-input-group login-reg-form">
   <div class="mui-input-row mui-row">

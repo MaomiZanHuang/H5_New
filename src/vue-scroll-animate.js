@@ -51,7 +51,6 @@ vScroll.install = (Vue, options = {}) => {
     const step = function () {
       start = start + (end - start) / rate
       if (Math.abs(start - _end) < 1) {
-        console.log('end')
         type === 'scrollTop' ? getTag.scrollTop = end : getTag.scrollLeft = end
         return
       }

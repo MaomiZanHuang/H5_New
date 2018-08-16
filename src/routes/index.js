@@ -17,7 +17,7 @@ export default new Router({
   routes: [
     {
       path: '',
-      name: 'home',
+      name: '',
       component: BlankView,
       children: [
         {

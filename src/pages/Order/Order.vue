@@ -28,7 +28,7 @@
           <div class="mui-card-content" style="padding: 10px; font-size: 0.325rem">
             <div class="mui-row">
               <div class="mui-col-xs-4">
-                <img src="https://all-pt-upyun-cdn.95at.cn/Uploads/image/2018-04-04/5ac4f1f9e49df.jpg" width="100%"/>
+                <img :src="order.goods_logo" onerror="https://cdn.520cy.cn/images/pic-null.png" width="100%"/>
               </div>
               <div class="mui-col-xs-8 order-content" style="padding-left: 10px;">
                 <p class="title">{{order.goods_name}}</p>
@@ -90,12 +90,10 @@ export default {
   },
   methods: {
     infinite(done) {
-      console.log('监听到滑动');
       this.page++;
       this.queryOrder('infinite', done);
     },
     refresh(done) {
-      console.log('监听到更新');
       this.page = 0;
       this.infinite = g_infinite;
       this.queryOrder('refresh', done);

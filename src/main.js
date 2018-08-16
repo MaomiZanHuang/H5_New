@@ -23,7 +23,6 @@ $.interceptors.request.use(
 );
 
 $.interceptors.response.use(function (res) {
-  console.log(res);
   return res;
   }, function (err){
     if (err && err.response && err.response.status === 403) {
@@ -40,6 +39,15 @@ Vue.use(VueScroller);
 Vue.config.productionTip = false
 Vue.use(Spin);
 Vue.use(Tip);
+
+// 注入的全局变量,APP的信息或者其它
+Vue.prototype.IS_APP = !!window.zanhuang;
+Vue.prototype.APP_NAME = '拇指赞';
+Vue.prototype.APP_SITE = 'http://m.520cy.cn';
+Vue.prototype.APP_LOGO = 'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVvBkYLQacXpHDdNu7icXncRAUJEsDqtJoS83mn8dhBXxkA/0';
+// 预防部落图片失效备用图片
+Vue.prototype.APP_LOGO2 = 'http://cdn.520cy.cn/images/logo_6.png';
+Vue.prototype.APP_VERSION = '1.0';
 
 router.beforeEach((to, from, next) => {
   if (to.meta.auth && !store.state.user.user) {

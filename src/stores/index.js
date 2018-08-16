@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import $ from 'axios';
-import {guest as GUEST_API} from '@/config/serverApi';
+import {user as USER_API, guest as GUEST_API} from '@/config/serverApi';
 
 Vue.use(Vuex);
 
@@ -70,7 +70,6 @@ export default new Vuex.Store({
         }
         $.get(GUEST_API.getGoodsCata)
           .then(({data}) => {
-            console.log(data);
             commit('setGoodsCata', data);
             resolve(data);
           }).catch(err => {
@@ -94,6 +93,19 @@ export default new Vuex.Store({
           }).catch(err => {
             reject(err);
           });
+      });
+    },
+    // 刷新用户积分
+    getUserPoints({ commit }) {
+      return new Promise((resolve, reject) => {
+        $.get(USER_API.getUserPoints)
+          .then(({data}) => {
+            commit('setUserPoints', data.points);
+            resolve(data);
+          })
+          .catch(err => {
+            reject(err);
+          })
       });
     }
   }
