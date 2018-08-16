@@ -1,13 +1,14 @@
 <template>
 <Frame title="推广赚取积分">
 <div class="mui-content promotion">
-  <ul class="mui-table-view mui-table-view-chevron" v-if="!IS_APP">
+  <ul class="mui-table-view mui-table-view-chevron" v-if="IS_APP">
      <li class="mui-table-view-cell">
       <a href="#">
       1.分享软件赚取积分
       </a>
       <div class="mui-collapse-content">
         分享本软件至QQ截图联系客服，最多可赚取200积分。
+        <br/>
         <button class="mui-btn mui-btn-primary btn-block" @click="app_share">立即分享</button>
       </div> 
     </li>
