@@ -89,6 +89,7 @@ export default new Vuex.Store({
         $.get(GUEST_API.getChargeOptions)
           .then(({data}) => {
             commit('setChargeOptions', data);
+            resolve(data);
           })
           .catch(err => {
             reject(err);
@@ -118,6 +119,9 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         $.get(USER_API.getUserPoints)
           .then(({data}) => {
+            if (!data.status) {
+              return false;  
+            }
             commit('setUserPoints', data.points);
             resolve(data);
           })

@@ -135,8 +135,8 @@ export default {
             orderNum: data.order.order_id,
             uid: contact,
             money: price,
-            goods_name: '积分充值',
-            goods_desc: price + '元=' + points + '积分',
+            goodsName: '积分充值',
+            goodsDesc: price + '元=' + points + '积分',
             notifyUrl: APP_WAPSPAY_NOTIFYURL
           }));
         })

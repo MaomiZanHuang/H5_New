@@ -25,7 +25,7 @@
 <div class="container-bg">
   <div class="container container-form">
     <div class="login__logo">
-      <img src="@/assets/logo.png" />
+      <img :src="APP_LOGO" />
     </div>
       <div class="login__form">
         <div class="login__row">
@@ -201,9 +201,13 @@ input, button {
 
 
 .login__logo {
-  height: 100px;
-  width: 100px;
-  margin: 10px auto;
+  width: 2rem;
+  height: 2rem;
+  margin: 10px auto 20px auto;
+}
+.login__logo img {
+  height: 2rem;
+  width: 2rem;
 }
 
 .form-bottom a {

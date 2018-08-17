@@ -42,7 +42,7 @@ export default {
       .catch(err => {
         console.log(err);
         this.$tip.show('网络连接失败！');
-      })
+      });
   },
   computed: {
     ...mapState(['transitionName'])

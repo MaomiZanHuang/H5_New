@@ -150,6 +150,7 @@ export default {
         })
         .catch(err => {
           this.$loading.hide();
+          fn(true);
           this.infinite = undefined;
           this.$tip.show('网络连接失败！');
           console.log(err);
