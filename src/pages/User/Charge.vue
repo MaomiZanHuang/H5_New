@@ -134,7 +134,7 @@ export default {
             orderNum: data.order.order_id,
             uid: contact,
             money: price,
-            goodsName: '积分充值',
+            goodsName: '充值' + points + '积分',
             goodsDesc: price + '元=' + points + '积分',
             notifyUrl: this.APP_WAPSPAY_NOTIFYURL
           }));
