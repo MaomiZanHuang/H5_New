@@ -117,6 +117,15 @@ export default new Router({
           }
         },
         {
+          name: 'bill',
+          path: '/user/bill',
+          component: User.Bill,
+          meta: {
+            auth: true,
+            depth: 1
+          }
+        },
+        {
           name: 'about',
           path: '/user/about',
           component: User.About,

@@ -8,6 +8,7 @@ import Reg from './Reg';
 import FindPwd from './FindPwd';
 import Charge from './Charge';
 import Pay from './Pay';
+import Bill from './Bill';
 
 export default {
   Index,
@@ -19,5 +20,6 @@ export default {
   Reg,
   FindPwd,
   Charge,
-  Pay
+  Pay,
+  Bill
 }

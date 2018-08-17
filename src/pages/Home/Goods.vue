@@ -172,7 +172,7 @@ export default {
         QQ: 'QQ',
         QQ_SHUOSHUO: 'SHUOSHUO'
       };
-      return CMP_MAP[this.goods.business_cata];
+      return CMP_MAP[this.goods.business_cata || 'QQ'];
     }
   },
   created() {

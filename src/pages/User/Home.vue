@@ -33,6 +33,15 @@
 
     <div class="navlist">
       <ul>
+        <li @click="jumpTo('/user/bill')">
+          <section>
+            
+            <span class="navlistname">我的账单</span>
+          </section>
+          <a class="navlistlink">
+            <span class="mui-icon mui-icon-arrowright"></span>
+          </a>
+        </li>
         <li @click="jumpTo('/user/userinfo')">
           <section>
             

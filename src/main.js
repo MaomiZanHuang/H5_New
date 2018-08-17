@@ -28,7 +28,7 @@ $.interceptors.response.use(function (res) {
     if (err && err.response && err.response.status === 403) {
       router.push('/user/login');
     }
-  return Promise.reject(error);
+  return Promise.reject(err);
   });
 
 FastClick.attach(document.body);
