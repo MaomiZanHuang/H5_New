@@ -3,7 +3,20 @@
   <ul class="mui-table-view"> 
     <li class="mui-table-view-cell mui-collapse mui-active">
       <a href="#">订单号: {{pay.order_no}}                       充值: {{pay.points}}积分</a>
-      <div class="mui-collapse-content text-center">
+      <div class="mui-collapse-content text-center" v-if="pay.type === 'app'">
+        <div class="mui-row">
+          <p style="font-size:0.6rem;color:#f00">￥{{pay.price.toFixed(2)}}</p>
+          <br/>
+          <br/>
+        </div>
+        <div class="mui-row">
+          <button class="mui-btn btn-block mui-btn-primary" @click="finishAppPay">我已完成支付</button>
+          <br/>
+          <br/>
+        </div>
+      </div>
+      <!-- 非APP页面支付-->
+      <div class="mui-collapse-content text-center" v-else>
         <div class="mui-row">
           <p v-if="pay.type ==='wx'" style="color:rgb(0,208,11)" class="mui-icon iconfont icon-weixinzhifu">使用微信扫一扫</p>
           <p v-if="pay.type ==='zfb'" style="color:rgb(0,166,233)" class="mui-icon iconfont icon-alipay">使用支付宝支付</p>
@@ -21,7 +34,7 @@
           <p>剩余支付时间  <span style="color: #00f">{{leftPayTime}}</span></p>
         </div>
         <br/>
-        <div class="mui-row" v-if="IS_APP">
+        <div class="mui-row" v-if="IS_APP && pay.type != 'zfb'">
           <div class="mui-col-xs-1"></div>
           <div class="mui-col-xs-4">
             <button class="mui-btn btn-block" @click="saveQR">保存二维码</button>
@@ -97,6 +110,10 @@ export default {
   },
   mounted() {
     this.pay = Object.assign({}, this.$route.params);
+
+    if (this.pay.type === 'app') {
+      return false;
+    }
     //设置定时查询策略，每隔5s钟进行一次查询
     var t = 50, delay = 5;
     this.leftTime = t * delay;
@@ -132,8 +149,24 @@ export default {
         picName: this.qr + '.png',
       }));
     },
+    finishAppPay() {
+      this.queryAppOrder();
+    },
     finishPay() {
       this.queryOrder(true, 0);
+    },
+    queryAppOrder() {
+      $.get(replaceVars(PAY_API.queryAppOrder, {id: this.pay.order_no}))
+        .then(({data}) => {
+          this.$tip.show(data.status ? '已支付' : '未支付');
+          if (data.status === 1) {
+            this.$store.commit('setUserPoints', data.points);
+            this.$router.push('/user/index');
+          }
+        })
+        .catch(err => {
+          this.$tip.show('网络连接失败！');
+        });
     },
     queryOrder(showResult = false, t) {
       $.get(replaceVars(PAY_API.queryCardOrder,{id:this.pay.order_no}))

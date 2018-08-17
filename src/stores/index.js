@@ -16,6 +16,7 @@ const state = {
   /** 首页缓存的数据，还可能在其它地方用到 */
   // 分类
   goods_cata: [],
+  charge_options: [],
   // 首页广告数据
   adv: {
     href: '#', // #表示不跳转
@@ -51,6 +52,9 @@ export default new Vuex.Store({
       state.adv = data.adv;
       state.home_page_goods = data.home_page_goods;
       state.notices = data.notices;
+    },
+    setChargeOptions(state, data) {
+      state.charge_options = data;
     }
   },
   actions: {
@@ -73,6 +77,20 @@ export default new Vuex.Store({
             commit('setGoodsCata', data);
             resolve(data);
           }).catch(err => {
+            reject(err);
+          })
+      });
+    },
+    getChargeOptions({commit, state}) {
+      return new Promise((resolve, reject) => {
+        if (state.charge_options.length) {
+          return resolve(state.charge_options);
+        }
+        $.get(GUEST_API.getChargeOptions)
+          .then(({data}) => {
+            commit('setChargeOptions', data);
+          })
+          .catch(err => {
             reject(err);
           })
       });

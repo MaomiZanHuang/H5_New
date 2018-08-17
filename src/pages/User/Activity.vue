@@ -72,6 +72,7 @@
 </Frame>
 </template>
 <script>
+import {mapState} from 'vuex';
 import Frame from '@/components/Frame.vue';
 export default {
   components: {
@@ -86,6 +87,9 @@ export default {
     return {
       referral: APP_SITE + '/#user/reg?inviter=' + encodeURI(user)
     };
+  },
+  computed: {
+    ...mapState(['user'])
   },
   created() {
     const {APP_LOGO, APP_NAME, APP_SITE} = this;
@@ -134,8 +138,10 @@ export default {
       }));
     },
     app_adv(type) {
+      const {user} = this.user;
       window.zanhuang.jsAndroid(JSON.stringify({
         type: '赚积分',
+        user: user,
         item: type,
       }));
     }

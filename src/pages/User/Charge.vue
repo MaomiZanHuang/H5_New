@@ -26,7 +26,7 @@
         <br/>
         <div class="mui-row">
           <div class="mui-col-xs-3" style="font-size: 0.425rem;">所需金额:</div>
-          <div class="mui-col-xs-9" style="font-size: 0.425rem;color:red;padding-left: 3%;">￥{{selectPrice.price.toFixed(2)}}</div>
+          <div class="mui-col-xs-9" style="font-size: 0.425rem;color:red;padding-left: 3%;">￥{{(selectPrice.price || 0).toFixed(2)}}</div>
         </div>
         <br/>
         <br/>
@@ -54,7 +54,7 @@
 </template>
 <script>
 import $ from 'axios';
-import {mapState} from 'vuex';
+import {mapState, mapActions} from 'vuex';
 
 import {pay as PAY_API, user as USER_API} from '@/config/serverApi';
 import Frame from '@/components/Frame.vue';
@@ -64,7 +64,8 @@ export default {
   },
   computed: {
     ...mapState({
-      user: state => state.user
+      user: state => state.user,
+      types: state => state.charge_options
     })
   },
   data() {
@@ -73,25 +74,11 @@ export default {
         qr: ''
       },
       card: '',
-      types: [
-        { price: 0.1, points: 100, title: '100积分', card: 54436 },
-        { price: 0.2, points: 200, title: '200积分', card: 54437 },
-        { price: 5, points: 500, title: '500积分', card: 54438 },
-        { price: 10, points: 1000, title: '1000积分', card: 54439 },
-        { price: 20, points: 2000, title: '2000积分', card: 54440 },
-        { price: 50, points: 5000, title: '5000积分', card: 54441 },
-        { price: 100, points: 10000, title: '10000积分', card: 54442 },
-        { price: 200, points: 20000, title: '20000积分', card: 54443 }
-      ],
-      selectPrice: {
-        price: 0.1,
-        points: 100,
-        title: '100积分',
-        card: 54436
-      }
+      selectPrice: {}
     };
   },
   methods: {
+    ...mapActions(['getChargeOptions']),
     chargeByCard() {
       if (this.card.length !== 24) {
         this.$tip.show('卡密格式不正确！');
@@ -115,7 +102,48 @@ export default {
       this.createOrder('wx');
     },
     payByAlipay() {
-      this.createOrder('zfb');
+      if (!this.IS_APP) {
+        this.createOrder('zfb');
+        return false;
+      }
+      // APP里直接调用
+      const {price, card, points, id} = this.selectPrice;
+      const contact = this.user.user || 'telanx';
+      this.$loading.show('创建订单中...');
+      $.post(PAY_API.create, {id, price, points})
+        .then(({data}) => {
+          this.$loading.hide();
+          if (!data.status) {
+            this.$tip.show(data.msg);
+            return false;
+          }
+
+          this.$router.push({
+            name: 'pay',
+            params: {
+              type: 'app',
+              order_no: data.order.order_id,
+              price,
+              points,
+              qr: '',
+              qr_img: ''
+            }
+          });
+          return false;
+          window.zanhuang.jsAndroid(JSON.stringify({
+            type: '支付',
+            orderNum: data.order.order_id,
+            uid: contact,
+            money: price,
+            goods_name: '积分充值',
+            goods_desc: price + '元=' + points + '积分',
+            notifyUrl: APP_WAPSPAY_NOTIFYURL
+          }));
+        })
+        .catch(err => {
+          this.$loading.hide();
+          this.$tip.show('网络连接失败！');
+        });
     },
     payByQQpay() {
       this.createOrder('qq');
@@ -166,6 +194,15 @@ export default {
         this.$tip.show('网络连接失败！');
       });
     }
+  },
+  mounted() {
+    console.log('进入mounted');
+    this.getChargeOptions().then(r => {
+      this.selectPrice = this.types[0];
+    }).catch(err => {
+      console.log(err);
+      this.$tip.show('获取充值选项失败！请重新打开充值页面！');
+    });
   }
 }
 </script>

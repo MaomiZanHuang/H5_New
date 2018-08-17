@@ -52,7 +52,7 @@ export default {
 
 <style>
 @import url('//at.alicdn.com/t/font_733952_or6jqxxomr8.css');
-@import url('//cdn.bootcss.com/mui/3.7.1/css/mui.min.css');
+@import url('https://cdn.bootcss.com/mui/3.7.1/css/mui.min.css');
 @import url('./assets/css/common.css');
 @import url('./assets/css/reset.css');
 

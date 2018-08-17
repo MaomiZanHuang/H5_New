@@ -11,7 +11,8 @@ exports.guest = {
   getHomePageData: `${HOST}/guest/getHomePageData`,
   getOrderByVisitor: `${HOST}/guest/getOrder`,
   // 获取说说
-  getShuoshuo: `${HOST}/guest/getShuoshuo`
+  getShuoshuo: `${HOST}/guest/getShuoshuo`,
+  getChargeOptions: `${HOST}/guest/charge_options`
 };
 
 exports.user = {
@@ -43,5 +44,8 @@ exports.order = {
 
 exports.pay = {
   getCardOrder: `${HOST}/pay/getCardOrder`,
-  queryCardOrder: `${HOST}/pay/{id}`
+  queryCardOrder: `${HOST}/pay/card_pay/{id}`,
+  // 发起充值请求
+  create: `${HOST}/pay/create`,
+  queryAppOrder: `${HOST}/pay/app_pay/{id}`
 }
