@@ -48,7 +48,7 @@ Vue.prototype.APP_LOGO = 'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVvBkYLQacXpHDdNu
 // 预防部落图片失效备用图片
 Vue.prototype.APP_LOGO2 = 'http://cdn.520cy.cn/images/logo_6.png';
 // 万普回调
-Vue.prototype.APP_WAPSPAY_NOTIFYURL = 'http://m.520cy.cn/api/guest/waps_pay/cb';
+Vue.prototype.APP_WAPSPAY_NOTIFYURL = 'http://116.85.57.185/api/guest/waps_pay/cb';
 Vue.prototype.APP_VERSION = '1.0';
 
 router.beforeEach((to, from, next) => {
