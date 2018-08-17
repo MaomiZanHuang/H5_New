@@ -129,7 +129,6 @@ export default {
               qr_img: ''
             }
           });
-          return false;
           window.zanhuang.jsAndroid(JSON.stringify({
             type: '支付',
             orderNum: data.order.order_id,
