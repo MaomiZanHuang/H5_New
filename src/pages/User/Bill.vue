@@ -111,6 +111,6 @@ export default {
 </script>
 <style scoped>
 .bill {
-  padding: 0.6rem 10px;
+  padding: 0.5rem 10px;
 }
 </style>
