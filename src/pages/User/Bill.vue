@@ -52,10 +52,12 @@ export default {
   },
   methods: {
     infinite(done) {
+      console.log('触发下拉');
       this.page++;
       this.queryOrder('infinite', done);
     },
     refresh(done) {
+      console.log('触发上拉');
       this.page = 0;
       this.infinite = g_infinite;
       this.queryOrder('refresh', done);
@@ -103,7 +105,7 @@ export default {
   },
   mounted() {
     g_infinite = this.infinite;
-    //this.queryOrder('refresh');
+    this.queryOrder('refresh');
   }
 };
 </script>
