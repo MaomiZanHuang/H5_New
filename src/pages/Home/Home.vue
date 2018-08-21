@@ -28,7 +28,9 @@
 						</li>
 					</ul>
 				</marquee>
-      	<a href="#" class="morenews">更多</a>
+      	<div href="#" class="morenews">
+					<p>更多</p>
+				</div>
     </div>
 
 			<!--公告区域-->
@@ -280,17 +282,18 @@ body {
 }
 
 .news {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     width: 95%;
     height: 0.825rem;
     border-radius: 0.625rem;
 		margin: 0.15625rem auto;
 		padding: 0px 0.1875rem;
     background: #fff;
+		display: table;
 }
 .newsfrom {
+	display: table-cell;
+	vertical-align: middle;
+  text-align: center;
 	width: 1.5rem;
 	color: #f00;
 	font-size: 0.328125rem;
@@ -323,12 +326,12 @@ body {
 }
 
 .morenews {
+	display: table-cell;
 	font-size: 0.28125rem;
 	color: #040404;
-	width: 1rem;;
-	display: block;
-	position: absolute;
-	right: 0.25rem;
+	width: 1rem;
+	vertical-align: middle;
+  text-align: center;
 }
 
 .block {
