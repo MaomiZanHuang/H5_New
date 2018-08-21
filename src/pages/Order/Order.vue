@@ -121,14 +121,23 @@ export default {
           }
 
           var orders = data.map(r => {
-            let { amt, price, total_fee, concat } = r;
-            price = JSON.parse(price || '{}');
+            let { amt, price, total_fee, concat, pay_type } = r;
+            var _price = JSON.parse(price || '{}');
+            // 针对充值的
             total_fee = {
-              rmb: amt * price.rmb,
-              points: amt * price.points
+              rmb: amt * _price.rmb,
+              points: amt * _price.points
             };
+            if ('charge' == pay_type) {
+              _price = {
+                points: parseFloat(price).toFixed(2)
+              };
+              total_fee = {
+                points: parseFloat(amt * price).toFixed(2)
+              };
+            }
             concat = JSON.parse(concat || '{}');
-            r.price = JSON.parse(r.price);
+            r.price = _price;
             r.concat = concat;
             r.total_fee = total_fee;
             r.create_time = timeFormat(r.create_time, 'yyyy-MM-dd hh:mm:ss');
@@ -150,7 +159,9 @@ export default {
         })
         .catch(err => {
           this.$loading.hide();
-          fn(true);
+          if (typeof fn === 'function'){
+            fn(true);
+          }
           this.infinite = undefined;
           this.$tip.show('网络连接失败！');
           console.log(err);

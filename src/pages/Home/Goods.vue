@@ -125,6 +125,8 @@ import {replaceVars} from '@/utils/index';
 import {goods as GOODS_API, order as ORDER_API} from '@/config/serverApi';
 import QQ from './components/QQ';
 import SHUOSHUO from './components/Shuoshuo';
+import KGE from './components/Kge';
+import DOUYIN from './components/Douyin';
 
 const MAX_NUM = 99;
 const MIN_NUM = 1;
@@ -134,7 +136,9 @@ export default {
     swiper,
     swiperSlide,
     QQ,
-    SHUOSHUO
+    SHUOSHUO,
+    KGE,
+    DOUYIN
   },
   data() {
     return {
@@ -170,7 +174,9 @@ export default {
     formCmp() {
       const CMP_MAP = {
         QQ: 'QQ',
-        QQ_SHUOSHUO: 'SHUOSHUO'
+        QQ_SHUOSHUO: 'SHUOSHUO',
+        QUANMIN_KGE: 'KGE',
+        DOUYIN: 'DOUYIN'
       };
       return CMP_MAP[this.goods.business_cata] || 'QQ';
     }
