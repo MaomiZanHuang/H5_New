@@ -1,11 +1,10 @@
 <template>
   <div>
 		<Menu />
-		<header id="header" class="mui-bar mui-bar-transparent" :style="{'background-color': 'rgba(197, 82, 82, '+alpha+')'}">
-			<h1 class="mui-title" :style="{'color': 'rgba(255, 255, 255, '+alpha+')'}">千寻赞皇</h1>
-		</header>
-
 		<div class="mui-content" style="padding-bottom: 50px;overflow: auto">
+			<header id="header" class="mui-bar mui-bar-transparent" :style="{'background-color': 'rgba(197, 82, 82, '+alpha+')'}">
+				<h1 class="mui-title" :style="{'color': 'rgba(255, 255, 255, '+alpha+')'}">千寻赞皇</h1>
+			</header>
 			<!--轮播图-->
 			<swiper :options="swiperOption">
         <swiper-slide  v-for="(banner,idx) in banners" :key="banner">
