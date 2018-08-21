@@ -284,13 +284,11 @@ body {
     justify-content: flex-start;
     align-items: center;
     width: 95%;
-		width: 9.5625rem;
     height: 0.825rem;
     border-radius: 0.625rem;
 		margin: 0.15625rem auto;
 		padding: 0px 0.1875rem;
     background: #fff;
-    overflow: hidden;
 }
 .newsfrom {
 	width: 1.5rem;
@@ -305,10 +303,13 @@ body {
 
 .newslist {
     flex-grow: 1;
-    overflow: hidden;
+    overflow: auto;
     font-size: 0.28125rem;
     align-self: flex-start;
     height: 100%;
+}
+.newslist marquee {
+	overflow: hidden;
 }
 
 .newslist ul li {
@@ -324,11 +325,10 @@ body {
 .morenews {
 	font-size: 0.28125rem;
 	color: #040404;
-	padding: 0 0 0 0.1875rem;
 	width: 1rem;;
 	display: block;
-	float: right;
-	border-left: 1px solid #040404;
+	position: absolute;
+	right: 0.25rem;
 }
 
 .block {
