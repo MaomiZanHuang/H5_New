@@ -1,9 +1,6 @@
 <template>
 <div class="mui-row">
-  <div class="mui-col-xs-4">
-    <img style="float: left" src='https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=51cba286c7ef76093c0b9e9916e6c4f1/78310a55b319ebc4ea7ad0828e26cffc1e1716ae.jpg' onerror="this.src='http://q1.qlogo.cn/g?b=qq&nk=1000&s=100'" />
-  </div>
-  <div class="mui-col-xs-8">
+  <div class="mui-col-xs-12">
     <!--根据不同类型刷赞，快手业务进行不同的的数据进行分类展示,目前只展示QQ-->
     <!--
       QQ
