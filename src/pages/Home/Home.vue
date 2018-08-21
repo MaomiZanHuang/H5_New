@@ -196,7 +196,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 @import url('swiper/dist/css/swiper.min.css');
-
+.mui-bar-transparent {
+	padding: 0;
+	margin: 0;
+}
 
 /*列表样式*/
 .mui-table-view:after {

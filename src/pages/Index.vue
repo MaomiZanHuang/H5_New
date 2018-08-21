@@ -1,5 +1,4 @@
 <template>
-<div>
 <!--底部导航栏-->
   <nav class="mui-bar mui-bar-tab">
     <router-link to="/" class="mui-tab-item" :class="currentMenu === '/' && 'mui-active'">
@@ -20,7 +19,6 @@
     </router-link>
   </nav>
 <!--底部导航栏结束-->
-</div>
 </template>
 <script>
 import {mapState} from 'vuex';
