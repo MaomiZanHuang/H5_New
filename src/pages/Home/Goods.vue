@@ -127,6 +127,8 @@ import QQ from './components/QQ';
 import SHUOSHUO from './components/Shuoshuo';
 import KGE from './components/Kge';
 import DOUYIN from './components/Douyin';
+import WEIBO_BLOG from './components/WeiboBlog';
+import WEIBO_FANS from './components/WeiboFans';
 
 const MAX_NUM = 99;
 const MIN_NUM = 1;
@@ -138,7 +140,9 @@ export default {
     QQ,
     SHUOSHUO,
     KGE,
-    DOUYIN
+    DOUYIN,
+    WEIBO_BLOG,
+    WEIBO_FANS
   },
   data() {
     return {
@@ -176,7 +180,9 @@ export default {
         QQ: 'QQ',
         QQ_SHUOSHUO: 'SHUOSHUO',
         QUANMIN_KGE: 'KGE',
-        DOUYIN: 'DOUYIN'
+        DOUYIN: 'DOUYIN',
+        WEIBO_BLOG: 'WEIBO_BLOG',
+        WEIBO_FANS: 'WEIBO_FANS'
       };
       return CMP_MAP[this.goods.business_cata] || 'QQ';
     }
