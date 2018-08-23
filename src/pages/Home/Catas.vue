@@ -138,7 +138,7 @@ export default {
     });
     
     let selectedCataId = this.$route.params.id || catas[0].cata_id;
-    let idx = this.catas.map(cata => '' + cata.id).indexOf(selectedCataId);
+    let idx = this.catas.map(cata => '' + cata.cata_id).indexOf(selectedCataId);
     this.changeCata(selectedCataId, idx);
   }
 }
