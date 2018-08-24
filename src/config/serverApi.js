@@ -26,7 +26,8 @@ exports.user = {
   checkin: `${HOST}/user/checkin`,
   chargeByCard: `${HOST}/user/chargeByCard`,
   getUserPoints: `${HOST}/user/points`,
-  getUserBill: `${HOST}/user/bill`
+  getUserBill: `${HOST}/user/bill`,
+  share: `${HOST}/user/share`
 };
 
 exports.goods = {

@@ -72,6 +72,7 @@
 </Frame>
 </template>
 <script>
+import $ from 'axios';
 import {mapState} from 'vuex';
 import Frame from '@/components/Frame.vue';
 export default {
@@ -116,12 +117,25 @@ export default {
     document.head.appendChild(script);
   },
   methods: {
+    afterShare() {
+      $.get(USER_API.share)
+        .then(({data}) => {
+          this.$tip.show(data.msg);
+          if (data.status) {
+            this.$store.commit('setUserPoints', data.points);
+          }
+        })
+        .catch(err => {
+          this.$tip.show('网络连接失败！');
+        }) 
+    },
     copy() {
       try {
         this.$refs.copyEl.select();
         this.$refs.copyEl.focus();
         document.execCommand('copy', false, null);
         this.$tip.show('已复制!');
+        this.$refs.copyEl.blur();
       } catch(err) {
         this.$tip.show('复制失败，您可以手动选中复制！');
         console.log(err);
@@ -145,6 +159,9 @@ export default {
         item: type,
       }));
     }
+  },
+  mounted() {
+    window.afterShare = this.afterShare; 
   }
 }
 </script>

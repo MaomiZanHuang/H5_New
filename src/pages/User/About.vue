@@ -13,11 +13,13 @@
           <div class="mui-collapse-content">
               <p>
                 客服QQ: <b>851656783</b>
-                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=851656783&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:851656783:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                <img v-if="IS_APP" @click="joinQQ" border="0" src="http://wpa.qq.com/pa?p=2:851656783:51" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+                <a v-else target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=851656783&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:851656783:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
               </p>
               <p>
                 拇指赞官方Q群: 863391242
-                <a href="//qm.qq.com/cgi-bin/qm/qr?k=NlxJZk3yCoHEEz_VCVaBRFjRgxXGftYw" target="blank"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="拇指赞官方交流群" title="拇指赞官方交流群"></a>
+                <img v-if="IS_APP" @click="joinGroup" border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="拇指赞官方交流群" title="拇指赞官方交流群">
+                <a v-else href="//qm.qq.com/cgi-bin/qm/qr?k=NlxJZk3yCoHEEz_VCVaBRFjRgxXGftYw" target="blank"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="拇指赞官方交流群" title="拇指赞官方交流群"></a>
               </p>
           </div>
       </li>
@@ -46,6 +48,20 @@ import Frame from '@/components/Frame.vue';
 export default {
   components: {
     Frame
+  },
+  methods: {
+    joinGroup() {
+      window.zanhuang.jsAndroid(JSON.stringify({
+        type: '加群',
+        number: '863391242'
+      }));
+    },
+    joinQQ() {
+      window.zanhuang.jsAndroid(JSON.stringify({
+        type: 'QQ聊天',
+        qq: '851656783'
+      }));
+    }
   }
 }
 </script>

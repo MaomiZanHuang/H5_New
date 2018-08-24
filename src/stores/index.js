@@ -117,7 +117,7 @@ export default new Vuex.Store({
     // 刷新用户积分
     getUserPoints({ commit }) {
       return new Promise((resolve, reject) => {
-        $.get(USER_API.getUserPoints)
+        $.get(USER_API.getUserPoints+'?t=' + (+new Date))
           .then(({data}) => {
             if (!data.status) {
               return false;  
