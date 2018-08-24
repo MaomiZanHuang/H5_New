@@ -73,6 +73,7 @@
 </template>
 <script>
 import $ from 'axios';
+import {user as USER_API} from '@/config/serverApi';
 import {mapState} from 'vuex';
 import Frame from '@/components/Frame.vue';
 export default {
