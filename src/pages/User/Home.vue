@@ -12,7 +12,7 @@
         </section>
         
         <section class="points" v-if="user.user">
-          <span class="title">积 分</span>
+          <span class="title">积 分   <i v-if="IS_APP" @click="getUserPoints" class="iconfont icon-refresh"></i></span>
           <span class="money">{{user.points}}</span>
         </section>
         <section class="points" v-if="user.user" style="padding-top: 1.25rem;">
@@ -114,7 +114,7 @@
  <script>
  import $ from 'axios';
  import {user as USER_API} from '@/config/serverApi';
- import {mapState} from 'vuex';
+ import {mapState, mapActions} from 'vuex';
  import '@/assets/js/flexible.js';
  import Menu from '@/pages/Index';
 
@@ -135,6 +135,7 @@
      };
    },
    methods: {
+     ...mapActions(['getUserPoints']),
      jumpTo(url) {
        this.$router.push(url);
      },
@@ -204,6 +205,9 @@
   font-size: 0.359375rem;
   color: #ffffff;
   padding-top: 1.53125rem;
+}
+.userinfo .title i {
+  font-size: 0.359375rem !important;
 }
 .money {
   font-size: 0.59rem;

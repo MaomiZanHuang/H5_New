@@ -119,7 +119,7 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         $.get(USER_API.getUserPoints+'?t=' + (+new Date))
           .then(({data}) => {
-            if (!data.status) {
+            if (typeof data.points === 'undefined') {
               return false;  
             }
             commit('setUserPoints', data.points);
