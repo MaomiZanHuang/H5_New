@@ -67,6 +67,14 @@
         <button class="mui-btn mui-btn-danger btn-block" @click="copy">一键复制</button>
       </div> 
     </li>
+    <li class="mui-table-view-cell">
+      <a href="#">
+      3.任务赚积分(需在APP中进行)
+      </a>
+      <div class="mui-collapse-content">
+      
+      </div> 
+    </li>
   </ul>
 </div>
 </Frame>
