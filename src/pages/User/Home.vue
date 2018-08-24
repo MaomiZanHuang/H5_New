@@ -12,8 +12,10 @@
         </section>
         
         <section class="points" v-if="user.user">
-          <span class="title">积 分   <i v-if="IS_APP" @click="getUserPoints" class="iconfont icon-refresh"></i></span>
-          <span class="money">{{user.points}}</span>
+          <p class="title" @click="updatePoints">
+          积 分<i class="iconfont icon-refresh" :class="rotate && 'rotate'"></i>
+          </p>
+          <p class="money">{{user.points}}</p>
         </section>
         <section class="points" v-if="user.user" style="padding-top: 1.25rem;">
           <a class="btn" @click="checkin">签 到</a>
@@ -131,7 +133,8 @@
    data() {
      return {
        feedbackDialogShow: false,
-       feedbackContent: ''
+       feedbackContent: '',
+       rotate: false
      };
    },
    methods: {
@@ -175,12 +178,34 @@
         .catch(err => {
           this.$tip.show('网络连接失败！');
         })
+     },
+     updatePoints() {
+       this.rotate = true;
+       this.getUserPoints().then(r => {
+         this.rotate = false;
+         this.$tip.show('您的积分:' + r.points);
+       })
+       .catch(err => {
+         this.rotate = false;
+         this.$tip.show('刷新积分失败！');
+       });
      }
    }
  }
  </script>
 
 <style scoped>
+@keyframes loading {
+	0 {
+	transform:rotate(0deg)
+}
+50% {
+	transform:rotate(180deg)
+}
+100% {
+	transform:rotate(360deg)
+}
+}
 .userinfo {
   display: flex;
   justify-content: space-around;
@@ -207,7 +232,11 @@
   padding-top: 1.53125rem;
 }
 .userinfo .title i {
-  font-size: 0.359375rem !important;
+  font-size: 0.425rem;
+}
+.userinfo .title .rotate {
+    display: inline-block;
+    animation: loading 1.5s .3s cubic-bezier(.17,.37,.43,.67) infinite;
 }
 .money {
   font-size: 0.59rem;
