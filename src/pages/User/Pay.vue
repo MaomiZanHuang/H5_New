@@ -18,7 +18,10 @@
       <!-- 非APP页面支付-->
       <div class="mui-collapse-content text-center" v-else>
         <div class="mui-row">
-          <p v-if="pay.type ==='wx'" style="color:rgb(0,208,11)" class="mui-icon iconfont icon-weixinzhifu">使用微信扫一扫</p>
+          <p v-if="pay.type ==='wx'" style="color:rgb(0,208,11)" class="mui-icon iconfont icon-weixinzhifu">
+          使用微信扫一扫<br/>
+          <font color="red">(由于微信限制，只能通过扫码支付)</font>
+          </p>
           <p v-if="pay.type ==='zfb'" style="color:rgb(0,166,233)" class="mui-icon iconfont icon-alipay">使用支付宝支付</p>
           <p v-if="pay.type ==='qq'" style="color:rgb(5,176,255)" class="mui-icon iconfont icon-qq">使用QQ钱包扫一扫</p>
         </div>
@@ -58,7 +61,7 @@
     <li class="mui-table-view-cell mui-collapse mui-active">
       <a href="#">注意事项:</a>
       <div class="mui-collapse-content mui-row">
-        1.付完款请点击【我已完成支付】进行确认
+        1.付完款,可能需要等待5~10s到账，点击【我已完成支付】进行确认
         <br/>
         <br/>
         2.如果充值完，未到账，请复制订单号 【<font color="#f00">{{pay.order_no}}</font>】与客服联系！<br/>
