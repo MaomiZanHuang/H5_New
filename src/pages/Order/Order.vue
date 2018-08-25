@@ -83,7 +83,7 @@ export default {
     return {
       currentTab: 'success',
       page_size: 5,
-      page: 0,
+      page: -1,
       orders: [
       ]
     };
@@ -106,6 +106,7 @@ export default {
       this.queryOrder('refresh');
     },
     queryOrder(type, fn) {
+      console.log(type);
       if (this.page === 0) {
         this.$loading.show('正在查询中...');
       }
