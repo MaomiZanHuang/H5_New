@@ -30,12 +30,12 @@
                 <div class="mui-col-xs-8">
                   <h2 class="name">{{good.title}}</h2>
                   <p class="desc">{{good.specs}}</p>
-                  <div class="extra"><span class="count">月售229份</span></div>
+                  <div class="extra"><span class="count">月售{{(good.id)*3 + 9*(good.id%10)}}份</span></div>
                 </div>
                 <div class="mui-col-xs-4">
                   <div class="price">
                       <!--<i class="mui-icon iconfont icon-msg6 rmb">{{good.min_price}}</i>-->
-                      <i class="mui-icon iconfont icon-jifen points">{{good.min_points}}</i>  
+                      <i class="mui-icon iconfont icon-iconfont-copy points">{{good.min_points}}</i>  
                   </div>
                 </div>
               </div>

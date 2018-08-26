@@ -71,8 +71,10 @@
       <a href="#">
       3.任务赚积分(需在APP中进行)
       </a>
-      <div class="mui-collapse-content">
-      
+      <div class="mui-collapse-content" style="text-align: center;">
+        <p><a href="http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVvib6g3Nwl7Hyy4jicSMVzvOicCTVG0eNu3IrrC30kDWCicOA/0">戳我下载安卓APP『拇指赞』</a></p>
+        <img width="200px" height="200px" src="http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVvib6g3Nwl7Hyy4jicSMVzvOicCTVG0eNu3IrrC30kDWCicOA/0" />
+        <p>扫一扫下载安装『拇指赞』</p>
       </div> 
     </li>
   </ul>

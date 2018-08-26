@@ -7,7 +7,7 @@
 			</a>
 			<a class="mui-tab-item price">
         <!--<p><i class="mui-icon iconfont icon-msg6 rmb"> {{(form.amt * form.selectSpec.rmb).toFixed(2)}}</i></p>-->
-		    <p><i class="mui-icon iconfont icon-jifen points"> {{(form.amt * form.selectSpec.points).toFixed(2)}}</i></p>
+		    <p><i class="mui-icon iconfont icon-iconfont-copy points"> {{(form.amt * form.selectSpec.points).toFixed(2)}}</i></p>
 			</a>
 
 			<a @click="buy" ref="buyBtn" class="mui-tab-item" style="background-color: red;color: #fff;font-weight: bold;" id="tijiaodingdan">
@@ -29,7 +29,7 @@
     <div class="mui-col-xs-8 goods-title">{{goods.title}}</div>
     <div class="mui-col-xs-4 price">
       <!--<p><i class="mui-icon iconfont icon-msg6 rmb"> {{form.selectSpec.rmb}}</i></p>-->
-		  <p style="text-align: right"><i class="mui-icon iconfont icon-jifen points"> {{form.selectSpec.points}}</i></p>
+		  <p style="text-align: right"><i class="mui-icon iconfont icon-iconfont-copy points"> {{form.selectSpec.points}}</i></p>
     </div>
   </div>
   
@@ -89,7 +89,7 @@
             单价:
             <!--<i class="mui-icon iconfont icon-msg6 rmb">{{form.selectSpec.rmb}}</i>
             &nbsp;&nbsp;-->
-            <i class="mui-icon iconfont icon-jifen points">{{form.selectSpec.points}}</i></p>
+            <i class="mui-icon iconfont icon-iconfont-copy points">{{form.selectSpec.points}}</i></p>
           <p class="amt">
             数量: {{form.amt}}
           </p>
@@ -97,7 +97,7 @@
             总计:
             <!--<i class="mui-icon iconfont icon-msg6 rmb">{{(form.amt * form.selectSpec.rmb).toFixed(2)}}</i>
             &nbsp;&nbsp;-->
-            <i class="mui-icon iconfont icon-jifen points">{{(form.amt * form.selectSpec.points).toFixed(2)}}</i>
+            <i class="mui-icon iconfont icon-iconfont-copy points">{{(form.amt * form.selectSpec.points).toFixed(2)}}</i>
           </p>
         </div>
       </li>
