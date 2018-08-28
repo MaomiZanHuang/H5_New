@@ -7,7 +7,7 @@
   <div class="mui-col-xs-8">
     <!--根据不同类型刷赞，快手业务进行不同的的数据进行分类展示,目前只展示QQ-->
       <input type="text" class="mui-input-clear" v-model="form.qq" placeholder="请输入QQ号" />
-      <input type="text" class="mui-input-clear" v-model="form.shuoshuo_id" placeholder="请输入说说ID" />
+      <input type="text" class="mui-input-clear" v-model="form.shuoshuo_id" placeholder="点击下方按钮获取说说" />
   </div>
 </div>
 <div class="mui-row">
@@ -17,6 +17,7 @@
   </div>
   <div class="mui-col-xs-8">
     <select class="mui-btn" v-model="form.shuoshuo_id">
+      <option value="">选择一条说说▼</option>
       <option v-for="ss in shuoshuos" :value="ss.tid">{{ss.content}}</option>
     </select>    
     <div class="mui-row" style="padding-top: 10px">

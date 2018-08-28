@@ -169,6 +169,8 @@ export default {
       if (isNaN(currentInput + inputChar) || currentInput.length >= 6) {
         if (currentInput.length === 6) {
           this.confirmInput();
+        } else {
+          this.inputs.pop();
         }
         return false;
       }
