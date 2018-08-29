@@ -65,7 +65,7 @@
     <div class="goods-details" style="padding: 10px;width: 100%; background-color: #FFFFFF;color: #929292;" >
       <div class="title" style="font-size: 14px;line-height: 0.6rem;">商品详细</div>
       <div class="content" style="border-top: solid 1px #c8c7cc;padding-top: 0.2rem;line-height: 0.4rem">
-        {{goods.detail}}
+        <div v-html="goods.detail"></div>
       </div>
     </div>
 

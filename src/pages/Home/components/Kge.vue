@@ -31,7 +31,7 @@ export default {
     ['form.song_url'](val, prev) {
       var t = val.match(/s=([A-z|0-9]+)/);
       if (t && t.length > 1) {
-        this.form.song_id = val.match(/s=([A-z|0-9]+)/)[1];
+        this.form.song_id = val.match(/s=([A-z|0-9|-]+)/)[1];
       }
     }
   },
