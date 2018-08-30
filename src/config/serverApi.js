@@ -12,7 +12,7 @@ exports.guest = {
   getOrderByVisitor: `${HOST}/guest/getOrder`,
   // 获取说说
   getShuoshuo: `${HOST}/guest/getShuoshuo`,
-  getChargeOptions: `${HOST}/guest/charge_options`
+  getChargeOptions: `${HOST}/guest/charge_options`,
 };
 
 exports.user = {
@@ -41,7 +41,9 @@ exports.order = {
   payOrderByPoints: `${HOST}/order/payByPoints/{id}`,
   payOrderOnline: `${HOST}/order/payOnline/{id}`,
   // 分页获取用户订单信息
-  getUserOrders: `${HOST}/order/user_order`
+  getUserOrders: `${HOST}/order/user_order`,
+  // 找回积分
+  findPoints: `${HOST}/order/find_points`
 };
 
 exports.pay = {

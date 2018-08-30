@@ -73,7 +73,7 @@
 <script>
 import $ from 'axios';
 import {mapState} from 'vuex';
-import {replaceVars} from '@/utils/index';
+import {replaceVars, localOrders} from '@/utils/index';
 
 import {pay as PAY_API, user as USER_API} from '@/config/serverApi';
 import Frame from '@/components/Frame.vue';
@@ -113,6 +113,7 @@ export default {
   },
   mounted() {
     this.pay = Object.assign({}, this.$route.params);
+    localOrders.add({ id: this.pay.order_no, status: 0 });
 
     if (this.pay.type === 'app') {
       return false;

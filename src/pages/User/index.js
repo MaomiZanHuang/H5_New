@@ -6,6 +6,7 @@ import Activity from './Activity';
 import Login from './Login';
 import Reg from './Reg';
 import FindPwd from './FindPwd';
+import FindPoints from './FindPoints';
 import Charge from './Charge';
 import Pay from './Pay';
 import Bill from './Bill';
@@ -21,5 +22,6 @@ export default {
   FindPwd,
   Charge,
   Pay,
-  Bill
+  Bill,
+  FindPoints
 }

@@ -1,5 +1,6 @@
 <template>
 <Frame title="积分充值">
+  <router-link to="/user/findpoints"><button class="mui-btn btn-block mui-btn-warning">充值未到账请戳这里找回积分</button></router-link>
   <ul class="mui-table-view"> 
     <li class="mui-table-view-cell mui-collapse mui-active">
       <a href="#">充值方式一: 在线充值</a>

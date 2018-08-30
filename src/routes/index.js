@@ -159,6 +159,15 @@ export default new Router({
           }
         },
         {
+          name: 'findpoints',
+          path: '/user/findpoints',
+          component: User.FindPoints,
+          meta: {
+            depth: 3,
+            auth: true
+          }
+        },
+        {
           name: 'charge',
           path: '/user/charge',
           component: User.Charge,

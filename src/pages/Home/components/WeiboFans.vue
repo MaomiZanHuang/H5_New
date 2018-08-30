@@ -29,7 +29,7 @@ export default {
     checkFormData() {
       const weibo_url = this.form.weibo_url;
       if (weibo_url.trim() === '') {
-        this.$tip.show('请先输入抖音作品分享的地址~');
+        this.$tip.show('请先输入微博主页地址~');
         return false;
       }
       return true;

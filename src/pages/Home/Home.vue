@@ -309,7 +309,7 @@ body {
     overflow: auto;
     font-size: 0.28125rem;
     align-self: flex-start;
-    height: 100%;
+    height: 0.825rem;
 }
 .newslist marquee {
 	overflow: hidden;

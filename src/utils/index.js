@@ -1,3 +1,28 @@
+// 针对订单进行先进先出处理保存最近5条订单号
+export const localOrders = {
+  add(order) {
+    var orders = JSON.parse(localStorage['last5_orders'] || '[]');
+    if (orders.map(x => x.id).indexOf(order.id) > 0) {
+      return false;
+    }
+    // 超过5条顶出最后一条
+    if (orders.length > 5) {
+      orders.pop();
+    }
+    orders.unshift(order);
+    localStorage['last5_orders'] = JSON.stringify(orders);
+  },
+  // 删除已经处理的订单
+  del(id) {
+    var orders = JSON.parse(localStorage['last5_orders'] || '[]');
+    var idx = orders.map(x => x.id).indexOf(id);
+    orders.splice(idx, 1);
+    localStorage['last5_orders'] = JSON.stringify(orders);
+  },
+  getAll() {
+    return JSON.parse(localStorage['last5_orders'] || '[]');
+  }
+}
 /**
  * 简单字符串模板替换
  * @param {String} url
