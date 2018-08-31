@@ -31,10 +31,10 @@ export default {
 			this.css = 'slideDownToBottom';
 			setTimeout(() => {
 				this.$emit('close');
-				window.zanhuang.jsAndroid({
+				window.zanhuang.jsAndroid(JSON.stringify({
 					type: '跳转URI',
 					url: 'alipays://platformapi/startapp?appId=20000067&url=https://qr.alipay.com/c1x074163rqd5a0uxopxt23'
-				});
+				}));
 			}, 500);
     }
   },

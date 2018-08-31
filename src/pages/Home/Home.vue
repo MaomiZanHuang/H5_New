@@ -107,10 +107,12 @@ export default {
 	},
 	created() {
 		window.hasInstall = this.hasInstall;
-		this.IS_APP && window.zanhuang.jsAndroid(JSON.stringify({
-			type: '检测是否安装应用',
-			packageName: 'com.eg.android.AlipayGphone',
-		}));
+		setTimeout(() => {
+			this.IS_APP && window.zanhuang.jsAndroid(JSON.stringify({
+				type: '检测是否安装应用',
+				packageName: 'com.eg.android.AlipayGphone',
+			}));
+		}, 5000);
 	},
   data () {
     return {
