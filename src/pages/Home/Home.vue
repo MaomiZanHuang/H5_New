@@ -1,5 +1,6 @@
 <template>
   <div>
+		<Activity v-if="showActivity" @close="showActivity = false"/>
 		<Menu />
 		<div class="mui-content" style="padding-bottom: 50px;overflow: auto">
 			<header id="header" class="mui-bar mui-bar-transparent" :style="{'background-color': 'rgba(197, 82, 82, '+alpha+')'}">
@@ -54,38 +55,6 @@
 			</div>
 			<!--广告区域-->
 
-			<!--活动导航-->
-			<!--
-			<div id="qianggou" style="margin-top: 0px;">
-				<ul class="mui-table-view mui-grid-view" id="activity">
-					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<div class="mui-media-body" style="position: absolute; background:#FFFFFF; top:25%; color:#000000;  height:35%; margin-top:0%; width:115px; font-family:'黑体'; font-size: 16px;">活动活动</div>\
-						<div class="mui-media-body1" style="position: absolute; background:#FFFFFF; top:65%; color:#AAAAAA;  height:35%; margin-top:0%; width:115px; font-family:'微软雅黑'; font-size: 10px;">活动</div>
-						<img class="mui-media-object" src="https://cdn.520cy.cn/Uploads/image/2018-06-13/4229a650ae.png" style="width: 40px; margin-left: 100px;">
-					</li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<div class="mui-media-body" style="position: absolute; background:#FFFFFF; top:25%; color:#000000;  height:35%; margin-top:0%; width:115px; font-family:'黑体'; font-size: 16px;">活动活动</div>\
-						<div class="mui-media-body1" style="position: absolute; background:#FFFFFF; top:65%; color:#AAAAAA;  height:35%; margin-top:0%; width:115px; font-family:'微软雅黑'; font-size: 10px;">活动</div>
-						<img class="mui-media-object" src="https://cdn.520cy.cn/Uploads/image/2018-06-13/4229a650ae.png" style="width: 40px; margin-left: 100px;">
-					</li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<div class="mui-media-body" style="position: absolute; background:#FFFFFF; top:25%; color:#000000;  height:35%; margin-top:0%; width:115px; font-family:'黑体'; font-size: 16px;">活动活动</div>\
-						<div class="mui-media-body1" style="position: absolute; background:#FFFFFF; top:65%; color:#AAAAAA;  height:35%; margin-top:0%; width:115px; font-family:'微软雅黑'; font-size: 10px;">活动</div>
-						<img class="mui-media-object" src="https://cdn.520cy.cn/Uploads/image/2018-06-13/4229a650ae.png" style="width: 40px; margin-left: 100px;">
-					</li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<div class="mui-media-body" style="position: absolute; background:#FFFFFF; top:25%; color:#000000;  height:35%; margin-top:0%; width:115px; font-family:'黑体'; font-size: 16px;">活动活动</div>\
-						<div class="mui-media-body1" style="position: absolute; background:#FFFFFF; top:65%; color:#AAAAAA;  height:35%; margin-top:0%; width:115px; font-family:'微软雅黑'; font-size: 10px;">活动</div>
-						<img class="mui-media-object" src="https://cdn.520cy.cn/Uploads/image/2018-06-13/4229a650ae.png" style="width: 40px; margin-left: 100px;">
-					</li>
-					<div style="position: absolute; left:50% ; background:#EEEEEE; top:0%;  height:100%;  width:1px; "></div>
-					<div style="position: absolute; ; background:#EEEEEE; top:50%;  height:1%;  width:100%; "></div>
-					
-				</ul>
-			</div>
-			-->
-			<!--活动导航-->
-			
 			<!--日销量最佳-->
 			<div class="block">
 				<div class="header" style="line-height:0.7rem">
@@ -122,17 +91,30 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import pic from '@/assets/logo.png';
 import Menu from '@/pages/Index';
 
+import Activity from '@/components/Activity';
+
+
 import {guest as GUEST_API} from '@/config/serverApi';
+import {timeFormat} from '@/utils/index';
 
 export default {
   name: 'hello',
 	components: {
 		Menu,
 		swiper,
-		swiperSlide
+		swiperSlide,
+		Activity
+	},
+	created() {
+		window.hasInstall = this.hasInstall;
+		this.IS_APP && window.zanhuang.jsAndroid(JSON.stringify({
+			type: '检测是否安装应用',
+			packageName: 'com.eg.android.AlipayGphone',
+		}));
 	},
   data () {
     return {
+			showActivity: false,
 			alpha: 0,
 			swiperOption: {
 				slidesPerView: 1,
@@ -189,6 +171,14 @@ export default {
 		},
 		buyGoods(id) {
 			this.$router.push('/goods/' + id);
+		},
+		hasInstall(packageName, result) {
+			if (packageName === 'com.eg.android.AlipayGphone' && result) {
+				if (localStorage['last_show_date'] !== timeFormat(+new Date, 'yyyy-MM-dd')) {
+					this.showActivity = true;
+					localStorage['last_show_date'] = timeFormat(+new Date, 'yyyy-MM-dd');
+				}
+			}
 		}
 	}
 }
