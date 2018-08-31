@@ -1,6 +1,5 @@
 <template>
   <div>
-		<Activity v-if="showActivity" @close="showActivity = false"/>
 		<Menu />
 		<div class="mui-content" style="padding-bottom: 50px;overflow: auto">
 			<header id="header" class="mui-bar mui-bar-transparent" :style="{'background-color': 'rgba(197, 82, 82, '+alpha+')'}">
@@ -91,32 +90,17 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import pic from '@/assets/logo.png';
 import Menu from '@/pages/Index';
 
-import Activity from '@/components/Activity';
-
-
 import {guest as GUEST_API} from '@/config/serverApi';
-import {timeFormat} from '@/utils/index';
 
 export default {
   name: 'hello',
 	components: {
 		Menu,
 		swiper,
-		swiperSlide,
-		Activity
-	},
-	created() {
-		window.hasInstall = this.hasInstall;
-		setTimeout(() => {
-			this.IS_APP && window.zanhuang.jsAndroid(JSON.stringify({
-				type: '检测是否安装应用',
-				packageName: 'com.eg.android.AlipayGphone',
-			}));
-		}, 5000);
+		swiperSlide
 	},
   data () {
     return {
-			showActivity: false,
 			alpha: 0,
 			swiperOption: {
 				slidesPerView: 1,
@@ -173,14 +157,6 @@ export default {
 		},
 		buyGoods(id) {
 			this.$router.push('/goods/' + id);
-		},
-		hasInstall(packageName, result) {
-			if (packageName === 'com.eg.android.AlipayGphone' && result) {
-				if (localStorage['last_show_date'] !== timeFormat(+new Date, 'yyyy-MM-dd')) {
-					this.showActivity = true;
-					localStorage['last_show_date'] = timeFormat(+new Date, 'yyyy-MM-dd');
-				}
-			}
 		}
 	}
 }

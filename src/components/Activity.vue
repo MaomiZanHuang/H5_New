@@ -17,7 +17,7 @@
 const TIPS = [
   '刷最NB的赞，就用拇指赞！',
   '小指一抖，Q赞到手！',
-]
+];
 export default {
 	data() {
 		return {
@@ -39,8 +39,11 @@ export default {
     }
   },
 	mounted() {
-		this.css = 'slideDownToMiddle';
-	},
+		console.log('激活了');
+		setTimeout(() => {
+			this.css = 'slideDownToMiddle';
+		}, 100);
+	}
 }
 </script>
 <style scoped>
@@ -48,7 +51,7 @@ export default {
 	transition: transform 0.8s cubic-bezier(0.49, 0.16, 0.35, 0.72);
 }
 .slideDownToMiddle {
-	transform: translateY(150%);
+	transform: translateY(120%);
 }
 .slideDownToBottom {
 	transform: translateY(350%);

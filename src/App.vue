@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Activity v-if="showActivity" @close="showActivity = false"/>
     <transition :name="transitionName">
       <keep-alive v-if="$route.meta.keepAlive">
         <router-view class="child-view"></router-view>
@@ -11,16 +12,22 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
+import {timeFormat} from '@/utils/index';
 import Index from './pages/Index';
+import Activity from '@/components/Activity';
 
 const INDEX_PATHS = ['/', '/square', '/order', '/user/index'];
+
 export default {
   name: 'App',
   components: {
-    Index
+    Index,
+    Activity
   },
-  methods: {
-    ...mapActions(['setCurrentMenu', 'getUserPoints'])
+  data() {
+    return {
+      showActivity: false
+    };
   },
   watch: {
     ['$route'](to, from) {
@@ -29,6 +36,26 @@ export default {
         this.setCurrentMenu(path);
       }
     }
+  },
+	created() {
+		window.hasInstall = this.hasInstall;
+		setTimeout(() => {
+			this.IS_APP && window.zanhuang.jsAndroid(JSON.stringify({
+				type: '检测是否安装应用',
+				packageName: 'com.eg.android.AlipayGphone',
+			}));
+		}, 3000);
+	},
+  methods: {
+    ...mapActions(['setCurrentMenu', 'getUserPoints']),
+    hasInstall(packageName, result) {
+			if (packageName === 'com.eg.android.AlipayGphone' && result) {
+				if (localStorage['last_showdate'] !== timeFormat(+new Date, 'yyyy-MM-dd')) {
+					this.showActivity = true;
+					localStorage['last_showdate'] = timeFormat(+new Date, 'yyyy-MM-dd');
+				}
+			}
+		}
   },
   mounted() {
     var path = this.$route.path;
