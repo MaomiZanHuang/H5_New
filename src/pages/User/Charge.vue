@@ -32,9 +32,11 @@
         <br/>
         <br/>
         <div class="mui-row">
+          
           <button class="mui-btn btn-block mui-btn-success mui-icon iconfont icon-weixinzhifu" @click="payByWxpay">微信支付</button>
           <br/>
           <br/>
+          <p style="color: red;line-height: 0.5rem;">温馨提示:即日起使用支付宝付款，可以用领取到的红包抵扣哦~<br/>比如领取到0.98元红包，充值1元=100积分只需要花0.02元哦~</p><br/>
           <button class="mui-btn btn-block mui-btn-primary mui-icon iconfont icon-alipay" @click="payByAlipay">支付宝支付</button>
           <br/>
           <br/>

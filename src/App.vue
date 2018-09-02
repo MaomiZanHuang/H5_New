@@ -37,25 +37,8 @@ export default {
       }
     }
   },
-	created() {
-		window.hasInstall = this.hasInstall;
-		setTimeout(() => {
-			this.IS_APP && window.zanhuang.jsAndroid(JSON.stringify({
-				type: '检测是否安装应用',
-				packageName: 'com.eg.android.AlipayGphone',
-			}));
-		}, 3000);
-	},
   methods: {
-    ...mapActions(['setCurrentMenu', 'getUserPoints']),
-    hasInstall(packageName, result) {
-			if (packageName === 'com.eg.android.AlipayGphone' && result) {
-				if (localStorage['last_showdate'] !== timeFormat(+new Date, 'yyyy-MM-dd')) {
-					this.showActivity = true;
-					localStorage['last_showdate'] = timeFormat(+new Date, 'yyyy-MM-dd');
-				}
-			}
-		}
+    ...mapActions(['setCurrentMenu', 'getUserPoints'])
   },
   mounted() {
     var path = this.$route.path;
@@ -70,6 +53,14 @@ export default {
         console.log(err);
         this.$tip.show('网络连接失败！');
       });
+
+    // 规则:每天弹一次
+    if (localStorage['last_showdate'] !== timeFormat(+new Date, 'yyyy-MM-dd')) {
+      setTimeout(() => {
+        this.showActivity = true;
+      }, 5000);
+      localStorage['last_showdate'] = timeFormat(+new Date, 'yyyy-MM-dd');
+    }
   },
   computed: {
     ...mapState(['transitionName'])

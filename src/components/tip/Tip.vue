@@ -24,3 +24,8 @@ const DEFAULT_TIP = '消息提示';
     }
   };
 </script>
+<style>
+.mui-toast-container.mui-active {
+  z-index: 999999999999999999999;
+}
+</style>

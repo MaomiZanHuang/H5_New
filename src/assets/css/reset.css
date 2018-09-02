@@ -86,17 +86,6 @@ video {
     vertical-align: baseline;
 }
 
-@media screen and (min-width: 600px) and (max-width: 4800px) {
-    body {
-        display: flex;
-        justify-content: center;
-    }
-    #app, #header, #footer, .mui-bar-tab {
-        width: 600px !important;
-        margin: 0 auto;
-    }
-}
-
 /* HTML5 display-role reset for older browsers */
 
 article,
@@ -182,11 +171,14 @@ p {
     #app {
         box-shadow: 0 0 10px #aaa;
     }
-    #app, #header, .mui-bar-tab, .mui-popover {
+    #app, #header, #footer, .mui-bar-tab, .mui-popover {
         width: 600px !important;
         margin: 0 auto;
     }
     .input_num-box {
         width: 600px !important;
+        left: 50% !important;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
     }
 }
