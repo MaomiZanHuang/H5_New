@@ -277,7 +277,7 @@ export default {
 		app_zfb_show() {
 			window.zanhuang.jsAndroid(JSON.stringify({
 				type: '跳转URI',
-				url: 'alipays://platformapi/startapp?appId=20000067&url=' + qr
+				url: 'alipays://platformapi/startapp?appId=20000067&url=' + qr.url
 			}));
 			setTimeout(() => {
 				this.status = 1;
