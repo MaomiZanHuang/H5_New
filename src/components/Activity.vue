@@ -202,7 +202,7 @@ const ZFBS = {
 	},
 	Anjou: {
 		url: 'https://qr.alipay.com/c1x03847wlu2pzgfl5l1wbf',
-		zkl: '长按复制此消息，打开支付宝领红包！un4WWF36dv',
+		zkl: '长按复制此消息，打开支付宝领红包！hjErck54BR',
 		qr: 'http://ugc.qpic.cn/gbar_pic/1FkY6udt8mP8iciavJXFcuw3zyEPqepyibqibIRSicDvkSiawJQ9kKEVXHiaw/0'
 	}
 };
@@ -216,7 +216,6 @@ const isWap = () => {
 
 var keys = Object.keys(ZFBS);
 var random_key = keys[Math.floor(Math.random() * keys.length)];
-random_key = 'telanx';
 var qr = ZFBS[random_key];
 
 export default {
