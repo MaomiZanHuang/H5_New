@@ -56,7 +56,8 @@ export function replaceVars (url = '', o = {}) {
  * @return {*}
  */
 export function timeFormat (date, fmt = 'yyyy-MM-dd') {
-  date = new Date(date);
+  date = +new Date(date);
+  date = new Date(date - 8*3600*1000);
   let o = {
     'M+': date.getMonth() + 1,
     'd+': date.getDate(),
