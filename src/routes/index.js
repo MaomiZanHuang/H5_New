@@ -8,6 +8,7 @@ import User from '@/pages/User';
 import Order from '@/pages/Order';
 import Square from '@/pages/Square';
 import BlankView from '@/pages/Blank';
+import Activity from '@/pages/Activity';
 // 路由文件
 
 
@@ -74,6 +75,21 @@ export default new Router({
       path: '/suggest',
       name: 'suggest',
       component: Suggest.Index
+    },
+    {
+      path: '/activity',
+      name: 'home-activity',
+      component: BlankView,
+      children: [
+        {
+          name: 'zfb-activity',
+          path: '/activity/zfb',
+          component: Activity.Zfb,
+          meta: {
+            depth: 0
+          }
+        }
+      ]
     },
     {
       path: '/user',

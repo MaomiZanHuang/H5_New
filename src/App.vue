@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Activity v-if="showActivity" @close="showActivity = false"/>
+    <Activity v-if="showActivity" @close="closeActivity"/>
     <transition :name="transitionName">
       <keep-alive v-if="$route.meta.keepAlive">
         <router-view class="child-view"></router-view>
@@ -38,7 +38,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setCurrentMenu', 'getUserPoints'])
+    ...mapActions(['setCurrentMenu', 'getUserPoints']),
+    closeActivity() {
+      this.showActivity = false;
+      localStorage['last_showdate'] = timeFormat(+new Date, 'yyyy-MM-dd');
+    }
   },
   mounted() {
     var path = this.$route.path;
@@ -59,7 +63,6 @@ export default {
       setTimeout(() => {
         this.showActivity = true;
       }, 5000);
-      localStorage['last_showdate'] = timeFormat(+new Date, 'yyyy-MM-dd');
     }
   },
   computed: {

@@ -14,9 +14,12 @@
 				</div>
 
 				<div v-else>
-					<p style="color: #fff;line-height: 20px;margin-top: 39px;">
-						<button class="mui-btn mui-btn-danger btn-block" @click="close">我知道了</button>
-					</p>
+					<div style="color: #fff;line-height: 20px;margin-top: 39px;" class="mui-row">
+						<div class="mui-col-xs-5"><button class="mui-btn mui-btn-danger btn-block" @click="withdraw">红包提现</button></div>
+						<div class="mui-col-xs-2"></div>
+						<div class="mui-col-xs-5"><button class="mui-btn mui-btn-danger btn-block" @click="close">我知道了</button></div>
+					</div>
+					
 					<!--APP带支付宝的-->
 					<div class="text2" v-if="platform=== 'app_zfb'">
 						<span style="display: block;font-size:20px;padding: 5px">
@@ -46,8 +49,8 @@
 						</span>
 					</div>
 					
-					<div style="font-size: 13px;margin-top: -120px;color: #fff">
-						提示: 领取到的红包可以联系客服0元免费兑换成积分~
+					<div style="font-size: 13px;margin-top: -120px;color: #fff; padding: 5px">
+						提示: 领取到的红包可以充值抵扣或提现哦~
 					</div>
 					
 					</div>
@@ -271,6 +274,12 @@ export default {
 			this.css = 'slideDownToBottom';
 			setTimeout(() => {
 				this.$emit('close');
+			}, 500);
+		},
+		withdraw() {
+			this.close();
+			setTimeout(() => {
+				this.$router.push('/activity/zfb');
 			}, 500);
 		},
 		app_zfb_show() {
