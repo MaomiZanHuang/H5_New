@@ -47,7 +47,7 @@
 					</div>
 					
 					<div style="font-size: 13px;margin-top: -120px;color: #fff">
-						提示: 红包可用于积分充值抵扣哦~
+						提示: 领取到的红包可以联系客服0元免费兑换成积分~
 					</div>
 					
 					</div>
