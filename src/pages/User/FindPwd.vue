@@ -2,7 +2,7 @@
 <Frame title="找回密码">
 <div class="brand">
   <div class="logo">
-    <img src="http://pic.downcc.com/upload/2016-8/2016851622186787.jpg" />
+    <img src="//pic.downcc.com/upload/2016-8/2016851622186787.jpg" />
   </div>
   <p class="name text-center">{{APP_NAME}}</p>
 </div>
@@ -17,7 +17,7 @@
       <input id=‘VerificationCode‘ type="text" class="mui-input" placeholder="请输入验证码">
     </div>
     <div class="mui-col-xs-4">
-      <img height="44px" src="http://pubg.gotoip3.com/qwt/index.php/home/user/verifycode.html/" />
+      <img height="44px" src="//pubg.gotoip3.com/qwt/index.php/home/user/verifycode.html/" />
     </div>
   </div>
 

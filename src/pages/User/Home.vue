@@ -4,7 +4,7 @@
     <div class="head">
       <div class="userinfo">
         <section class="user-info">
-          <img :src="'http://q1.qlogo.cn/g?b=qq&nk='+user.qq+'&s=100'" onerror="http://q1.qlogo.cn/g?b=qq&nk=10000&s=100&t=1449411350" class="headicon">
+          <img :src="'//q1.qlogo.cn/g?b=qq&nk='+user.qq+'&s=100'" onerror="//q1.qlogo.cn/g?b=qq&nk=10000&s=100&t=1449411350" class="headicon">
           <div v-if="user.user"" style="text-align: center">
             <p class="username">{{user.user}}</p>
           </div>

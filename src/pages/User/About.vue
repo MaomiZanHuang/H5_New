@@ -13,8 +13,8 @@
           <div class="mui-collapse-content">
               <p>
                 客服QQ: <b>851656783</b>
-                <img v-if="IS_APP" @click="joinQQ" border="0" src="http://wpa.qq.com/pa?p=2:851656783:51" alt="点击这里给我发消息" title="点击这里给我发消息"/>
-                <a v-else target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=851656783&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:851656783:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                <img v-if="IS_APP" @click="joinQQ" border="0" src="//wpa.qq.com/pa?p=2:851656783:51" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+                <a v-else target="_blank" href="//wpa.qq.com/msgrd?v=3&uin=851656783&site=qq&menu=yes"><img border="0" src="//wpa.qq.com/pa?p=2:851656783:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
               </p>
               <p>
                 拇指赞官方Q群: 863391242

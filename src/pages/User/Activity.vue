@@ -73,7 +73,7 @@
       </a>
       <div class="mui-collapse-content" style="text-align: center;">
         <p><a href="http://attach.zhiyoo.com/forum/201808/31/155246866dghgdkrlbt6lv.attach?f=%E5%8D%83%E5%AF%BB%E6%8B%87%E6%8C%87%E8%B5%9Ev1.1.apk">戳我下载安卓APP『拇指赞』</a></p>
-        <img width="200px" height="200px" src="http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtCS8btHzrel0qyKokF5L0HfLFIGBnbgmqkP7OlyINsaA/0" />
+        <img width="200px" height="200px" src="//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtCS8btHzrel0qyKokF5L0HfLFIGBnbgmqkP7OlyINsaA/0" />
         <p>扫一扫下载安装『拇指赞』</p>
       </div> 
     </li>
@@ -124,7 +124,7 @@ export default {
       }]
     }
     var script = document.createElement('script');
-    script.src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)
+    script.src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)
     document.head.appendChild(script);
   },
   methods: {

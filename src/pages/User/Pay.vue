@@ -97,7 +97,7 @@ export default {
         price: 2,
         type: 'wx',
         qr: '',
-        qr_img: 'http://img0.imgtn.bdimg.com/it/u=1937851986,1854812274&fm=27&gp=0.jpg'
+        qr_img: '//img0.imgtn.bdimg.com/it/u=1937851986,1854812274&fm=27&gp=0.jpg'
       },
       leftTime: 0
     };
