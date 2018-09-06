@@ -116,8 +116,8 @@ export default {
 				}
 			},
 			banners: [
-				'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtbNbyPvU0dibZMCupZT7yWF5ILxibBNTDrzWxtpI5qr3dg/',
-				'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtbNbyPvU0dibQ47hialzfrw124ZwZwzZnFZqcNCP2QhkibA/'
+				'//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtbNbyPvU0dibZMCupZT7yWF5ILxibBNTDrzWxtpI5qr3dg/',
+				'//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtbNbyPvU0dibQ47hialzfrw124ZwZwzZnFZqcNCP2QhkibA/'
 			]
     }
   },
