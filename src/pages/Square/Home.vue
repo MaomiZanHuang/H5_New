@@ -77,14 +77,14 @@ export default {
       page_size: 5,
       page: -1,
       orders: [
-        { is_offical: true, name: '拇指赞官方', content: '我在支付宝发了一个红包，扫码或打开支付宝首页搜索 525419253 ，即可领红包~', img: 'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtNYbMibrafuE5bsjrZ1UUKpR6hQgn0mL3gicTsXS65skMA/0', likes: '12300', hates: '3', shares: '2100' },
-        { is_offical: false, name: '℡儍嗳o^-^', content: '我用拇指赞为QQ@73843384 怒刷1000真人名片赞，快来围观~', img: 'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVu0ZC0Udl0DmPJJ22qbtjPbYCuKhL93NMBwrXEGs0lsuA/0', likes: '120', hates: '0', shares: '3' },
-        { is_offical: false, name: '♀WO→忘了爱', content: '我用拇指赞为QQ@3041826382 充了永久QQ会员~', img: 'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtsqicDUrQGPOf8S1UMqBD9sdplZOBvqLlzaJXNvcYiaM0Q/0', likes: '102', hates: '5', shares: '1' },
-        { is_offical: false, name: '闪舞Ice☆★~', content: '我用拇指赞为全民K歌@12892332 怒刷200朵高级鲜花，快来围观~', img: 'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVvubJN5USFJgLbeBiacPh1fQ7djicWC4kWR74wblziaLy6SA/0', likes: '370', hates: '3', shares: '0' },
-        { is_offical: false, name: '执著之☆雪', content: '我用拇指赞为全民K歌@3777299 刷了3000粉丝，快来围观~', img: 'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVvubJN5USFJgNtMCrOnRa2KIfo7icTjuntZwLgHmAs0jCQ/0', likes: '1', hates: '0', shares: '5' },
-        { is_offical: false, name: '雪紫∮冰雨', content: '我用拇指赞为QQ@4620032 怒刷1000真人名片赞，快来围观~', img: 'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVu0ZC0Udl0DmPJJ22qbtjPbYCuKhL93NMBwrXEGs0lsuA/0', likes: '52', hates: '0', shares: '2' },
-        { is_offical: false, name: '┢┦apΡy', content: '我用拇指赞为QQ@2733202 充了永久QQ会员，快来围观~', img: 'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtsqicDUrQGPOf8S1UMqBD9sdplZOBvqLlzaJXNvcYiaM0Q/0', likes: '37', hates: '8', shares: '0' },
-        { is_offical: false, name: '_﹏ソ尐様ル', content: '我用拇指赞为QQ@892233314 怒刷1000真人名片赞，快来围观~', img: 'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVu0ZC0Udl0DmPJJ22qbtjPbYCuKhL93NMBwrXEGs0lsuA/0', likes: '81', hates: '1', shares: '1' }
+        { is_offical: true, name: '拇指赞官方', content: '我在支付宝发了一个红包，扫码或打开支付宝首页搜索 525419253 ，即可领红包~', img: '//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtNYbMibrafuE5bsjrZ1UUKpR6hQgn0mL3gicTsXS65skMA/0', likes: '12300', hates: '3', shares: '2100' },
+        { is_offical: false, name: '℡儍嗳o^-^', content: '我用拇指赞为QQ@73843384 怒刷1000真人名片赞，快来围观~', img: '//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVu0ZC0Udl0DmPJJ22qbtjPbYCuKhL93NMBwrXEGs0lsuA/0', likes: '120', hates: '0', shares: '3' },
+        { is_offical: false, name: '♀WO→忘了爱', content: '我用拇指赞为QQ@3041826382 充了永久QQ会员~', img: '//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtsqicDUrQGPOf8S1UMqBD9sdplZOBvqLlzaJXNvcYiaM0Q/0', likes: '102', hates: '5', shares: '1' },
+        { is_offical: false, name: '闪舞Ice☆★~', content: '我用拇指赞为全民K歌@12892332 怒刷200朵高级鲜花，快来围观~', img: '//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVvubJN5USFJgLbeBiacPh1fQ7djicWC4kWR74wblziaLy6SA/0', likes: '370', hates: '3', shares: '0' },
+        { is_offical: false, name: '执著之☆雪', content: '我用拇指赞为全民K歌@3777299 刷了3000粉丝，快来围观~', img: '//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVvubJN5USFJgNtMCrOnRa2KIfo7icTjuntZwLgHmAs0jCQ/0', likes: '1', hates: '0', shares: '5' },
+        { is_offical: false, name: '雪紫∮冰雨', content: '我用拇指赞为QQ@4620032 怒刷1000真人名片赞，快来围观~', img: '//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVu0ZC0Udl0DmPJJ22qbtjPbYCuKhL93NMBwrXEGs0lsuA/0', likes: '52', hates: '0', shares: '2' },
+        { is_offical: false, name: '┢┦apΡy', content: '我用拇指赞为QQ@2733202 充了永久QQ会员，快来围观~', img: '//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtsqicDUrQGPOf8S1UMqBD9sdplZOBvqLlzaJXNvcYiaM0Q/0', likes: '37', hates: '8', shares: '0' },
+        { is_offical: false, name: '_﹏ソ尐様ル', content: '我用拇指赞为QQ@892233314 怒刷1000真人名片赞，快来围观~', img: '//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVu0ZC0Udl0DmPJJ22qbtjPbYCuKhL93NMBwrXEGs0lsuA/0', likes: '81', hates: '1', shares: '1' }
       ]
     };
   },

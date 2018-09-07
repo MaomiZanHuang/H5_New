@@ -11,7 +11,7 @@
 					<div v-for="(user,idx) in top3CharmUsers" class="mui-card mui-col-xs-4">
 						<div class="mui-card-header">第{{idx+1}}名</div>
 						<div class="mui-card-content">
-							<img :src="'http://q1.qlogo.cn/g?b=qq&nk='+user.qq+'&s=100&t=1449411350'">
+							<img :src="'//q1.qlogo.cn/g?b=qq&nk='+user.qq+'&s=100&t=1449411350'">
 							<p>{{user.nickname}}</p>
 							<br/>
 							<p>魅力值 <i class="iconfont icon-aixin" style="color:red">98</i></p>

@@ -2,7 +2,7 @@
 <div>
 <div class="mui-row">
   <div class="mui-col-xs-4">
-    <img style="float: left" :src="'http://q1.qlogo.cn/g?b=qq&nk='+form.qq+'&s=100'" onerror="this.src='http://q1.qlogo.cn/g?b=qq&nk=1000&s=100'" />
+    <img style="float: left" :src="'//q1.qlogo.cn/g?b=qq&nk='+form.qq+'&s=100'" onerror="this.src='//q1.qlogo.cn/g?b=qq&nk=1000&s=100'" />
   </div>
   <div class="mui-col-xs-8">
     <!--根据不同类型刷赞，快手业务进行不同的的数据进行分类展示,目前只展示QQ-->

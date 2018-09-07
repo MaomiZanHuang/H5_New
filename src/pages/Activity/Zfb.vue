@@ -15,7 +15,7 @@
       <div class="mui-collapse-content mui-row">
         <p>1.扫描下方二维码，使用余额宝红包付款，<font color="red">付款额度为所领取红包额度，红包抵扣，实际支付0</font></p>
         <p class="text-center" style="padding: 0.2rem">
-          <img src="http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVs98SJS4wwgxrIApI8tv6pueWvaAW80D8xicz0Enrv9rnA/0" style="width: 3rem;height: 3rem" title="二维码已失效"/>
+          <img src="//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVs98SJS4wwgxrIApI8tv6pueWvaAW80D8xicz0Enrv9rnA/0" style="width: 3rem;height: 3rem" title="二维码已失效"/>
         </p>
         <div class="mui-row" v-if="IS_APP">
           <div class="mui-col-xs-1"></div>
@@ -55,7 +55,7 @@ export default {
       window.zanhuang.jsAndroid(JSON.stringify({
         type: '保存图片',
         picName: this.qr + '.png',
-        picUrl: 'http://ugc.qpic.cn/gbar_pic/2wF3sr2LiaVs98SJS4wwgxrIApI8tv6pueWvaAW80D8xicz0Enrv9rnA/0'
+        picUrl: '//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVs98SJS4wwgxrIApI8tv6pueWvaAW80D8xicz0Enrv9rnA/0'
       }));
     },
     deleteQR() {
