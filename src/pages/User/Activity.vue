@@ -158,7 +158,7 @@ export default {
         type: '分享',
         title:`${APP_NAME}，刷最NB的赞！`,
         content:`${APP_NAME}，免费刷赞，刷最NB的赞！不仅仅是刷赞，还有更多好玩的东西哦~~`,
-        picUrl: 'http:' + APP_LOGO.replce(/^http\:/, ''),
+        picUrl: 'http:' + APP_LOGO.replace(/^http\:/, ''),
         url: APP_SITE,
       }));
     },

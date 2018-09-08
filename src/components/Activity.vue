@@ -223,7 +223,16 @@ var qr = ZFBS[random_key];
 
 export default {
 	data() {
+		var lowWebview = false;
+		var UA = navigator.userAgent.match(/Android\s(\S+)?;/);
+		if (UA && UA.length >= 2) {
+			var androidVersion = UA[1];
+			if (parseFloat(androidVersion) < 5.0) {
+				lowWebview = true;
+			}
+		}
 		return {
+			lowWebview,
 			css: '',
 			status: 0,  // 0未拆开 1拆开了
 			platform: 'pc',
@@ -247,7 +256,7 @@ export default {
       }
 		},
 		useHb() {
-			this.css = 'slideDownToBottom';
+			this.css = this.lowWebview ? 'slideDownToBottom-L' : 'slideDownToBottom';
 			setTimeout(() => {
 				this.$emit('close');
 				this.$router.push('/user/charge');
@@ -271,7 +280,7 @@ export default {
 
     },
 		close() {
-			this.css = 'slideDownToBottom';
+			this.css = this.lowWebview ? 'slideDownToBottom-L' : 'slideDownToBottom';
 			setTimeout(() => {
 				this.$emit('close');
 			}, 500);
@@ -331,8 +340,15 @@ export default {
 .slideDownToMiddle {
 	transform: translateY(120%);
 }
-.slideDownToBottom {
+.slideDownToMiddle-L {
+	margin-top: 0% !important;
+}
+.slideDownToBottom 
+{
 	transform: translateY(350%);
+}
+.slideDownToBottom-L {
+	margin-top: 350% !important;
 }
 .activity-mask {
   position: fixed;
