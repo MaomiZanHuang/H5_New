@@ -13,6 +13,7 @@ exports.guest = {
   // 获取说说
   getShuoshuo: `${HOST}/guest/getShuoshuo`,
   getChargeOptions: `${HOST}/guest/charge_options`,
+  getDouyinUrl: `${HOST}/guest/douyin_url`
 };
 
 exports.user = {
