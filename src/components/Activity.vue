@@ -35,10 +35,11 @@
 					</div>
 					<!--手机WAP端-->
 					<div class="text2" v-if="platform=== 'wap'" style="padding: 10px">
-						复制口令，打开支付宝即可领取红包~<br/><br/>
+						<img src="//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVvUicYoQz3QUsQ06D3hccvCnyzy8RiaHVlcuLJqYb6yb1hQ/0" width="100%"/>
+						<br/>
 						<span style="color: #000;">
 							<textarea ref="zkl">{{zfb.zkl}}</textarea>
-							<button class="btn-block mui-btn mui-btn-warning" @click="copy">复制口令</button>
+							<button class="btn-block mui-btn mui-btn-warning" @click="copy">复制搜索码</button>
 						</span>
 					</div>
 					<!--PC端-->
@@ -185,27 +186,27 @@ const TIPS = [
 const ZFBS = {
 	telanx: {
 		url: 'https://qr.alipay.com/c1x05442h0tzzssv8pfzbbe',
-		zkl: '长按复制此消息，打开支付宝领红包！P6vf5J53rB',
+		zkl: '525419253',
 		qr: '//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVsFCtNIafGQhJUJjLTsP9JSyQjAaPXiaeIww7njeCbLXqw/0'
 	},
 	zxf: {
 		url: 'https://qr.alipay.com/c1x084189xyv1j7xzyqbya3',
-		zkl: '长按复制此消息，打开支付宝领红包！un4WWF36dv',
+		zkl: '525419253',
 		qr: '//ugc.qpic.cn/gbar_pic/1FkY6udt8mP8iciavJXFcuw3zyEPqepyibqibIRSicDvkSiawJQ9kKEVXHiaw/0'
 	},
 	maomi1: {
 		url: 'https://qr.alipay.com/c1x04815r7mui0ayuhu8zdb',
-		zkl: '长按复制此消息，打开支付宝领红包！UE8TR5656y',
+		zkl: '525419253',
 		qr: '//ugc.qpic.cn/gbar_pic/1FkY6udt8mMUNPPCRvfrFednkZQ2rYTU7ibDHZAvtdzic8gMj2SfYl3g/0'
 	},
 	maomi2: {
 		url: 'https://qr.alipay.com/c1x06974xlit7kazfuchfc7',
-		zkl: '长按复制此消息，打开支付宝领红包！QHYSr365Ez',
+		zkl: '525419253',
 		qr: '//ugc.qpic.cn/gbar_pic/1FkY6udt8mMUNPPCRvfrFednkZQ2rYTU7ibDHZAvtdzic8gMj2SfYl3g/0'
 	},
 	Anjou: {
 		url: 'https://qr.alipay.com/c1x03847wlu2pzgfl5l1wbf',
-		zkl: '长按复制此消息，打开支付宝领红包！hjErck54BR',
+		zkl: '525419253',
 		qr: '//ugc.qpic.cn/gbar_pic/1FkY6udt8mP8iciavJXFcuw3zyEPqepyibqibIRSicDvkSiawJQ9kKEVXHiaw/0'
 	}
 };
@@ -248,7 +249,7 @@ export default {
         zklEl.select();
         zklEl.focus();
         document.execCommand('copy', false, null);
-        this.$tip.show('已复制,打开支付宝即可领取哦~');
+        this.$tip.show('已复制,打开支付宝首页输入搜索码即可领取哦~');
         zklEl.blur();
       } catch(err) {
         this.$tip.show('复制失败，您可以手动复制领取哦~');
@@ -316,7 +317,7 @@ export default {
 		// 针对APP端的直接跳转
 		hasInstall(packageName, result) {
 			if (packageName === 'com.eg.android.AlipayGphone' && result) {
-				this.app_zfb_show();
+				this.wap_show();
 			} else {
 				this.app_nozfb_show();
 			}
