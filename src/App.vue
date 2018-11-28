@@ -59,11 +59,13 @@ export default {
       });
 
     // 规则:每天弹一次
+    /**
     if (localStorage['last_showdate'] !== timeFormat(+new Date, 'yyyy-MM-dd')) {
       setTimeout(() => {
         this.showActivity = true;
       }, 5000);
     }
+    **/
   },
   computed: {
     ...mapState(['transitionName'])
