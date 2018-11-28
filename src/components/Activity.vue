@@ -35,7 +35,7 @@
 					</div>
 					<!--手机WAP端-->
 					<div class="text2" v-if="platform=== 'wap'" style="padding: 10px">
-						<img src="//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVvUicYoQz3QUsQ06D3hccvCnyzy8RiaHVlcuLJqYb6yb1hQ/0" width="100%"/>
+						<img src="//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVuZUngRum14n6CcutPeMyWJL8IZjXO9icZ6IYZS0UG8lww/0" width="100%"/>
 						<br/>
 						<span style="color: #000;">
 							<textarea ref="zkl">{{zfb.zkl}}</textarea>
