@@ -2,7 +2,7 @@
   <div>
 		<Menu />
 		<div class="mui-content" style="padding-bottom: 50px;overflow: auto">
-			<header id="header" class="mui-bar mui-bar-transparent" :style="{'background-color': 'rgba(197, 82, 82, '+alpha+')'}">
+			<header id="header" class="mui-bar mui-bar-transparent" :style="{'background-color': 'rgba(30, 153, 213, '+alpha+')'}">
 				<h1 class="mui-title" :style="{'color': 'rgba(255, 255, 255, '+alpha+')'}">{{APP_NAME}}</h1>
 			</header>
 			<!--轮播图-->
@@ -55,7 +55,7 @@
 			<!--广告区域-->
 
 			<!--日销量最佳-->
-			<div class="block">
+			<div class="block" style="background:#fff">
 				<div class="header" style="line-height:0.7rem">
 					<span class="mui-icon iconfont icon-msnui-bar-chart" style="font-size:0.325rem"></span>
 					<span class="mui-tab-label">热门推荐</span>
@@ -64,7 +64,7 @@
 			</div>
 
 			<!--商品列表-->
-			<div id="goodsList" class="mui-table-view mui-grid-view own-gray-color">
+			<div id="goodsList" class="mui-table-view mui-grid-view own-gray-color" style="background:#efeff4">
 				<li v-for="item in top5Goods" @click="buyGoods(item.goods_id)" class="mui-table-view-cell mui-media mui-col-xs-6">
 					<div class= "bgDiv">
 						<img class="mui-media-object" :src="item.logo" onerror="https://cdn.520cy.cn/images/pic-null.png"/>
@@ -189,8 +189,9 @@ export default {
 	}
 	
 	.bgDiv {
-		border: 1px solid rgba(204, 204, 204, 0.7);
+		// border: 1px solid rgba(204, 204, 204, 0.7);
 		border-radius: 5px;
+		padding-bottom: 5px;
 		background-color: white;
 		width: 100%;
 	}

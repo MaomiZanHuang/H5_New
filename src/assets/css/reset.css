@@ -156,9 +156,7 @@ p {
     clear: both;
 }
 
-.mui-bar-tab .mui-tab-item.mui-active {
-	color: #f9304c;
-}
+
 #app {
     background-color: #EFEFF4;
 }

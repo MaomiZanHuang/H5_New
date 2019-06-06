@@ -49,7 +49,7 @@ export default {
 <style>
 .frame-container .header {
   height: 50px;
-  background: #c55252;
+  background: rgb(30, 153, 213);
   font-size: 0.38rem;
   color: #fff;
   padding: 0 10px;

@@ -7,24 +7,14 @@
       1.分享软件赚取积分
       </a>
       <div class="mui-collapse-content">
-        分享本软件至QQ截图联系客服，最多可赚取200积分。
+        分享本软件至QQ群，即可随机获得积分，每日最多分享2次！
         <br/>
-        <button class="mui-btn mui-btn-primary btn-block" @click="app_share">立即分享</button>
+        <button class="mui-btn mui-btn-primary btn-block" @click="app_share">开始分享</button>
       </div> 
     </li>
     <li class="mui-table-view-cell">
       <a href="#">
-      2.做任务赚取积分
-      </a>
-      <div class="mui-collapse-content">
-        <button class="mui-btn mui-btn-warning btn-block" @click="app_adv(1)">任务一</button>
-        <div style="margin: 20px 0"></div>
-        <button class="mui-btn mui-btn-warning btn-block" @click="app_adv(2)">任务二</button>
-      </div> 
-    </li>
-    <li class="mui-table-view-cell">
-      <a href="#">
-      3.邀请赚积分
+      2.邀请赚积分
       </a>
       <div class="mui-collapse-content">
         您的推广链接: <input class="mui-input-group input btn-block" :value="referral"> <br/>
@@ -65,16 +55,6 @@
         <textarea rows="4" ref="copyEl">#刷NB的赞就用拇指赞！#我正在使用拇指赞，不仅仅是赞，还有超多好玩的东西唷，快来一起玩吧！戳我{{referral}}</textarea>
         <br/>
         <button class="mui-btn mui-btn-danger btn-block" @click="copy">一键复制</button>
-      </div> 
-    </li>
-    <li class="mui-table-view-cell">
-      <a href="#">
-      3.任务赚积分(需在APP中进行)
-      </a>
-      <div class="mui-collapse-content" style="text-align: center;">
-        <p><a href="http://attach.zhiyoo.com/forum/201808/31/155246866dghgdkrlbt6lv.attach?f=%E5%8D%83%E5%AF%BB%E6%8B%87%E6%8C%87%E8%B5%9Ev1.1.apk">戳我下载安卓APP『拇指赞』</a></p>
-        <img width="200px" height="200px" src="//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtCS8btHzrel0qyKokF5L0HfLFIGBnbgmqkP7OlyINsaA/0" />
-        <p>扫一扫下载安装『拇指赞』</p>
       </div> 
     </li>
   </ul>

@@ -275,6 +275,9 @@ export default {
   font-size: 0.325rem;
   margin-bottom: 10px;
 }
+.goods-tips {
+  background: #fff;
+}
 
 .mui-btn {
   font-size: 16px;

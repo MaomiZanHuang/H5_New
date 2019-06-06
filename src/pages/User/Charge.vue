@@ -37,10 +37,13 @@
           <br/>
           <br/>
           <p style="color: red;line-height: 0.5rem;">温馨提示:即日起使用支付宝付款，可以用领取到的红包抵扣哦~<br/>比如领取到0.98元红包，充值1元=100积分只需要花0.02元哦~</p><br/>
-          <button class="mui-btn btn-block mui-btn-primary mui-icon iconfont icon-alipay" @click="payByAlipay">支付宝支付</button>
+          <button v-if="IS_APP" class="mui-btn btn-block mui-btn-primary mui-icon iconfont icon-alipay" @click="payByAlipay">支付宝支付</button>
+          <div style="display:none">
+          
           <br/>
           <br/>
           <button class="mui-btn btn-block mui-icon iconfont icon-qq" style="background:rgb(104, 190, 248);color: #fff;" @click="payByQQpay">QQ支付</button>
+          </div>
         </div>
         <br/>
       </div>
@@ -49,7 +52,10 @@
     <li class="mui-table-view-cell mui-collapse mui-active">
       <a href="#">充值方式二: 客服充值</a>
       <div class="mui-collapse-content mui-row">
-        联系客服QQ 851656783 完成充值
+        联系客服QQ 851656783
+        <br/>
+        <br/>
+        <button class="mui-btn btn-block mui-btn-yellow" @click="concatKf">立即咨询</button>
       </div>
     </li>
   </ul>
@@ -174,7 +180,7 @@ export default {
               price,
               points,
               qr: data.qr,
-              qr_img: data.qr_img
+              qr_img: 'http://www.cardbuy.net' + data.qr_img
             }
           });
         }
@@ -195,6 +201,12 @@ export default {
         console.log(err);
         this.$tip.show('网络连接失败！');
       });
+    },
+    concatKf() {
+      window.zanhuang.jsAndroid(JSON.stringify({
+        type: 'QQ聊天',
+        qq: '851656783'
+      }))
     }
   },
   mounted() {

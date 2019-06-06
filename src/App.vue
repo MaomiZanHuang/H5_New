@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Activity v-if="showActivity" @close="closeActivity"/>
+    
     <transition :name="transitionName">
       <keep-alive v-if="$route.meta.keepAlive">
         <router-view class="child-view"></router-view>
@@ -14,20 +14,17 @@
 import { mapActions, mapState } from 'vuex';
 import {timeFormat} from '@/utils/index';
 import Index from './pages/Index';
-import Activity from '@/components/Activity';
+// import Activity from '@/components/Activity';
 
 const INDEX_PATHS = ['/', '/square', '/order', '/user/index'];
 
 export default {
   name: 'App',
   components: {
-    Index,
-    Activity
+    Index
   },
   data() {
-    return {
-      showActivity: false
-    };
+    return {};
   },
   watch: {
     ['$route'](to, from) {
@@ -38,11 +35,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setCurrentMenu', 'getUserPoints']),
-    closeActivity() {
-      this.showActivity = false;
-      localStorage['last_showdate'] = timeFormat(+new Date, 'yyyy-MM-dd');
-    }
+    ...mapActions(['setCurrentMenu', 'getUserPoints'])
   },
   mounted() {
     var path = this.$route.path;
@@ -57,14 +50,6 @@ export default {
         console.log(err);
         this.$tip.show('网络连接失败！');
       });
-
-    // 规则:每天弹一次
-    
-    if (localStorage['last_showdate'] !== timeFormat(+new Date, 'yyyy-MM-dd')) {
-      setTimeout(() => {
-        this.showActivity = true;
-      }, 5000);
-    }
   },
   computed: {
     ...mapState(['transitionName'])

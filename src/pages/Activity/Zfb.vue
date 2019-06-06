@@ -6,7 +6,7 @@
       <a href="#">活动说明</a>
       <div class="mui-collapse-content">
       红包活动是支付宝官方推出的活动，用户每天都可以领取红包用于消费抵扣~<br/>
-      没领取到?<a href="#" @click="repick">戳我重新领取</a>
+      可在[我的]页面领取
       </div>
     </li>
 

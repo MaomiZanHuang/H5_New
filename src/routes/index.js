@@ -9,6 +9,7 @@ import Order from '@/pages/Order';
 import Square from '@/pages/Square';
 import BlankView from '@/pages/Blank';
 import Activity from '@/pages/Activity';
+
 // 路由文件
 
 
@@ -145,6 +146,24 @@ export default new Router({
           name: 'about',
           path: '/user/about',
           component: User.About,
+          meta: {
+            depth: 1,
+            keepAlive: true
+          }
+        },
+        {
+          name: 'spotadv',
+          path: '/user/spotadv',
+          component: User.SpotAdv,
+          meta: {
+            depth: 1,
+            keepAlive: true
+          }
+        },
+        {
+          name: 'taskadv',
+          path: '/user/taskadv',
+          component: User.TaskAdv,
           meta: {
             depth: 1,
             keepAlive: true

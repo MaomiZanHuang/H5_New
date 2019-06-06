@@ -10,6 +10,8 @@ import FindPoints from './FindPoints';
 import Charge from './Charge';
 import Pay from './Pay';
 import Bill from './Bill';
+import SpotAdv from './SpotAdv';
+import TaskAdv from './TaskAdv';
 
 export default {
   Index,
@@ -23,5 +25,7 @@ export default {
   Charge,
   Pay,
   Bill,
-  FindPoints
+  FindPoints,
+  SpotAdv,
+  TaskAdv
 }
