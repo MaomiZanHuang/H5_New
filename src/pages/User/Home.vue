@@ -1,15 +1,18 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" style="padding-bottom: 50px;overflow: auto;">
     <Menu />
     <Activity v-if="showActivity" @close="showActivity=false"/>
     <div class="head">
       <div class="userinfo">
-        <section class="user-info">
+        <section class="user-info" @click="qqLogin">
           <img :src="'//q1.qlogo.cn/g?b=qq&nk='+user.qq+'&s=100'" onerror="//q1.qlogo.cn/g?b=qq&nk=10000&s=100&t=1449411350" class="headicon">
           <div v-if="user.user"" style="text-align: center">
             <p class="username">{{user.user}}</p>
           </div>
-          <p class="username" v-else>未登录</p>
+          <p class="username" v-else>
+          未登录
+          <p style="color:#fff" v-if="!user.user && IS_APP">(点击QQ快捷登录)</p>
+          </p>
         </section>
         
         <section class="points" v-if="user.user">
@@ -234,7 +237,39 @@
            this.$router.push('/user/about');
            }, 1000);
        }
+     },
+     qqLogin() {
+       if (this.IS_APP && !this.user.user)
+       window.zanhuang.qqLogin();
      }
+   },
+   mounted() {
+     window.afterLogin = data => {
+       console.log(data);
+       var open_id = data.openid;
+       this.$loading.show('正在登录中...');
+       $.post(USER_API.login, {
+        open_id
+      })
+      .then(({data}) => {
+        this.$loading.hide();
+        this.$tip.show(data.msg);
+        if (data.status) {
+          localStorage['jwt'] = data.token;
+          this.$store.commit('setUser', data.user);
+          // 更新store中的user字段
+        }
+
+        // 新用户需要先绑定
+        if (data.newuser) {
+          this.$router.push('/user/qqlogin');
+        }
+      })
+      .catch(err => {
+        this.$loading.hide();
+        this.$tip.show('网络连接失败！');
+      });
+    }
    }
  }
  </script>

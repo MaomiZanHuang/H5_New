@@ -8,7 +8,7 @@
 		<div class="mui-card-content" style="padding: 10px; font-size: 0.325rem">
 			<div class="mui-row">
 				<div class="mui-col-xs-4">
-					<img :src="order.goods_logo" onerror="https://cdn.520cy.cn/images/pic-null.png" width="100%"/>
+					<img :src="order.goods_logo" onerror="//cdn.520cy.cn/images/pic-null.png" width="100%"/>
 				</div>
 				<div class="mui-col-xs-8 order-content" style="padding-left: 10px;">
 					<p class="title">{{order.goods_name}}</p>

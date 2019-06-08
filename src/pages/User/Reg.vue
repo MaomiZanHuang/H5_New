@@ -136,7 +136,7 @@ export default {
   justify-content: center;
   height: 100%;
   align-items: center;
-  background: url(https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3129041440,2884231604&fm=27&gp=0.jpg) no-repeat;
+  background-color: rgb(62, 83, 202);
   background-size: cover;
 }
 .container-form {

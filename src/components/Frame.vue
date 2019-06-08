@@ -38,7 +38,9 @@ export default {
       }
     },
     autosize() {
-      this.contentHeight = ((document.documentElement.clientHeight || document.body.clientHeight)  - this.$refs.header.offsetHeight) + 'px';
+      var headerH = this.$refs.header.offsetHeight;
+      var h = headerH > 50 ? 50 : headerH;
+      this.contentHeight = ((document.documentElement.clientHeight || document.body.clientHeight)  - h) + 'px';
     }
   },
   mounted() {

@@ -1,27 +1,5 @@
 <template>
 <Frame title="用户登录" forceBackTo='/user/index'>
-
-<!-- <div class="brand">
-  <div class="logo">
-    <img src="http://pic.downcc.com/upload/2016-8/2016851622186787.jpg" />
-  </div>
-  <p class="name text-center">千寻赞皇</p>
-</div>
-<form class="mui-input-group login-reg-form">
-  <div class="plr-15">
-    <input class="mui-input" placeholder="请输入账号">
-    <input class="mui-input" placeholder="请输入密码">
-  </div>
-  <div class="mui-button-row plr-15">
-    <button class="mui-btn mui-btn-primary btn-block" type="button" onclick="return false;">登 录</button>
-  </div>
-
-  <div class="mui-button-row plr-15">
-    <router-link to="/user/findpwd" class="mui-btn btn-block" type="button" onclick="return false;">找回密码</router-link>
-  </div>
-</form> -->
-
-
 <div class="container-bg">
   <div class="container container-form">
     <div class="login__logo">
@@ -138,7 +116,7 @@ export default {
   justify-content: center;
   height: 100%;
   align-items: center;
-  background: url(https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3129041440,2884231604&fm=27&gp=0.jpg) no-repeat;
+  background-color: rgb(62, 83, 202);
   background-size: cover;
 }
 .container-form {

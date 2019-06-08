@@ -28,7 +28,8 @@ exports.user = {
   chargeByCard: `${HOST}/user/chargeByCard`,
   getUserPoints: `${HOST}/user/points`,
   getUserBill: `${HOST}/user/bill`,
-  share: `${HOST}/user/share`
+  share: `${HOST}/user/share`,
+  bindOpenId: `${HOST}/user/bindOpenId`
 };
 
 exports.goods = {

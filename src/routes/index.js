@@ -170,6 +170,15 @@ export default new Router({
           }
         },
         {
+          name: 'taskadv',
+          path: '/user/qqlogin',
+          component: User.QQLogin,
+          meta: {
+            depth: 1,
+            keepAlive: true
+          }
+        },
+        {
           name: 'login',
           path: '/user/login',
           component: User.Login,

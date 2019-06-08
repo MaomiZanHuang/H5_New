@@ -23,7 +23,16 @@
       <div class="mui-button-row">
         <button type="button" class="mui-btn mui-btn-danger btn-block" @click="save">保存资料</button>
       </div>
+      <br/>
+      <div v-if="IS_APP">
+      <hr>
+      <br/>
+      <div class="mui-button-row">
+        <button type="button" class="mui-btn mui-btn-primary btn-block" @click="bindOpenId">绑定QQ快捷登录</button>
+      </div>
+      </div>
   </form>
+  
 </Frame>
 </template>
 <script>
@@ -58,9 +67,32 @@ export default {
         this.$loading.hide();
         this.$tip.show('网络连接失败！');
       })
+    },
+    bindOpenId() {
+      window.zanhuang.getOpenId();
     }
   },
   mounted() {
+    window.afterGetOpenId = data => {
+      var open_id = data.openid;
+      if (!open_id) {
+        this.$tip.show('绑定失败，请稍后重试！');
+        return false;
+      }
+      // 进行绑定
+      this.$loading.show('正在进行绑定中...');
+      $.post(USER_API.bindOpenId, {open_id})
+      .then(({data}) => {
+        this.$loading.hide();
+        this.$tip.show(data.msg);
+      })
+      .catch(err => {
+        console.log(err);
+        this.$loading.hide();
+        this.$tip.show('网络连接失败！');
+      });
+    };
+
     this.$loading.show('获取用户数据中...');
     $.get(USER_API.getUserInfo)
       .then(({data}) => {
@@ -72,7 +104,7 @@ export default {
       .catch(err => {
         this.$loading.hide();
         this.$tip.show('网络连接失败！');
-      })
+      });
   }
 }
 </script>

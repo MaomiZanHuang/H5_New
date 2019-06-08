@@ -23,7 +23,7 @@
           <li ref="goodEl" v-for="good in cata.children"class="food-item border-1px"
             @click="buyGoods(good.goods_id)">
             <div class="icon">
-              <img width="57" height="57" :src="good.logo" onerror="https://cdn.520cy.cn/images/pic-null.png">
+              <img width="57" height="57" :src="good.logo" onerror="//cdn.520cy.cn/images/pic-null.png">
             </div>
             <div class="content">
               <div class="mui-row">

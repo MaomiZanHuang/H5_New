@@ -12,6 +12,7 @@ import Pay from './Pay';
 import Bill from './Bill';
 import SpotAdv from './SpotAdv';
 import TaskAdv from './TaskAdv';
+import QQLogin from './QQLogin';
 
 export default {
   Index,
@@ -27,5 +28,6 @@ export default {
   Bill,
   FindPoints,
   SpotAdv,
-  TaskAdv
+  TaskAdv,
+  QQLogin
 }

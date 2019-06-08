@@ -67,7 +67,7 @@
 			<div id="goodsList" class="mui-table-view mui-grid-view own-gray-color" style="background:#efeff4">
 				<li v-for="item in top5Goods" @click="buyGoods(item.goods_id)" class="mui-table-view-cell mui-media mui-col-xs-6">
 					<div class= "bgDiv">
-						<img class="mui-media-object" :src="item.logo" onerror="https://cdn.520cy.cn/images/pic-null.png"/>
+						<img class="mui-media-object" :src="item.logo" onerror="//cdn.520cy.cn/images/pic-null.png"/>
 						<div class="mui-media-body">
 							<p class="mui-ellipsis-2">{{item.title}}</p>
 							<div class="price">
