@@ -9,8 +9,10 @@
       <div class="mui-collapse-content">
         分享本软件至QQ群/QQ空间，即可获得积分，每日最多分享2次，无效分享积分可能会被收回！
         <br/>
-        <button class="mui-btn mui-btn-primary btn-block" @click="app_share">分享到QQ群</button>
-        <button class="mui-btn mui-btn-primary btn-block" @click="app_share2">分享到QQ空间</button>
+        <button class="mui-btn mui-btn-primary btn-block" @click="app_share">分享到QQ/QQ群</button>
+        <br/>
+        <br/>
+        <button class="mui-btn mui-btn-warning btn-block" @click="app_share2">分享到QQ空间</button>
       </div> 
     </li>
     <li class="mui-table-view-cell">
