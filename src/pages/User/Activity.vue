@@ -117,10 +117,10 @@ export default {
           this.$tip.show(data.msg);
           if (data.status) {
             this.$store.commit('setUserPoints', data.points);
-            setTimeout(() => {
+          }
+          setTimeout(() => {
               window.zanhuang&&window.zanhuang.showAd("GOOGLE", 1, "telanx");
             }, 2500);
-          }
         })
         .catch(err => {
           this.$tip.show('网络连接失败！');

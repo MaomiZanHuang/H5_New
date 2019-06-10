@@ -200,11 +200,11 @@
           if (data.status) {
             this.$store.commit('setUserPoints', data.points);
           }
-          window.zanhuang&&window.zanhuang.showAd("YOUMI", 1, "telanx");
+          window.zanhuang&&window.zanhuang.showAd("GOOGLE", 1, "telanx");
         })
         .catch(err => {
           this.$tip.show('网络连接失败！');
-          window.zanhuang && window.zanhuang.showAd("YOUMI", 1, "telanx");
+          window.zanhuang && window.zanhuang.showAd("GOOGLE", 1, "telanx");
         });
      },
      updatePoints() {
