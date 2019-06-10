@@ -200,11 +200,15 @@
           if (data.status) {
             this.$store.commit('setUserPoints', data.points);
           }
-          window.zanhuang&&window.zanhuang.showAd("GOOGLE", 1, "telanx");
+          setTimeout(() => {
+            window.zanhuang&&window.zanhuang.showAd("GOOGLE", 1, "telanx");
+          }, 2000);
         })
         .catch(err => {
           this.$tip.show('网络连接失败！');
-          window.zanhuang && window.zanhuang.showAd("GOOGLE", 1, "telanx");
+          setTimeout(() => {
+            window.zanhuang&&window.zanhuang.showAd("GOOGLE", 1, "telanx");
+          }, 2000);
         });
      },
      updatePoints() {
