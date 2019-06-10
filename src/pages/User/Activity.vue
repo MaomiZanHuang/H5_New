@@ -7,9 +7,10 @@
       1.分享软件赚取积分
       </a>
       <div class="mui-collapse-content">
-        分享本软件至QQ群，即可随机获得积分，每日最多分享2次！
+        分享本软件至QQ群/QQ空间，即可获得积分，每日最多分享2次，无效分享积分可能会被收回！
         <br/>
-        <button class="mui-btn mui-btn-primary btn-block" @click="app_share">开始分享</button>
+        <button class="mui-btn mui-btn-primary btn-block" @click="app_share">分享到QQ群</button>
+        <button class="mui-btn mui-btn-primary btn-block" @click="app_share2">分享到QQ空间</button>
       </div> 
     </li>
     <li class="mui-table-view-cell">
@@ -19,7 +20,7 @@
       <div class="mui-collapse-content">
         您的推广链接: <input class="mui-input-group input btn-block" :value="referral"> <br/>
         发送推广链接到QQ群/微信，通过您的邀请链接注册的用户(按IP计)将获得1积分!
-        <textarea rows="4" ref="copyEl">#刷NB的赞就用拇指赞！#我正在使用拇指赞，不仅仅是赞，还有超多好玩的东西唷，快来一起玩吧！戳我{{referral}}</textarea>
+        <textarea rows="4" ref="copyEl">#拇指赞,免费刷,畅快玩！#我正在使用拇指赞，不仅仅是刷赞，还有超多好玩的东西唷，快来一起玩吧！戳我{{referral}}</textarea>
         <br/>
         <button class="mui-btn mui-btn-danger btn-block" @click="copy">一键复制</button>
       </div> 
@@ -52,7 +53,7 @@
       <div class="mui-collapse-content">
         您的推广链接: <input class="mui-input-group input btn-block" :value="referral"> <br/>
         发送推广链接到QQ群/微信，通过您的邀请链接注册的用户(按IP计)将获得1积分!
-        <textarea rows="4" ref="copyEl">#刷NB的赞就用拇指赞！#我正在使用拇指赞，不仅仅是赞，还有超多好玩的东西唷，快来一起玩吧！戳我{{referral}}</textarea>
+        <textarea rows="4" ref="copyEl">#拇指赞,免费刷,畅快玩！#我正在使用拇指赞，不仅仅是刷赞，还有超多好玩的东西唷，快来一起玩吧！戳我{{referral}}</textarea>
         <br/>
         <button class="mui-btn mui-btn-danger btn-block" @click="copy">一键复制</button>
       </div> 
@@ -87,8 +88,8 @@ export default {
     const {APP_LOGO, APP_NAME, APP_SITE} = this;
     window._bd_share_config = {
       common : {
-        bdText : `${APP_NAME}，免费刷赞，刷最NB的赞！不仅仅是刷赞，还有更多好玩的东西哦~~`,	
-        bdDesc : `${APP_NAME}，免费刷赞，刷最NB的赞！不仅仅是刷赞，还有更多好玩的东西哦~~`,	
+        bdText : `${APP_NAME}，免费刷,畅快玩！不仅仅是刷赞，还有更多好玩的东西哦~~`,	
+        bdDesc : `${APP_NAME}，免费刷,畅快玩！不仅仅是刷赞，还有更多好玩的东西哦~~`,	
         bdUrl : APP_SITE, 	
         bdPic : APP_LOGO
       },
@@ -136,8 +137,20 @@ export default {
       const {APP_NAME, APP_LOGO, APP_SITE} = this;
       window.zanhuang.jsAndroid(JSON.stringify({
         type: '分享',
-        title:`${APP_NAME}，刷最NB的赞！`,
-        content:`${APP_NAME}，免费刷赞，刷最NB的赞！不仅仅是刷赞，还有更多好玩的东西哦~~`,
+        channel: 'QQ',
+        title:`『${APP_NAME}』免费刷，畅快玩！`,
+        content:`免费刷，不仅仅是刷赞，还有更多好玩的东西哦~~`,
+        picUrl: 'http:' + APP_LOGO.replace(/^http\:/, ''),
+        url: APP_SITE,
+      }));
+    },
+    app_share2() {
+      const {APP_NAME, APP_LOGO, APP_SITE} = this;
+      window.zanhuang.jsAndroid(JSON.stringify({
+        type: '分享',
+        channel: 'QZONE',
+        title:`『${APP_NAME}』免费刷，畅快玩！`,
+        content:`免费刷，不仅仅是刷赞，还有更多好玩的东西哦~~`,
         picUrl: 'http:' + APP_LOGO.replace(/^http\:/, ''),
         url: APP_SITE,
       }));

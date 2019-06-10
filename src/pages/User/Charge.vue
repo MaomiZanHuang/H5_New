@@ -16,9 +16,8 @@
           <div class="mui-col-xs-9" style="">
               <button v-for="type in types"
                 type="button"
-                style="width: 30%; margin-left: 3%;margin-bottom: 0.5rem;color: #c7c7cc"
-                :class="type.price === selectPrice.price ? 'mui-btn-danger' : 'mui-btn-grey'"
-                class="mui-btn mui-btn-outlined"
+                :class="type.price === selectPrice.price ? 'mui-btn-danger' : 'mui-btn-outlined'"
+                class="mui-btn guige-btn"
                 @click="selectPrice = type">
                 {{type.title}}
               </button>
@@ -221,4 +220,12 @@ export default {
 }
 </script>
 <style scoped>
+.guige-btn {
+  width: 30%;
+  margin-left: 3%;
+  margin-bottom: 0.5rem;
+}
+.guige-btn:not(.mui-btn-danger) {
+  color: #abc;
+}
 </style>

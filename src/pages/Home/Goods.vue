@@ -41,8 +41,8 @@
           <div class="mui-col-xs-10">
             <button v-for="unit in goods.specs"
               type="button"
-              :class="unit.id == form.selectSpec.id ? 'mui-btn-danger' : 'mui-btn-grey'"
-              class="mui-btn mui-btn-outlined mui-btn-block guige-btn" style="float: left;" 
+              :class="unit.id == form.selectSpec.id ? 'mui-btn-danger' : 'mui-btn-outlined'"
+              class="mui-btn mui-btn-block guige-btn" style="float: left;" 
               tag="0"
               @click="form.selectSpec = unit"
             >{{unit.title}}</button>
@@ -264,6 +264,9 @@ export default {
 
 <style scoped>
 @import url('swiper/dist/css/swiper.min.css');
+.mui-popover .mui-table-view {
+  max-height: 100% !important;
+}
 .mui-table-view-cell {
   margin-bottom: 10px;
 }

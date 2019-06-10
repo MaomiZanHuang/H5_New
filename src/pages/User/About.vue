@@ -36,7 +36,6 @@
           <a href="http://attach.zhiyoo.com/forum/201808/31/155246866dghgdkrlbt6lv.attach?f=%E5%8D%83%E5%AF%BB%E6%8B%87%E6%8C%87%E8%B5%9Ev1.1.apk">戳我下载安卓APP『拇指赞』</a>
         </p>
         <img style="width:4rem;height:4rem" src="//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtCS8btHzrel0qyKokF5L0HfLFIGBnbgmqkP7OlyINsaA/0" />
-        <p>扫一扫下载安装『拇指赞』</p>
       </div> 
     </li>
   </ul>
