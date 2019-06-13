@@ -29,7 +29,9 @@ exports.user = {
   getUserPoints: `${HOST}/user/points`,
   getUserBill: `${HOST}/user/bill`,
   share: `${HOST}/user/share`,
-  bindOpenId: `${HOST}/user/bindOpenId`
+  bindOpenId: `${HOST}/user/bindOpenId`,
+  doAd: `${HOST}/user/doAd`,
+  getAdPoints: `${HOST}/user/getAdPoints`
 };
 
 exports.goods = {

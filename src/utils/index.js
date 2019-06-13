@@ -75,3 +75,7 @@ export function timeFormat (date, fmt = 'yyyy-MM-dd') {
   }
   return fmt;
 }
+
+export function encrypt(str, key) {
+  return str^key;
+}
