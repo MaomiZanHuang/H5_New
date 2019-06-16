@@ -82,7 +82,11 @@ export default {
   line-height: 20px;
   font-size: 0.45rem;
 }
+.feed-ask {
+  padding-bottom: 10px;
+}
 .feed-answer {
+  padding-top: 10px;
   color: #FF5722
 }
 </style>
