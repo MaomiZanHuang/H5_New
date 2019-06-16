@@ -20,6 +20,7 @@ exports.user = {
   login: `${HOST}/user/login`,
   reg: `${HOST}/user/reg`,
   feedback: `${HOST}/user/feedback`,
+  getFeedback: `${HOST}/user/getFeedback`,
   getUserInfo: `${HOST}/user/info`,
   updateUserInfo: `${HOST}/user/update_info`,
   updateLoginPwd: `${HOST}/user/update_loginpwd`,

@@ -1,5 +1,6 @@
 import Index from './Home';
 import About from './About';
+import Feedback from './Feedback';
 import UserInfo from './UserInfo';
 import Security from './Security';
 import Activity from './Activity';
@@ -17,6 +18,7 @@ import QQLogin from './QQLogin';
 export default {
   Index,
   About,
+  Feedback,
   UserInfo,
   Security,
   Activity,

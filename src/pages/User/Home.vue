@@ -99,7 +99,7 @@
             <span class="mui-icon mui-icon-arrowright"></span>
           </a>
         </li>
-        <li>
+        <li @click="jumpTo('/user/feedback')">
           <section>
             <span class="navlistname">反馈建议</span>
           </section>
@@ -169,8 +169,10 @@
      jumpTo(url) {
        this.$router.push(url);
      },
-     showFeedbackDialog() {
+     showFeedbackDialog(e) {
+       e.preventDefault();
        this.feedbackDialogShow = true;
+       e.stopPropagation();
      },
      addFeeback() {
        if (this.feedbackContent.trim().length < 5) {

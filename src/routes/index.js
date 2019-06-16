@@ -143,6 +143,15 @@ export default new Router({
           }
         },
         {
+          name: 'feedback',
+          path: '/user/feedback',
+          component: User.Feedback,
+          meta: {
+            depth: 1,
+            keepAlive: true
+          }
+        },
+        {
           name: 'about',
           path: '/user/about',
           component: User.About,
