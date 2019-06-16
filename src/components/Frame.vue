@@ -3,7 +3,7 @@
 <div class="frame-container">
   <header class="header" ref="header">
     <section v-if="!hideBack" class="back" @click="goback"><i class="mui-icon mui-icon-back"></i></section>
-    <section class="title ellipsis"><span class="title_text">{{title}}</span></section>
+    <section class="title ellipsis"><span class="title_text" style="font-size: 17px;">{{title}}</span></section>
   </header>
   <section class="content" :style="{height: contentHeight}">
   <slot><!--窗口内部的内容--></slot>

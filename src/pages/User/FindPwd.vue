@@ -2,33 +2,23 @@
 <Frame title="找回密码">
 <div class="brand">
   <div class="logo">
-    <img src="//pic.downcc.com/upload/2016-8/2016851622186787.jpg" />
+    <img :src="APP_LOGO" />
   </div>
   <p class="name text-center">{{APP_NAME}}</p>
 </div>
-<form class="mui-input-group login-reg-form">
-  <div class="mui-input-row mui-row">
-    <label>绑定邮箱</label>
-    <input type="text" class="mui-input" placeholder="请输入您的账号绑定的邮箱">
-  </div>
-  <div class="mui-input-row mui-row">
-    <div class="mui-col-xs-8">
-      <label>验证码</label>
-      <input id=‘VerificationCode‘ type="text" class="mui-input" placeholder="请输入验证码">
+<ul data-v-21b33e4c="" class="mui-table-view">
+  <li class="mui-table-view-cell mui-collapse mui-active bc-white">
+    <a href="#">QQ找回密码</a>
+    <div class="mui-collapse-content">
+      请使用QQ注册的账号联系客服找回
+      <p>
+            客服QQ: &nbsp; <b>851656783</b>
+            <img v-if="IS_APP" @click="joinQQ" border="0" src="//wpa.qq.com/pa?p=2:851656783:51" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+            <a v-else target="_blank" href="//wpa.qq.com/msgrd?v=3&uin=851656783&site=qq&menu=yes"><img border="0" src="//wpa.qq.com/pa?p=2:851656783:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+              </p>
     </div>
-    <div class="mui-col-xs-4">
-      <img height="44px" src="//pubg.gotoip3.com/qwt/index.php/home/user/verifycode.html/" />
-    </div>
-  </div>
-
-  <div class="mui-button-row plr-15">
-    <button class="mui-btn mui-btn-primary btn-block" type="button" onclick="return false;">找回密码</button>
-  </div>
-
-  <div class="mui-button-row plr-15">
-    <router-link to="/user/login" class="mui-btn btn-block" type="button">返回登录</router-link>
-  </div>
-</form>
+  </li> 
+</ul>
 </Frame>
 </template>
 <script>
@@ -37,6 +27,14 @@ import Frame from '@/components/Frame.vue';
 export default {
   components: {
     Frame
+  },
+  methods: {
+    joinQQ() {
+      window.zanhuang.jsAndroid(JSON.stringify({
+        type: 'QQ聊天',
+        qq: '851656783'
+      }));
+    }
   }
 }
 </script>

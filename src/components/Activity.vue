@@ -64,19 +64,14 @@ const ZFBS = {
 		zkl: '525419253',
 		qr: '//ugc.qpic.cn/gbar_pic/1FkY6udt8mP8iciavJXFcuw3zyEPqepyibqibIRSicDvkSiawJQ9kKEVXHiaw/0'
 	},
-	maomi1: {
+	maomi: {
 		url: 'https://qr.alipay.com/c1x04815r7mui0ayuhu8zdb',
-		zkl: '525419253',
-		qr: '//ugc.qpic.cn/gbar_pic/1FkY6udt8mMUNPPCRvfrFednkZQ2rYTU7ibDHZAvtdzic8gMj2SfYl3g/0'
-	},
-	maomi2: {
-		url: 'https://qr.alipay.com/c1x06974xlit7kazfuchfc7',
-		zkl: '525419253',
+		zkl: '535151565',
 		qr: '//ugc.qpic.cn/gbar_pic/1FkY6udt8mMUNPPCRvfrFednkZQ2rYTU7ibDHZAvtdzic8gMj2SfYl3g/0'
 	},
 	Anjou: {
 		url: 'https://qr.alipay.com/c1x03847wlu2pzgfl5l1wbf',
-		zkl: '525419253',
+		zkl: '534325754',
 		qr: '//ugc.qpic.cn/gbar_pic/1FkY6udt8mP8iciavJXFcuw3zyEPqepyibqibIRSicDvkSiawJQ9kKEVXHiaw/0'
 	}
 };

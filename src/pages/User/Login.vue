@@ -10,7 +10,7 @@
           <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
           </svg>
-          <input type="text" v-model="user" placeholder="账号(QQ/邮箱/手机号)"/>
+          <input type="text" v-model="user" placeholder="账号(QQ号,5-10位数字)"/>
         </div>
         <div class="login__row">
           <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
@@ -22,7 +22,7 @@
         <br><br>
         <div class="form-bottom">
           <router-link to="/user/reg" class="fleft">注册账号</router-link>
-          <router-link to="/user/forget-pwd" class="fright">忘记密码</router-link>
+          <router-link to="/user/findpwd" class="fright">忘记密码</router-link>
         </div>
         </div>
       </div>

@@ -10,13 +10,13 @@
           <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
           </svg>
-          <input type="text" v-model="user" placeholder="账号(4-12位数字或字母)"/>
+          <input type="text" v-model="user" placeholder="账号(QQ号码，5-10位数字)"/>
         </div>
         <div class="login__row">
           <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
           </svg>
-          <input type="text" v-model="qq" placeholder="QQ(选填，找回密码需要)"/>
+          <input type="text" v-model="qq" placeholder="确认账号(重复输入QQ号)"/>
         </div>
         <div class="login__row" style="display: none">
           <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
@@ -28,9 +28,9 @@
           <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
           </svg>
-          <input type="password" v-model="pwd" placeholder="密码(4~12位数字或字母)"/>
+          <input type="password" v-model="pwd" placeholder="密码(设置4~12位数字字母，非QQ密码)"/>
         </div>
-        <button type="button" class="login__submit" @click="reg">注 册</button>
+        <button type="button" class="login__submit" @click="confirmReg">注 册</button>
         <br><br>
         <div class="form-bottom">
           <router-link to="/user/login" class="fright">已有账号，直接登录</router-link>
@@ -40,9 +40,26 @@
   </div>
 </div>
 
-
-
-
+    <!--确认风险提示-->
+    <div v-if="feedbackDialogShow" class="mui-popup-backdrop mui-active" style="display: block;"></div>
+    <div v-if="feedbackDialogShow" class="mui-popup mui-popup-in" style="display: block;">
+      <div class="mui-popup-inner">
+        <div class="mui-popup-title">请确认以下信息</div>
+        <div class="mui-popup-text" style="padding: 20px 0; line-height: 15px;text-align: left;">
+          <p>1.我已确认填写QQ号无误(
+            <font color="red">QQ号是找回密码唯一途径，错误填写QQ号可能无法找回密码或被盗用账号</font>
+          )  
+          </p>
+          <br/>
+          <p>2.我确认所填写密码非QQ密码(<font color="red">设置和QQ相同密码有QQ被盗号风险</font>)</p>
+        </div>
+        <div class="mui-popup-buttons">
+          <span class="mui-popup-button" @click="cancelReg">重新填写</span>
+          <span class="mui-popup-button" @click="reg">确认注册</span>
+          
+        </div>
+      </div>
+    </div>
 </Frame>
 </template>
 <script>
@@ -59,20 +76,33 @@ export default {
       user: '',
       pwd: '',
       qq: '',
-      inviter: from || ''
+      inviter: from || '',
+      feedbackDialogShow: false
     }
   },
   methods: {
-    reg() {
+    confirmReg() {
       const {user, pwd, qq, inviter} = this;
       if (user.trim() === '' || pwd.trim() === '') {
         this.$tip.show('账号密码不能为空！');
         return false;
       }
-      if (user.trim().length < 4 || user.trim().length > 12) {
-        this.$tip.show('账号长度4~12位！');
+      if (user.trim().length < 5 || user.trim().length > 10) {
+        this.$tip.show('账号长度4~10位QQ！');
         return false;
       }
+      if(user.trim() !== qq.trim()) {
+        this.$tip.show('两次账号输入不正确！');
+        return false;
+      }
+      this.feedbackDialogShow = true;
+    },
+    cancelReg() {
+      this.feedbackDialogShow = false;
+    },
+    reg() {
+      const {user, pwd, qq, inviter} = this;
+      this.feedbackDialogShow = false;
       this.$loading.show('注册中,请稍后...');
       $.post(USER_API.reg, {
         user,

@@ -4,7 +4,7 @@
       
       <div class="mui-input-row">
           <label>QQ</label>
-      <input type="text" v-model="qq" class="mui-input-clear">
+      <input type="text" v-model="qq" class="mui-input-clear" disabled>
       </div>
       <div class="mui-input-row">
           <label>邮箱</label>
