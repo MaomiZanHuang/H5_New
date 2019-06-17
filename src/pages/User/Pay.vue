@@ -48,8 +48,8 @@
           </div>
         </div>
         <br/>
-        <div v-if="pay_type == 'qq'">
-          您还给客服发送支付链接{{pay.qrText}},点击链接打开进行支付
+        <div v-if="pay.type == 'qq'">
+          您还可以聊天界面发送支付链接{{pay.qrText}},点击链接打开进行支付
           <button class="mui-btn btn-block mui-btn-primary" @click="openQQAndPay">一键复制支付链接并打开QQ</button>
         </div>
         <br/>
@@ -148,7 +148,7 @@ export default {
       window.zanhuang.jsAndroid(JSON.stringify({
         type: '保存图片',
         picName: this.qr + '.png',
-        picUrl: this.pay.qr_img
+        picUrl: this.pay.qr
       }));
     },
     deleteQR() {
