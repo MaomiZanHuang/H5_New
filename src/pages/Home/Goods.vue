@@ -102,7 +102,7 @@
         </div>
       </li>
       <li class="mui-table-view-cell">
-        <component :is="formCmp" ref="FormCmp"/>
+        <component :is="formCmp" :user="user" ref="FormCmp"/>
       </li>
       
     </ul>
@@ -123,6 +123,7 @@ import Frame from '@/components/Frame';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import {replaceVars} from '@/utils/index';
 import {goods as GOODS_API, order as ORDER_API} from '@/config/serverApi';
+import {mapState} from 'vuex';
 import QQ from './components/QQ';
 import SHUOSHUO from './components/Shuoshuo';
 import KGE from './components/Kge';
@@ -175,6 +176,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(['user']),
     formCmp() {
       const CMP_MAP = {
         QQ: 'QQ',
@@ -188,7 +190,6 @@ export default {
     }
   },
   created() {
-    window.vue = this;
     const goods_id = this.$route.params.id;
     $.get(replaceVars(GOODS_API.getGoods, {id: goods_id}))
       .then(({ data }) => {

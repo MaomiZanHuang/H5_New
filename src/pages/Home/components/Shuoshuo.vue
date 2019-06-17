@@ -7,7 +7,7 @@
   <div class="mui-col-xs-8">
     <!--根据不同类型刷赞，快手业务进行不同的的数据进行分类展示,目前只展示QQ-->
       <input type="text" class="mui-input-clear" v-model="form.qq" placeholder="请输入QQ号" />
-      <input type="text" class="mui-input-clear" v-model="form.shuoshuo_id" placeholder="点击下方按钮获取说说" />
+      <input type="text" class="mui-input-clear" v-model="form.shuoshuo_id" placeholder="点击下方按钮获取说说" disabled/>
   </div>
 </div>
 <div class="mui-row">
@@ -39,6 +39,7 @@
 import $ from 'axios';
 import {guest as GUEST_API} from '@/config/serverApi';
 export default {
+  props: ['user'],
   data() {
     return {
       form: {
@@ -91,6 +92,9 @@ export default {
           console.log(err);
         });
     }
+  },
+  mounted() {
+    this.form.qq = this.user.qq;
   }
 }
 </script>

@@ -24,6 +24,7 @@
 </template>
 <script>
 export default {
+  props: ['user'],
   data() {
     return {
       form: {
@@ -41,6 +42,9 @@ export default {
       }
       return true;
     }
-  }
+  },
+  mounted() {
+    this.form.qq = this.user.qq;
+  },
 }
 </script>
