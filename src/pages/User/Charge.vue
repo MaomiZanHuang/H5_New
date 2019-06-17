@@ -36,13 +36,12 @@
           <br/>
           <br/>
           <p style="color: red;line-height: 0.5rem;">温馨提示:即日起使用支付宝付款，可以用领取到的红包抵扣哦~<br/>比如领取到0.98元红包，充值1元=100积分只需要花0.02元哦~</p><br/>
-          <button v-if="IS_APP" class="mui-btn btn-block mui-btn-primary mui-icon iconfont icon-alipay" @click="payByAlipay">支付宝支付</button>
-          <div style="display:none">
+          <button class="mui-btn btn-block mui-btn-primary mui-icon iconfont icon-alipay" @click="payByAlipay">支付宝支付</button>
           
           <br/>
           <br/>
           <button class="mui-btn btn-block mui-icon iconfont icon-qq" style="background:rgb(104, 190, 248);color: #fff;" @click="payByQQpay">QQ支付</button>
-          </div>
+    
         </div>
         <br/>
       </div>
@@ -179,21 +178,12 @@ export default {
               price,
               points,
               qr: data.qr,
-              qr_img: 'http://www.cardbuy.net' + data.qr_img
+              qr2: data.qr2
             }
           });
         }
 
-        if (type === 'zfb') {
-          var f=document.createElement("form");
-          f.style="display:none";
-          f.action = data.action;
-          f.target="_blank";
-          f.method="post";//指定为post
-          f.innerHTML = data.input;
-          document.body.appendChild(f);  
-          f.submit();
-        }
+        
       })
       .catch(err => {
         this.$loading.hide();
@@ -202,14 +192,17 @@ export default {
       });
     },
     concatKf() {
-      window.zanhuang.jsAndroid(JSON.stringify({
-        type: 'QQ聊天',
-        qq: '851656783'
-      }))
+      if(this.IS_APP) {
+        window.zanhuang.jsAndroid(JSON.stringify({
+          type: 'QQ聊天',
+          qq: '851656783'
+        }));
+      } else  {
+        window.open('//wpa.qq.com/msgrd?v=3&uin=851656783&site=qq&menu=yes"><img border="0" src="//wpa.qq.com/pa?p=2:851656783:51');
+      }
     }
   },
   mounted() {
-    console.log('进入mounted');
     this.getChargeOptions().then(r => {
       this.selectPrice = this.types[0];
     }).catch(err => {

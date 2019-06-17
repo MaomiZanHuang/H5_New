@@ -19,7 +19,7 @@
       <div class="mui-collapse-content text-center" v-else>
         <div class="mui-row">
           <p v-if="pay.type ==='wx'" style="color:rgb(0,208,11)" class="mui-icon iconfont icon-weixinzhifu">
-          使用微信扫一扫<br/>
+          如无法用微信扫码支付，请换其它方式<br/>
           <font color="red">(由于微信限制，只能通过扫码支付)</font>
           </p>
           <p v-if="pay.type ==='zfb'" style="color:rgb(0,166,233)" class="mui-icon iconfont icon-alipay">使用支付宝支付</p>
@@ -30,10 +30,10 @@
         
         <div class="mui-row">
           <p style="font-size:0.6rem;color:#f00">￥{{pay.price.toFixed(2)}}</p>
-          <div class="" v-if="pay.type !== 'zfb'">
-            <img :src="pay.qr_img" style="width: 3rem;height: 3rem" title="二维码已失效"/>
+          <div class="">
+            <img :src="pay.qr"  style="width: 3rem;height: 3rem" title="二维码已失效"/>
           </div>
-          <div v-else><br/></div>
+          
           <p>剩余支付时间  <span style="color: #00f">{{leftPayTime}}</span></p>
         </div>
         <br/>
@@ -48,6 +48,10 @@
           </div>
         </div>
         <br/>
+        <div v-if="pay_type == 'qq'">
+          您还给客服发送支付链接{{pay.qrText}},点击链接打开进行支付
+          <button class="mui-btn btn-block mui-btn-primary" @click="openQQAndPay">一键复制支付链接并打开QQ</button>
+        </div>
         <br/>
         <div class="mui-row">
           <button class="mui-btn btn-block mui-btn-primary" @click="finishPay">我已完成支付</button>
@@ -64,7 +68,7 @@
         1.付完款,可能需要等待5~10s到账，点击【我已完成支付】进行确认
         <br/>
         <br/>
-        2.如果充值完，未到账，请复制订单号 【<font color="#f00">{{pay.order_no}}</font>】与客服联系！<br/>
+        2.如果充值完，未到账，请与客服联系！<br/>
       </div>
     </li>
   </ul>
@@ -202,6 +206,15 @@ export default {
           this.$tip.show('网络连接失败！请点击我已支付重试！');
         });
     },
+    openQQAndPay() {
+      window.zanhuang.copyText(this.pay.qrText, true);
+      setTimeout(() => {
+        window.zanhuang.jsAndroid(JSON.stringify({
+          type: 'QQ聊天',
+          qq: '851656783'
+        }));
+      }, 1500);
+    }
   },
   beforeDestroy () {
     clearInterval(timer);
