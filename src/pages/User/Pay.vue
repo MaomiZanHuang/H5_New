@@ -208,7 +208,9 @@ export default {
         });
     },
     openQQAndPay() {
-      window.zanhuang.copyText(this.pay.qr_text, true);
+      var text = "点击链接进行拇指赞充值 " + this.pay_text;
+      window.zanhuang.copyText(text, 1);
+      this.$tip.show('复制成功！');
     }
   },
   beforeDestroy () {
