@@ -49,8 +49,9 @@
         </div>
         <br/>
         <div v-if="pay.type == 'qq'">
-          您还可以聊天界面发送支付链接{{pay.qrText}},点击链接打开进行支付
-          <button class="mui-btn btn-block mui-btn-primary" @click="openQQAndPay">一键复制支付链接并打开QQ</button>
+          <p style="color:rgb(5,176,255)">温馨提示:您还可以在QQ任一聊天界面发送支付链接{{pay.qr_text}},点击支付链接即可支付</p>
+          <br/>
+          <button class="mui-btn btn-block mui-btn-primary" @click="openQQAndPay">复制支付链接</button>
         </div>
         <br/>
         <div class="mui-row">
@@ -101,7 +102,7 @@ export default {
         price: 2,
         type: 'wx',
         qr: '',
-        qr_img: '//img0.imgtn.bdimg.com/it/u=1937851986,1854812274&fm=27&gp=0.jpg'
+        qr_text: ''
       },
       leftTime: 0
     };
@@ -130,7 +131,7 @@ export default {
       t--;
       if (t === 0) {
         // 二维码失效
-        this.pay.qr_img = '';
+        // this.pay.qr = '';
         clearInterval(timer);
       }
       this.queryOrder(false, t);
@@ -207,13 +208,7 @@ export default {
         });
     },
     openQQAndPay() {
-      window.zanhuang.copyText(this.pay.qrText, true);
-      setTimeout(() => {
-        window.zanhuang.jsAndroid(JSON.stringify({
-          type: 'QQ聊天',
-          qq: '851656783'
-        }));
-      }, 1500);
+      window.zanhuang.copyText(this.pay.qr_text, true);
     }
   },
   beforeDestroy () {

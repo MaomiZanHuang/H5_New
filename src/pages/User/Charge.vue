@@ -178,6 +178,7 @@ export default {
               price,
               points,
               qr: data.qr,
+              qr_text: data.qrText,
               qr2: data.qr2
             }
           });
