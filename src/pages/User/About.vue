@@ -21,7 +21,7 @@
                 <a v-else target="_blank" href="//wpa.qq.com/msgrd?v=3&uin=851656783&site=qq&menu=yes"><img border="0" src="//wpa.qq.com/pa?p=2:851656783:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
               </p>
               <p>
-                官方Q群: &nbsp;<b>863391242</b>
+                官方Q群: &nbsp;<b>647436347</b>
                 <img v-if="IS_APP" @click="joinGroup" border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="拇指赞官方交流群" title="拇指赞官方交流群">
                 <a v-else href="//qm.qq.com/cgi-bin/qm/qr?k=NlxJZk3yCoHEEz_VCVaBRFjRgxXGftYw" target="blank"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="拇指赞官方交流群" title="拇指赞官方交流群"></a>
               </p>
@@ -33,9 +33,9 @@
       </a>
       <div class="mui-collapse-content" style="text-align: center;">
         <p v-if="!is_app">
-          <a href="http://attach.zhiyoo.com/forum/201808/31/155246866dghgdkrlbt6lv.attach?f=%E5%8D%83%E5%AF%BB%E6%8B%87%E6%8C%87%E8%B5%9Ev1.1.apk">戳我下载安卓APP『拇指赞』</a>
+          <a href="http://attach.zhiyoo.com/forum/201906/18/175935aegh6kchcg5k9gqx.attach?f=%E5%8D%83%E5%AF%BB%E6%8B%87%E6%8C%87%E8%B5%9E_2.0.apk">戳我下载安卓APP『拇指赞』</a>
         </p>
-        <img style="width:4rem;height:4rem" src="//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVtCS8btHzrel0qyKokF5L0HfLFIGBnbgmqkP7OlyINsaA/0" />
+        <img style="width:4rem;height:4rem" src="//ugc.qpic.cn/gbar_pic/2wF3sr2LiaVvSic0YVSmRia5S8ia2ylBalIDsfupsEeyZEPdBkib5lbIBQw/0" />
       </div> 
     </li>
   </ul>
@@ -66,7 +66,7 @@ export default {
     joinGroup() {
       window.zanhuang.jsAndroid(JSON.stringify({
         type: '加群',
-        number: '863391242'
+        number: '647436347'
       }));
     },
     joinQQ() {
